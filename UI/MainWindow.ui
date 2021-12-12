@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1440</width>
+    <height>847</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>1421</width>
+      <height>841</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <property name="documentMode">
+     <bool>true</bool>
+    </property>
+    <property name="movable">
+     <bool>false</bool>
+    </property>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>开始页</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>样本管理</string>
+     </attribute>
+     <widget class="QSplitter" name="splitter">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>1391</width>
+        <height>9000</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>1000</width>
+        <height>9000</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="lineWidth">
+       <number>3</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="opaqueResize">
+       <bool>true</bool>
+      </property>
+      <property name="handleWidth">
+       <number>5</number>
+      </property>
+      <property name="childrenCollapsible">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QTreeWidget" name="treeWidget_show">
+          <column>
+           <property name="text">
+            <string>容器名称</string>
+           </property>
+          </column>
+          <item>
+           <property name="text">
+            <string>出血病冰箱</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>层1</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>架子1</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉3</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉4</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉5</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>标本盒1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>标本盒2</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>标本盒3</string>
+               </property>
+              </item>
+             </item>
+            </item>
+            <item>
+             <property name="text">
+              <string>架子2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>架子3</string>
+             </property>
+            </item>
+           </item>
+           <item>
+            <property name="text">
+             <string>层2</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>架子1</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉2</string>
+              </property>
+             </item>
+            </item>
+            <item>
+             <property name="text">
+              <string>架子2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>架子3</string>
+             </property>
+            </item>
+           </item>
+          </item>
+          <item>
+           <property name="text">
+            <string>血栓病冰箱</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>层1</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>层2</string>
+            </property>
+           </item>
+          </item>
+          <item>
+           <property name="text">
+            <string>产前诊断冰箱</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>层1</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>层2</string>
+            </property>
+           </item>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="font">
+           <font>
+            <family>PingFang SC</family>
+            <pointsize>13</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 13pt &quot;PingFang SC&quot;;</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>1</number>
+          </property>
+          <property name="text">
+           <string>样本管理树</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QTableView" name="tableView_show">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>1100</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>571</width>
+        <height>56</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0,0,0,0">
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>1</number>
+       </property>
+       <item>
+        <widget class="QToolButton" name="add_sample">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>新建样本</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/document--plus.png</normaloff>:/newPrefix/pictures/document--plus.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="delete_sample">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>删除样本</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/cross-script.png</normaloff>:/newPrefix/pictures/cross-script.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="search_sample">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>样本查询</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/blue-document-search-result.png</normaloff>:/newPrefix/pictures/blue-document-search-result.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="enter_today">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>当日入库</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/clock--plus.png</normaloff>:/newPrefix/pictures/clock--plus.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="sample_class">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>样本类别</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/rubber-balloons.png</normaloff>:/newPrefix/pictures/rubber-balloons.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="use_ratio">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>容器使用率统计</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/counter-count.png</normaloff>:/newPrefix/pictures/counter-count.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="trash">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>回收站样本</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/box-label.png</normaloff>:/newPrefix/pictures/box-label.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>系统管理</string>
+     </attribute>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1440</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <action name="act_search">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Icon/search.bmp</normaloff>../Icon/search.bmp</iconset>
+   </property>
+   <property name="text">
+    <string>样本查询</string>
+   </property>
+  </action>
+  <action name="act_create">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Icon/addSample.bmp</normaloff>../Icon/addSample.bmp</iconset>
+   </property>
+   <property name="text">
+    <string>新建样本</string>
+   </property>
+  </action>
+  <action name="act_recyclebin">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Icon/recycleBin.bmp</normaloff>../Icon/recycleBin.bmp</iconset>
+   </property>
+   <property name="text">
+    <string>回收站标本</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="icon.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,3 @@
+import mmm
+
+mmm.hello()
