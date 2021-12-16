@@ -4,9 +4,13 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableView, QAbstractItemView, QMessageBox, QTreeWidgetItem
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtCore import Qt, pyqtSlot
+
 from UI.Ui_MainWindow import Ui_MainWindow
+
 from CreateSample import CreateSample
 from RecycleBinDialog import RecycleBinDialog
+from EnterToday import EnterToday
+
 from Util.Common import get_sql_connection, show_error_message, get_logger
 from SearchWindow import SearchWindow
 
@@ -32,24 +36,27 @@ class MainWindow(QMainWindow):
         self.location = ""
 
 ##  ============================== 自动连接槽函数区 ==============================#
-    @pyqtSlot()
-    def on_pushButton_clicked(self):
-        self.on_act_search_triggered()
 
+    #查询
+    @pyqtSlot()
     def on_search_sample_clicked(self):
         self.on_act_search_triggered()
 
+    #新增样本
     @pyqtSlot()
     def on_add_sample_clicked(self):
         self.on_act_create_triggered()
 
-    @pyqtSlot()
-    def on_pushButton_3_clicked(self):
-        self.on_act_recyclebin_triggered()
-
+    #查看回收站样本
     @pyqtSlot()
     def on_trash_clicked(self):
         self.on_act_recyclebin_triggered()
+
+    #当日入库
+    @pyqtSlot()
+    def on_enter_today_clicked(self):
+        self.on_act_look_today_triggered()
+
 
     @pyqtSlot(QTreeWidgetItem, QTreeWidgetItem)
     def on_treeWidget_show_currentItemChanged(self, current: QTreeWidgetItem, previous: QTreeWidgetItem):  ##目录树节点变化
@@ -83,7 +90,7 @@ class MainWindow(QMainWindow):
             self.__UI.tableView_show.model().clear()
 
         if cursor.rowcount != 0:
-            print("sss")
+            # print("sss")
             self.data_model = self.add_model_data(self.data_model, list(cursor.fetchall()))
             self.set_model()
         self.location = first_name
@@ -92,7 +99,6 @@ class MainWindow(QMainWindow):
     #点击【新增】选项槽函数
     @pyqtSlot()
     def on_act_create_triggered(self):
-
 
         creation_dialog = CreateSample(self,self.location)
 
@@ -116,6 +122,13 @@ class MainWindow(QMainWindow):
         recycle_dialog = RecycleBinDialog(self)
         recycle_dialog.setAttribute(Qt.WA_DeleteOnClose)
         recycle_dialog.show()
+
+    #点击【今日入库】槽函数
+    def on_act_look_today_triggered(self):
+        today_dialog = EnterToday(self)
+        today_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        today_dialog.show()
+
 ##  ===========================================================================#
 
 ##  ============================== 自定义槽函数区 ==============================#

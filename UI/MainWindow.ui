@@ -105,21 +105,41 @@
               <property name="text">
                <string>抽屉1</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉2</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉3</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉4</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
@@ -146,11 +166,216 @@
              <property name="text">
               <string>架子2</string>
              </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉2</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉3</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+             </item>
             </item>
             <item>
              <property name="text">
               <string>架子3</string>
              </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉2</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+             </item>
+            </item>
+           </item>
+           <item>
+            <property name="text">
+             <string>层2</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>架子1</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉2</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+             </item>
+            </item>
+            <item>
+             <property name="text">
+              <string>架子2</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉2</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+             </item>
+            </item>
+            <item>
+             <property name="text">
+              <string>架子3</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+             </item>
+            </item>
+           </item>
+          </item>
+          <item>
+           <property name="text">
+            <string>血栓病冰箱</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>层1</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>架子1</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉2</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+             </item>
+            </item>
+            <item>
+             <property name="text">
+              <string>架子2</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉2</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+             </item>
+            </item>
+            <item>
+             <property name="text">
+              <string>架子3</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉2</string>
+              </property>
+             </item>
             </item>
            </item>
            <item>
@@ -176,27 +401,32 @@
              <property name="text">
               <string>架子2</string>
              </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉2</string>
+              </property>
+             </item>
             </item>
             <item>
              <property name="text">
               <string>架子3</string>
              </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉2</string>
+              </property>
+             </item>
             </item>
-           </item>
-          </item>
-          <item>
-           <property name="text">
-            <string>血栓病冰箱</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>层1</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>层2</string>
-            </property>
            </item>
           </item>
           <item>
@@ -207,11 +437,71 @@
             <property name="text">
              <string>层1</string>
             </property>
+            <item>
+             <property name="text">
+              <string>架子1</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉2</string>
+              </property>
+             </item>
+            </item>
+            <item>
+             <property name="text">
+              <string>架子2</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉2</string>
+              </property>
+             </item>
+            </item>
            </item>
            <item>
             <property name="text">
              <string>层2</string>
             </property>
+            <item>
+             <property name="text">
+              <string>架子1</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉2</string>
+              </property>
+             </item>
+            </item>
+            <item>
+             <property name="text">
+              <string>架子2</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉2</string>
+              </property>
+             </item>
+            </item>
            </item>
           </item>
          </widget>
@@ -273,7 +563,7 @@
         <height>56</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0,0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0,0,0,0,0,0">
        <property name="topMargin">
         <number>0</number>
        </property>
@@ -399,12 +689,51 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QToolButton" name="print_label">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>打印标签</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/printer-medium.png</normaloff>:/newPrefix/pictures/printer-medium.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="statis_data">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>统计分析</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/chart-medium.png</normaloff>:/newPrefix/pictures/chart-medium.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
       <string>系统管理</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="PatientManagement">
+     <attribute name="title">
+      <string>随访管理</string>
      </attribute>
     </widget>
    </widget>
@@ -416,7 +745,7 @@
      <x>0</x>
      <y>0</y>
      <width>1440</width>
-     <height>24</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

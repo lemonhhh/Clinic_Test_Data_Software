@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>pictures/chart-medium.png</file>
+    <file>pictures/printer-medium.png</file>
     <file>pictures/cross-script.png</file>
     <file>pictures/blue-document-search-result.png</file>
     <file>pictures/document--plus.png</file>

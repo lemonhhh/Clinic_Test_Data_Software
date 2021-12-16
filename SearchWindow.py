@@ -15,6 +15,7 @@ import sys
 
 
 class SearchWindow(QDialog):
+    #信号的参数是tuple类型
     data_signal = pyqtSignal(tuple)
 
     def __init__(self, parent=None):
@@ -73,8 +74,10 @@ class SearchWindow(QDialog):
         if self.is_search_valid():
             data_tuple = self.cursor.fetchall()
             self.create_show_dialog()
+
             #发出信号，参数是发射的内容
             self.data_signal.emit(data_tuple)
+
 
         else:
             show_error_message(self, "没有查找到任何结果")
@@ -83,6 +86,7 @@ class SearchWindow(QDialog):
     def create_show_dialog(self):
         show_data_dialog = ShowDataDialog(self)
         show_data_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        #连接信号和槽
         self.data_signal.connect(show_data_dialog.do_receive_data)
         show_data_dialog.show()
 
