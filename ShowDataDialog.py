@@ -26,6 +26,7 @@ class ShowDataDialog(QDialog):
     # 接收查询结果
     @pyqtSlot(tuple)
     def do_receive_data(self, data_tuple):
+        #设置deta_model
         self.data_model = self.add_model_data(self.data_model, list(data_tuple))
         self.set_model()
 
@@ -111,6 +112,6 @@ class ShowDataDialog(QDialog):
     def set_model(self):
         if self.data_model is None:
             return
-
+        #将tableView展示出来
         self.__UI.tableView.setModel(self.data_model)
 

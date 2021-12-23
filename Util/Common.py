@@ -48,6 +48,7 @@ def get_ini_parser(name, encoding_pattern='utf-8'):
 
 # 获取sql数据库连接参数
 def get_sql_paramter():
+    #直接在函数里传递的
     parser = get_ini_parser("Config/SQL.ini", 'utf-8')
     item_data = parser.items("SQL")
     return {key: value for key, value in item_data}

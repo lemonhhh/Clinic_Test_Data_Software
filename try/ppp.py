@@ -1,3 +1,0 @@
-import mmm
-
-mmm.hello()

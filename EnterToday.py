@@ -20,9 +20,6 @@ from UI.Ui_SearchWindow import Ui_Dialog
 
 
 
-
-
-
 class EnterToday(QDialog):
     data_signal = pyqtSignal(tuple)
 
@@ -48,7 +45,9 @@ class EnterToday(QDialog):
         self.set_connection_cursor()
         self.set_logger()
 
+        #获取sql的内容
         self.sql = self.get_search_sql()
+
         if self.sql is not None:
             try:
                 self.cursor.execute(self.sql)  # 执行sql语句

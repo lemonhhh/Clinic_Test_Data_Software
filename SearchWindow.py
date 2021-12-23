@@ -2,7 +2,6 @@
 # -*- coding: UTF-8 -*-
 
 from PyQt5.QtWidgets import QDialog, QApplication
-
 from PyQt5.QtCore import Qt, pyqtSlot, pyqtSignal
 
 from Util.Common import get_sql_connection, get_logger, show_error_message
@@ -74,10 +73,8 @@ class SearchWindow(QDialog):
         if self.is_search_valid():
             data_tuple = self.cursor.fetchall()
             self.create_show_dialog()
-
             #发出信号，参数是发射的内容
             self.data_signal.emit(data_tuple)
-
 
         else:
             show_error_message(self, "没有查找到任何结果")

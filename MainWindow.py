@@ -6,13 +6,17 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtCore import Qt, pyqtSlot
 
 from UI.Ui_MainWindow import Ui_MainWindow
-
+#
+#导入各种类
 from CreateSample import CreateSample
 from RecycleBinDialog import RecycleBinDialog
 from EnterToday import EnterToday
+from SearchWindow import SearchWindow
+from SampleClass import SampleClass
+
 
 from Util.Common import get_sql_connection, show_error_message, get_logger
-from SearchWindow import SearchWindow
+
 
 import sys
 import datetime
@@ -36,7 +40,6 @@ class MainWindow(QMainWindow):
         self.location = ""
 
 ##  ============================== 自动连接槽函数区 ==============================#
-
     #查询
     @pyqtSlot()
     def on_search_sample_clicked(self):
@@ -56,6 +59,11 @@ class MainWindow(QMainWindow):
     @pyqtSlot()
     def on_enter_today_clicked(self):
         self.on_act_look_today_triggered()
+
+    #样本类别
+    @pyqtSlot()
+    def on_sample_class_clicked(self):
+        self.on_act_sample_class_triggered()
 
 
     @pyqtSlot(QTreeWidgetItem, QTreeWidgetItem)
@@ -80,9 +88,9 @@ class MainWindow(QMainWindow):
         #创建游标
         cursor = connection.cursor()
         if flg:
-            print("first name",first_name)
+            # print("first name",first_name)
             sql = """select * from t_sample where t_sample.sample_belong = '%s' """ % first_name
-            print(sql)
+            # print(sql)
         else:
             sql = """select * from t_sample where t_sample.sample_belong like '""" + first_name + """%'"""
         cursor.execute(sql)
@@ -95,18 +103,15 @@ class MainWindow(QMainWindow):
             self.set_model()
         self.location = first_name
 
-
+##  ============================== 槽函数区 ==============================#
     #点击【新增】选项槽函数
     @pyqtSlot()
     def on_act_create_triggered(self):
-
         creation_dialog = CreateSample(self,self.location)
-
         creation_dialog.setAttribute(Qt.WA_DeleteOnClose)
         #连接槽函数
         creation_dialog.data_update_signal.connect(self.do_receive_data)
         creation_dialog.show()
-
 
 
     # 点击【查询】槽函数
@@ -128,6 +133,13 @@ class MainWindow(QMainWindow):
         today_dialog = EnterToday(self)
         today_dialog.setAttribute(Qt.WA_DeleteOnClose)
         today_dialog.show()
+
+    #点击【样本类别】槽函数
+    def on_act_sample_class_triggered(self):
+        sample_class_widget = SampleClass(self)
+        # sample_class_widget.setAttribute(Qt.WA_DeleteOnClose)
+        sample_class_widget.show()
+
 
 ##  ===========================================================================#
 
