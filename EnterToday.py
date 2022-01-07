@@ -94,7 +94,6 @@ class EnterToday(QDialog):
         today_date = datetime.datetime.now().strftime("%Y-%m-%d")
 
         sql = """select * from t_sample where t_sample.creation_date like '%%%%%s%%%%' """ % today_date
-        print(sql)
         return sql
 
 
@@ -126,7 +125,7 @@ class EnterToday(QDialog):
     def get_model(self):
         #传入标签的名称和数量
         raw_model = self.get_raw_model(labels=['样本编号', '姓名', '样本类型',
-                                               '样本量', '添加日期', '更新时间', '状态', '归属'], colCount=8)
+                                               '样本量', '添加日期', '更新时间', '状态', '归属','位置','是否有检查结果'], colCount=10)
         return raw_model
 
     #获取无数据的数据模型

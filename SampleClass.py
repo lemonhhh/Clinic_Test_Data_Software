@@ -1,71 +1,141 @@
 # 使用UTF-8标准编码避免中文乱码
 # -*- coding: UTF-8 -*-
 import sys
+import os
 import datetime
 
-from PyQt5.QtWidgets import QDialog, QApplication, QAbstractItemView, QTableView
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+from PyQt5.QtWidgets import QDialog, QApplication, QAbstractItemView, QTableView, QWidget, QHBoxLayout, QFrame
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtCore import Qt, pyqtSlot, pyqtSignal
+from PyQt5.QtCore import Qt, pyqtSlot, pyqtSignal, QUrl
+import pyecharts.options as opts
+from pyecharts.charts import Pie
+from pyecharts.faker import Faker
 
 #模块
-from ShowDataDialog import ShowDataDialog
 from Util.Common import get_sql_connection, get_logger, show_error_message
 
-#导入ui
-from UI.Ui_SampleClassDialog import Ui_sample_class_dialog
-from UI.Ui_SearchWindow import Ui_Dialog
-
-
-
 class SampleClass(QDialog):
-    data_signal = pyqtSignal(tuple)
 
     def __init__(self, parent=None):
+
         #继承所有dialog的方法
         super(SampleClass, self).__init__(parent)
-        #设置ui
-        self.__UI = Ui_sample_class_dialog()
-        self.__UI.setupUi(self)
 
-        ##自定义的方法##
-        # 设置model_view
-
-        # 设置数据模型
-#         self.data_model = self.get_model()
-#
-        #查询相关
+        self.initUI()
+        # 在这里写查询吧
         self.logger = None
         self.connection = None
         self.cursor = None
-
         self.set_connection_cursor()
         self.set_logger()
-        #得到查询语句
-        type1 = "血细胞"
-        type2 = "血浆"
-        type0 = "所有"
+        self.data = []
+        self.generate_data()
+        # 生成html
+        self.generate_chart()
 
-        self.sql0 = self.get_search_sql_class(type0)
-        self.sql1 = self.get_search_sql_class(type1)
-        self.sql2 = self.get_search_sql_class(type2)
 
-        num_all = self.count_number(self.sql0)
-        num_blood_cell = self.count_number(self.sql1)
-        num_blood_jiang = self.count_number(self.sql2)
+
+        self.mainLayout()
 
 
 
 
+    def initUI(self):
+        self.setWindowTitle("样本类别")
+        self.setMinimumSize(1000,800)
 
-    # 接收查询结果
-    @pyqtSlot(tuple)
-    def do_receive_data(self, data_tuple):
-        #将数据模型更新为添加数据之后的
-        self.data_model = self.add_model_data(self.data_model, list(data_tuple))
+    def mainLayout(self):
+        self.mainhboxLayout = QHBoxLayout(self)
+        self.frame = QFrame(self)
+        self.mainhboxLayout.addWidget(self.frame)
+        self.hboxLayout = QHBoxLayout(self.frame)
+
+        # 网页嵌入PyQt5
+        self.myHtml = QWebEngineView()  ##浏览器引擎控件
+
+
+        file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "pie_rich_label.html"))
+        local_url = QUrl.fromLocalFile(file_path)
+        self.myHtml.load(local_url)
+
+        self.hboxLayout.addWidget(self.myHtml)
+        self.setLayout(self.mainhboxLayout)
 
 
 
-##  ============================== 功能函数区 ==============================#
+    def generate_data(self):
+        #血浆的数量
+        sql1 = """select count(*) from t_sample where t_sample.type = "血浆" """
+        cursor1 = self.connection.cursor()
+        cursor1.execute(sql1)
+        xuejiang = cursor1.fetchone()[0]
+        #血细胞
+        sql2 ="""select count(*) from t_sample where t_sample.type = "血细胞" """
+        cursor2= self.connection.cursor()
+        cursor2.execute(sql2)
+        cell = cursor2.fetchone()[0]
+        self.data = [['血浆',xuejiang],['血细胞',cell]]
+        print(self.data)
+
+
+
+
+
+    # if self.sql is not None:
+    #     try:
+    #         self.cursor.execute(self.sql)  # 执行sql语句
+    #         self.show_search_data()
+    #     except Exception as e:
+    #         self.record_debug(e)
+    #         show_error_message(self, '查询失败')
+
+    def generate_chart(self):
+        data = [list(z) for z in zip(Faker.choose(), Faker.values())]
+        print(data)
+        c = (
+            Pie()
+                .add(
+                "样本类别",
+                self.data,
+                radius=["40%", "55%"],
+                label_opts=opts.LabelOpts(
+                    position="outside",
+                    formatter="{a|{a}}{abg|}\n{hr|}\n {b|{b}: }{c}  {per|{d}%}  ",
+                    background_color="#eee",
+                    border_color="#aaa",
+                    border_width=1,
+                    border_radius=4,
+                    rich={
+                        "a": {"color": "#999", "lineHeight": 22, "align": "center"},
+                        "abg": {
+                            "backgroundColor": "#e3e3e3",
+                            "width": "100%",
+                            "align": "right",
+                            "height": 22,
+                            "borderRadius": [4, 4, 0, 0],
+                        },
+                        "hr": {
+                            "borderColor": "#aaa",
+                            "width": "100%",
+                            "borderWidth": 0.5,
+                            "height": 0,
+                        },
+                        "b": {"fontSize": 16, "lineHeight": 33},
+                        "per": {
+                            "color": "#eee",
+                            "backgroundColor": "#334455",
+                            "padding": [2, 4],
+                            "borderRadius": 2,
+                        },
+                    },
+                ),
+            )
+                .set_global_opts(title_opts=opts.TitleOpts(title="样本类别"))
+                .render("pie_rich_label.html")
+        )
+
+    ##  ============================== 功能函数区 ==============================#
 
     # 设置cursor和connection
     def set_connection_cursor(self) -> None:
@@ -75,34 +145,22 @@ class SampleClass(QDialog):
     def set_logger(self) -> None:
         self.logger = get_logger("my_logger")
 
-    # 获得查询语句
-    def get_search_sql_class(self,types) -> str:
-        sql = None
-        if (types == "所有"):
-            sql = """select count(*) from t_sample"""
-        else:
-            sql = """select count(*) from t_sample where t_sample.type = '%s' """ % types
-        return sql
 
 
-    def count_number(self,sql) -> int:
-        if sql is not None:
-            self.cursor.execute(sql)  # 执行sql语句
 
+    def show_search_data(self):
         if self.is_search_valid():
             data_tuple = self.cursor.fetchall()
-            num = list(data_tuple)[0][0]
-            return num
+            self.create_show_dialog()
 
-            # self.create_show_dialog()
-            # #发出信号，参数是发射的内容
-            # self.data_signal.emit(data_tuple)
+            #发出信号，参数是发射的内容
+            self.data_signal.emit(data_tuple)
 
         else:
             show_error_message(self, "没有查找到任何结果")
 
-    def create_show_dialog(self):
-        self.data_signal.connect(self.do_receive_data)
+
+
 
     # 检查查询是否有效
     def is_search_valid(self):
@@ -112,62 +170,8 @@ class SampleClass(QDialog):
     def record_debug(self, debug_message: str) -> None:
         self.logger.debug("语句错误，错误原因为{}".format(debug_message))
 
-    # 获取（原始）数据模型
-    def get_model(self):
-        #传入标签的名称和数量
-        raw_model = self.get_raw_model(labels=['样本编号', '姓名', '样本类型',
-                                               '样本量', '添加日期', '更新时间', '状态', '归属'], colCount=8)
-        return raw_model
 
-    #获取无数据的数据模型
-    def get_raw_model(self, labels: list, colCount: int =2) -> QStandardItemModel:
-        '''
-        获取无数据的数据模型
-        :param colCount:要设置的列数
-        :return:无数据的数据模型
-        '''
-        raw_model = QStandardItemModel(0, colCount)
-        raw_model.setHorizontalHeaderLabels(labels)
 
-        return raw_model
-
-    # 向模型添加数据
-    def add_model_data(self, model: QStandardItemModel, data_list: list) -> QStandardItemModel:
-        fun = self.choose_add_function(data_list)
-        if fun is None:
-            show_error_message(self, "数据类型错误,请检查")
-            return
-
-        final_model = fun(model, data_list)
-
-        return final_model
-
-    # 生产者函数：选择添加模式
-    def choose_add_function(self, data_list: list):
-        method = None
-
-        if isinstance(data_list[0], tuple):
-            method = self.add_multiple_data
-        else:
-            method = self.add_single_data
-
-        return method
-
-    # 添加单条记录
-    def add_single_data(self, model: QStandardItemModel, record: list) -> QStandardItemModel:
-        return model.appendRow([QStandardItem(self.process_data(item)) for item in record])
-
-    # 添加多条信息
-    def add_multiple_data(self, model: QStandardItemModel, data_list: list) -> QStandardItemModel:
-        for record in data_list:
-            row = []
-            for item in record:
-                item = self.process_data(item)
-                row.append(QStandardItem(item))
-
-            model.appendRow(row)
-
-        return model
 
     # 处理数据
     def process_data(self, data: any) -> any:
@@ -183,10 +187,5 @@ class SampleClass(QDialog):
 
 
 
-    # 设置模型
-    def set_model(self):
-        if self.data_model is None:
-            return
 
-        self.__UI.tableView.setModel(self.data_model)
 

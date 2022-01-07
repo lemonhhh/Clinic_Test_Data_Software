@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>pictures/calendar-day.png</file>
+    <file>pictures/blue-document-task.png</file>
     <file>pictures/chart-medium.png</file>
     <file>pictures/printer-medium.png</file>
     <file>pictures/cross-script.png</file>
@@ -9,10 +11,8 @@
     <file>pictures/rubber-balloons.png</file>
     <file>pictures/clock--plus.png</file>
     <file>pictures/xinjian.png</file>
-    <file>pictures/a-shizhongshijianlishi.png</file>
     <file>pictures/box-label.png</file>
     <file>pictures/shuru.png</file>
-    <file>pictures/ceshi.png</file>
     <file>pictures/search.bmp</file>
     <file>pictures/recycleBin.bmp</file>
   </qresource>

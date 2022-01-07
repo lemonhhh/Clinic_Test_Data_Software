@@ -2,20 +2,26 @@
 # -*- coding: UTF-8 -*-
 
 from PyQt5.QtWidgets import QDialog, QMessageBox
-from PyQt5.QtCore import pyqtSlot, pyqtSignal
+from PyQt5.QtCore import pyqtSlot, pyqtSignal,Qt
+
+#加载UI
 from UI.Ui_CreateSampleWindow import Ui_Dialog
+from UI.Ui_InsertResult import Ui_Dialog_exam
+
+
+#导入配置文件
 from Util.Common import get_sql_connection, get_logger, show_error_message, show_successful_message
 import datetime
 
+#检查结果
+class InsertExam(QDialog):
 
-# 添加新样品类
-class CreateSample(QDialog):
-    #发出信号
+    #发出信号(类型是list)
     data_update_signal = pyqtSignal(list)
-
-    def __init__(self, parent=None,location=None):
-        super(CreateSample, self).__init__(parent)
-        self.__UI = Ui_Dialog()
+    def __init__(self, parent=None):
+        super(InsertExam, self).__init__(parent)
+        #初始化ui
+        self.__UI = Ui_Dialog_exam()
         self.__UI.setupUi(self)
 
         self.connection = None
@@ -24,21 +30,78 @@ class CreateSample(QDialog):
 
         self.set_connection_cursor()
         self.set_logger()
-        self.location = location
-        print("self.location is", self.location)
 
+        # 设置cursor和connection
+    def set_connection_cursor(self) -> None:
+        self.connection = get_sql_connection()
+        self.cursor = self.connection.cursor()
+
+        # 设置日志处理器
+    def set_logger(self) -> None:
+        self.logger = get_logger("my_logger")
+
+    def get_insert_sql_data(self) -> (str, list):
+
+        sql = None
+        #列表
+        data_list = []
+        #样本编号
+        examID = self.__UI.lineEdit_examID.text()
+        #病人编号
+        patientID = self.__UI.lineEdit_patientID.text()
+        #aptt
+        aptt = self.__UI.value_aptt.value()
+        pt = self.__UI.value_pt.value()
+        fg = self.__UI.value_fg.value()
+        dd = self.__UI.value_dd.value()
+
+        data_list.append(examID)
+        data_list.append(patientID)
+        data_list.append(aptt)
+        data_list.append(pt)
+        data_list.append(fg)
+        data_list.append(dd)
+
+
+        #定义sql语句
+        if examID != '' and patientID != '':
+            sql = """insert into exam_result(ID,name,type,sample_size,creation_date, modification_date,sample_status, sample_belong,box,result) 
+            values('%s','%s','%s',%f,'%s','%s','%s', '%s','%s','%s')""" % (ID, name, type, sample_size, creation_date,
+                                                            modification_date, sample_status, sample_belong,box_loc,result_flag)
+
+        return sql, data_list
+
+
+# 添加新样品类
+class CreateSample(QDialog):
+
+    #发出信号(类型是list)
+    data_update_signal = pyqtSignal(list)
+    #把当前位置location串进来了
+    def __init__(self, parent=None,location=None):
+        super(CreateSample, self).__init__(parent)
+        #ui初始化
+        self.__UI = Ui_Dialog()
+        self.__UI.setupUi(self)
+        #初始化sql相关
+        self.connection = None
+        self.cursor = None
+        self.logger = None
+        self.set_connection_cursor()
+        self.set_logger()
+        self.location = location
 
 
 
     # 单击【提交】按钮槽函数
     @pyqtSlot()
     def on_btn_commit_clicked(self):
-
         sql, data_list = self.get_insert_sql_data()
-
         if sql is not None:
             try:
-                self.cursor.execute(sql)  # 执行sql语句
+                # 执行sql语句
+                self.cursor.execute(sql)
+                #提交结果
                 self.connection.commit()
                 show_successful_message(self, "插入成功")
                 #手动发射信号
@@ -46,8 +109,15 @@ class CreateSample(QDialog):
             except Exception as e:
                 show_error_message(self, "插入错误，请检查")
                 self.record_debug(e)
-
             self.close()
+
+            # 单击【检查结果】按钮槽函数
+    @pyqtSlot()
+    def on_btn_result_clicked(self):
+        exam_dialog = InsertExam(self)
+        exam_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        # 连接槽函数
+        exam_dialog.show()
 
     # 设置cursor和connection
     def set_connection_cursor(self) -> None:
@@ -58,29 +128,35 @@ class CreateSample(QDialog):
     def set_logger(self) -> None:
         self.logger = get_logger("my_logger")
 
-    # 获取插入SQL语句
+
     def get_insert_sql_data(self) -> (str, list):
 
-
         sql = None
+        #列表
         data_list = []
-
+        #样本编号
         ID = self.__UI.lineEdit_ID.text()
+        #病人姓名
         name = self.__UI.lineEdit_name.text()
+
+
+        #样本类型
         type = self.__UI.comboBox_sample_type.currentText()
+        #样本量
         sample_size = float(self.__UI.lineEdit_sample_size.text())
+        #创建日期
         creation_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        #修改日期
         modification_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
+        #状态
         sample_status = "在库"
-        target = "."
-        print(target)
-
-        #TO DO:需要改，怎么传过来
-        #这边需要改一下
+        #是否有检查结果
+        result_flag = self.__UI.comboBox_result.currentText()
+        box_x = self.__UI.comboBox_x.currentText()
+        box_y = self.__UI.comboBox_y.currentText()
+        box_loc = str(box_x)+"-"+str(box_y)
+        #位置
         sample_belong = self.location
-        # sample_belong = "出血病冰箱-层1-架子1-抽屉5-标本盒1"
-        print("sample_belong",sample_belong)
 
         data_list.append(ID)
         data_list.append(name)
@@ -90,11 +166,14 @@ class CreateSample(QDialog):
         data_list.append(modification_date)
         data_list.append(sample_status)
         data_list.append(sample_belong)
+        data_list.append(box_loc)
+        data_list.append(result_flag)
 
+        #定义sql语句
         if name != '' and ID != '' and sample_size != '':
-            sql = """insert into t_sample(ID,name,type,sample_size,creation_date, modification_date,sample_status, sample_belong) 
-            values('%s','%s','%s',%f,'%s','%s','%s', '%s')""" % (ID, name, type, sample_size, creation_date,
-                                                            modification_date, sample_status, sample_belong)
+            sql = """insert into t_sample(ID,name,type,sample_size,creation_date, modification_date,sample_status, sample_belong,box,result) 
+            values('%s','%s','%s',%f,'%s','%s','%s', '%s','%s','%s')""" % (ID, name, type, sample_size, creation_date,
+                                                            modification_date, sample_status, sample_belong,box_loc,result_flag)
 
         return sql, data_list
 
