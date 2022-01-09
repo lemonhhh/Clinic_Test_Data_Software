@@ -91,16 +91,22 @@ data = [
         "children":[],
     },
 ]
+
+my_data = [{'name': '出血病冰箱', 'value': 0.11494252873563218, 'children': [{'name': '层1', 'value': 0.22988505747126436, 'children': [{'name': '架子1', 'value': 0.6896551724137931, 'children': []}, {'name': '架子2', 'value': 0.0, 'children': []}, {'name': '架子3', 'value': 0.0, 'children': []}]}, {'name': '层2', 'value': 0.0, 'children': [{'name': '架子1', 'value': 0.0, 'children': []}, {'name': '架子2', 'value': 0.0, 'children': []}, {'name': '架子3', 'value': 0.0, 'children': []}]}]}, {'name': '血栓病冰箱', 'value': 0.22988505747126436, 'children': [{'name': '层1', 'value': 0.30651340996168586, 'children': [{'name': '架子1', 'value': 0.45977011494252873, 'children': []}, {'name': '架子2', 'value': 0.45977011494252873, 'children': []}, {'name': '架子3', 'value': 0.0, 'children': []}]}, {'name': '层2', 'value': 0.15325670498084293, 'children': [{'name': '架子1', 'value': 0.0, 'children': []}, {'name': '架子2', 'value': 0.0, 'children': []}, {'name': '架子3', 'value': 0.45977011494252873, 'children': []}]}]}, {'name': '产前诊断冰箱', 'value': 0.15325670498084293, 'children': [{'name': '层1', 'value': 0.15325670498084293, 'children': [{'name': '架子1', 'value': 0.22988505747126436, 'children': []}, {'name': '架子2', 'value': 0.0, 'children': []}, {'name': '架子3', 'value': 0.22988505747126436, 'children': []}]}, {'name': '层2', 'value': 0.15325670498084293, 'children': [{'name': '架子1', 'value': 0.45977011494252873, 'children': []}, {'name': '架子2', 'value': 0.0, 'children': []}, {'name': '架子3', 'value': 0.0, 'children': []}]}]}]
+print(my_data[2]['name'],my_data[0]['children'])
+
+
 def label_formatter(params):
     # return params.name+" \n" window.parseFloat (params.value*100). toFixed(2)+r"8'
     return params.name+" \n"+params.value
+
 
 (
     TreeMap(init_opts=opts.InitOpts(width="1200px", height="720px"))
     .add(
         series_name="冰箱",
         # data=tree_map_data["children"],
-        data=data,
+        data=my_data,
         visual_min=300,
         leaf_depth=1,
         # 标签居中为 position = "inside"
@@ -112,5 +118,5 @@ def label_formatter(params):
             title="使用率", subtitle="2016/04", pos_left="leafDepth"
         ),
     )
-    .render("test_tree_map.html")
+    .render("tree_map.html")
 )

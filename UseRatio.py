@@ -8,6 +8,8 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtWidgets import QDialog, QApplication, QAbstractItemView, QTableView, QWidget, QHBoxLayout, QFrame
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtCore import Qt, pyqtSlot, pyqtSignal, QUrl
+
+#pyecharts
 import pyecharts.options as opts
 from pyecharts.charts import TreeMap
 
@@ -19,24 +21,25 @@ class UseRatio(QDialog):
     def __init__(self, parent=None):
         #继承所有dialog的方法
         super(UseRatio, self).__init__(parent)
+        #初始化
         self.initUI()
-        self.mainLayout()
 
-        self.tree_map_data = []
-        #生成数据
-        # self.generate_data()
-        #生成html
-        # self.generate_chart()
-
-        #在这里写查询吧
+        # 在这里写查询吧
         self.logger = None
         self.connection = None
         self.cursor = None
-        #建立连接
+        # 建立连接
         self.set_connection_cursor()
         self.set_logger()
 
 
+        #生成数据
+        self.generate_data()
+
+        #生成html
+        self.generate_chart()
+
+        self.mainLayout()
 
 
 
@@ -54,8 +57,7 @@ class UseRatio(QDialog):
         # 网页嵌入PyQt5
         self.myHtml = QWebEngineView()  ##浏览器引擎控件
 
-
-        file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "echarts_option_query.html"))
+        file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "treemap.html"))
         local_url = QUrl.fromLocalFile(file_path)
         self.myHtml.load(local_url)
 
@@ -63,38 +65,114 @@ class UseRatio(QDialog):
         self.hboxLayout.addWidget(self.myHtml)
         self.setLayout(self.mainhboxLayout)
 
-    # def generate_data(self):
-    #     pass
-    #     #几层
-    #     #冰箱-层-架子-抽屉-盒子-试管
-    #     sql_refrigerator = """select distinct (refrigerator) from positions """
-    #     refrigerator_cursor = self.connection.cursor()
-    #     refrigerator_list =
-    #     layer_list =
-    #     for a in refrigerator_list:
-    #         value = 使用率 = count(flag=1) / count(总数)
-    #         self.tree_map_data.append({"name":,"value":,"children":[]})
-    #         for b in layer_list:
-    #             a-b组合的使用率
-    #             count(总数) = select count(*) from positions where refrigerator=a and layer=b
-    #             count(用过的) = select count(*) from positions where refrigerator=a and layer=b and flag=1
-    #             value = 使用率 =
-    #             for c in shelf_list:
-    #                 for d in drawer_list:
-    #                     for e in box_list:
+    def generate_data(self):
+
+        #冰箱-层-架子-抽屉-盒子-试管
+        #冰箱
+        sql_refrigerator = """select distinct (refrigerator) from positions """
+        self.cursor.execute(sql_refrigerator)
+        refrigerator_tuple = self.cursor.fetchall()
+        refrigerator_list = ([j for i in list(refrigerator_tuple) for j in i])
+        #层
+        sql_layer = """select distinct (layer) from positions """
+        self.cursor.execute(sql_layer)
+        layer_tuple = self.cursor.fetchall()
+        layer_list = ([j for i in list(layer_tuple) for j in i])
+        #架子
+        sql_shelf = """select distinct (shelf) from positions """
+        self.cursor.execute(sql_shelf)
+        shelf_tuple = self.cursor.fetchall()
+        shelf_list = ([j for i in list(shelf_tuple) for j in i])
+        #抽屉
+        sql_drawer = """select distinct (drawer) from positions """
+        self.cursor.execute(sql_drawer)
+        drawer_tuple = self.cursor.fetchall()
+        drawer_list = ([j for i in list(drawer_tuple) for j in i])
+
+        #盒子
+        sql_box = """select distinct (box) from positions """
+        self.cursor.execute(sql_box)
+        box_tuple = self.cursor.fetchall()
+        box_list = ([j for i in list(box_tuple) for j in i])
+
+        self.tree_map_data = []
+        for a in refrigerator_list:
+            #value
+            sql_all = """select count(*) from positions where refrigerator='%s' """ % (a)
+            self.cursor.execute(sql_all)
+            number_all = self.cursor.fetchone()[0]
+            #使用的
+            sql_use = """select count(*) from positions where refrigerator='%s' and flag=1""" % (a)
+            self.cursor.execute(sql_use)
+            number_use = self.cursor.fetchone()[0]
+            number_ratio = number_use / number_all * 100
+            self.tree_map_data.append({"name": a, "value":number_ratio,"children":[]})
+
+
+        for second_layer in self.tree_map_data:
+            last_name = second_layer['name']
+            data = second_layer['children']
+            for b in layer_list:
+                sql_all = """select count(*) from positions where refrigerator='%s'and layer='%s' """ % (last_name,b)
+                self.cursor.execute(sql_all)
+                number_all = self.cursor.fetchone()[0]
+                # 使用的
+                sql_use = """select count(*) from positions where refrigerator='%s' and layer='%s'and flag=1""" % (last_name,b)
+                self.cursor.execute(sql_use)
+                number_use = self.cursor.fetchone()[0]
+                number_ratio = number_use / number_all * 100
+                data.append({"name": b, "value":number_ratio,"children":[]})
+
+            for third_layer in data:
+                second_name = third_layer['name']
+                data_third = third_layer['children']
+                for c in shelf_list:
+                    sql_all = """select count(*) from positions where refrigerator='%s'and layer='%s'and shelf='%s' """ % (
+                    last_name, second_name,c)
+                    self.cursor.execute(sql_all)
+                    number_all = self.cursor.fetchone()[0]
+                    # 使用的
+                    sql_use = """select count(*) from positions where refrigerator='%s' and layer='%s' and shelf='%s' and flag=1""" % (
+                    last_name,second_name,c)
+                    self.cursor.execute(sql_use)
+                    number_use = self.cursor.fetchone()[0]
+                    number_ratio = number_use / number_all * 100
+                    data_third.append({"name": c, "value": number_ratio, "children": []})
+
+                for forth_layer in data_third:
+                    third_name = forth_layer['name']
+                    data_forth = forth_layer['children']
+                    for d in drawer_list:
+                        sql_all = """select count(*) from positions where refrigerator='%s'and layer='%s'and shelf='%s' and drawer='%s' """ % (
+                            last_name, second_name, third_name,d)
+                        self.cursor.execute(sql_all)
+                        number_all = self.cursor.fetchone()[0]
+                        # 使用的
+                        sql_use = """select count(*) from positions where refrigerator='%s' and layer='%s' and shelf='%s' and drawer='%s' and flag=1""" % (
+                            last_name, second_name, third_name,d)
+                        self.cursor.execute(sql_use)
+                        number_use = self.cursor.fetchone()[0]
+                        number_ratio = number_use / number_all * 100
+                        data_forth.append({"name": d, "value": number_ratio, "children": []})
+
+                    for fifth_layer in data_forth:
+                        forth_name = fifth_layer['name']
+                        data_fifth = fifth_layer['children']
+                        for e in box_list:
+                            sql_all = """select count(*) from positions where refrigerator='%s'and layer='%s'and shelf='%s' and drawer='%s' and box='%s' """ % (
+                                last_name, second_name, third_name,forth_name,e)
+                            self.cursor.execute(sql_all)
+                            number_all = self.cursor.fetchone()[0]
+                            # 使用的
+                            sql_use = """select count(*) from positions where refrigerator='%s' and layer='%s' and shelf='%s' and drawer='%s' and box='%s' and flag=1""" % (
+                                last_name, second_name, third_name, forth_name,e)
+                            self.cursor.execute(sql_use)
+                            number_use = self.cursor.fetchone()[0]
+                            number_ratio = number_use / number_all * 100
+                            data_fifth.append({"name": e, "value": number_ratio, "children": []})
 
 
 
-
-
-
-    # if self.sql is not None:
-    #     try:
-    #         self.cursor.execute(self.sql)  # 执行sql语句
-    #         self.show_search_data()
-    #     except Exception as e:
-    #         self.record_debug(e)
-    #         show_error_message(self, '查询失败')
 
     def generate_chart(self):
         (

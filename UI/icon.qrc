@@ -1,5 +1,12 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>pictures/zone--plus.png</file>
+    <file>pictures/wrench--arrow.png</file>
+    <file>pictures/alarm-clock-select.png</file>
+    <file>pictures/xfn-friend.png</file>
+    <file>pictures/block.png</file>
+    <file>pictures/application-icon-large.png</file>
+    <file>pictures/blue-document-table.png</file>
     <file>pictures/calendar-day.png</file>
     <file>pictures/blue-document-task.png</file>
     <file>pictures/chart-medium.png</file>

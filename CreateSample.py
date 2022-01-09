@@ -1,6 +1,6 @@
 # 使用UTF-8标准编码避免中文乱码
 # -*- coding: UTF-8 -*-
-
+#Qt相关
 from PyQt5.QtWidgets import QDialog, QMessageBox
 from PyQt5.QtCore import pyqtSlot, pyqtSignal,Qt
 
@@ -62,19 +62,17 @@ class InsertExam(QDialog):
         data_list.append(fg)
         data_list.append(dd)
 
-
         #定义sql语句
         if examID != '' and patientID != '':
-            sql = """insert into exam_result(ID,name,type,sample_size,creation_date, modification_date,sample_status, sample_belong,box,result) 
-            values('%s','%s','%s',%f,'%s','%s','%s', '%s','%s','%s')""" % (ID, name, type, sample_size, creation_date,
-                                                            modification_date, sample_status, sample_belong,box_loc,result_flag)
+            sql = """insert into exam_result(exam_ID,patient_name,patient_ID,aptt,pt, fg,dd) 
+            values('%s','%s','%s',%f,'%f','%f','%f')""" % (examID, patientID, aptt, pt, fg,
+                                                            dd)
 
         return sql, data_list
 
 
 # 添加新样品类
 class CreateSample(QDialog):
-
     #发出信号(类型是list)
     data_update_signal = pyqtSignal(list)
     #把当前位置location串进来了
@@ -91,25 +89,26 @@ class CreateSample(QDialog):
         self.set_logger()
         self.location = location
 
-
-
     # 单击【提交】按钮槽函数
     @pyqtSlot()
     def on_btn_commit_clicked(self):
-        sql, data_list = self.get_insert_sql_data()
+        sql, sql_position,data_list = self.get_insert_sql_data()
         if sql is not None:
             try:
                 # 执行sql语句
                 self.cursor.execute(sql)
-                #提交结果
+                self.cursor.execute(sql_position)
                 self.connection.commit()
                 show_successful_message(self, "插入成功")
+
+
                 #手动发射信号
                 self.data_update_signal.emit(data_list)
             except Exception as e:
                 show_error_message(self, "插入错误，请检查")
                 self.record_debug(e)
             self.close()
+
 
             # 单击【检查结果】按钮槽函数
     @pyqtSlot()
@@ -138,7 +137,6 @@ class CreateSample(QDialog):
         ID = self.__UI.lineEdit_ID.text()
         #病人姓名
         name = self.__UI.lineEdit_name.text()
-
 
         #样本类型
         type = self.__UI.comboBox_sample_type.currentText()
@@ -174,8 +172,8 @@ class CreateSample(QDialog):
             sql = """insert into t_sample(ID,name,type,sample_size,creation_date, modification_date,sample_status, sample_belong,box,result) 
             values('%s','%s','%s',%f,'%s','%s','%s', '%s','%s','%s')""" % (ID, name, type, sample_size, creation_date,
                                                             modification_date, sample_status, sample_belong,box_loc,result_flag)
-
-        return sql, data_list
+        sql_position = """update positions set flag=1 where cubes='%s' and belong='%s' """ %(box_loc,sample_belong)
+        return sql,sql_position, data_list
 
     # 记录debug信息
     def record_debug(self, debug_message: str) -> None:

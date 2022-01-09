@@ -32,7 +32,7 @@ class EnterToday(QDialog):
 
         ##自定义的方法##
         # 设置model_view
-        self.set_tableview(self.__UI.tableView, horsize=100, versize=70)
+        self.set_tableview(self.__UI.tableView, horsize=100, versize=200)
 
         # 设置数据模型
         self.data_model = self.get_model()

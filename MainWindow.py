@@ -30,6 +30,7 @@ class MainWindow(QMainWindow):
     # 初始化函数
     def __init__(self):
         super(MainWindow, self).__init__()
+
         self.__UI = Ui_MainWindow()
         self.__UI.setupUi(self)
 
@@ -386,7 +387,7 @@ class MainWindow(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     win = MainWindow()
-    # apply_stylesheet(app, theme='dark_teal.xml')
+    apply_stylesheet(app, theme='light_cyan_500.xml')
     win.showFullScreen()
     win.show()
     sys.exit(app.exec())
