@@ -21,11 +21,12 @@ class Ui_enter_today_dialog(object):
         sizePolicy.setHeightForWidth(enter_today_dialog.sizePolicy().hasHeightForWidth())
         enter_today_dialog.setSizePolicy(sizePolicy)
         enter_today_dialog.setMinimumSize(QtCore.QSize(0, 700))
-        self.splitter = QtWidgets.QSplitter(enter_today_dialog)
-        self.splitter.setGeometry(QtCore.QRect(10, 20, 900, 207))
-        self.splitter.setOrientation(QtCore.Qt.Vertical)
-        self.splitter.setObjectName("splitter")
-        self.label = QtWidgets.QLabel(self.splitter)
+        self.tableView = QtWidgets.QTableView(enter_today_dialog)
+        self.tableView.setGeometry(QtCore.QRect(20, 80, 871, 501))
+        self.tableView.setMinimumSize(QtCore.QSize(0, 100))
+        self.tableView.setObjectName("tableView")
+        self.label = QtWidgets.QLabel(enter_today_dialog)
+        self.label.setGeometry(QtCore.QRect(10, -60, 900, 207))
         font = QtGui.QFont()
         font.setFamily("Hei")
         font.setPointSize(18)
@@ -36,14 +37,11 @@ class Ui_enter_today_dialog(object):
         self.label.setStyleSheet("font: 18pt \"Hei\";")
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
-        self.tableView = QtWidgets.QTableView(self.splitter)
-        self.tableView.setMinimumSize(QtCore.QSize(0, 100))
-        self.tableView.setObjectName("tableView")
 
         self.retranslateUi(enter_today_dialog)
         QtCore.QMetaObject.connectSlotsByName(enter_today_dialog)
 
     def retranslateUi(self, enter_today_dialog):
         _translate = QtCore.QCoreApplication.translate
-        enter_today_dialog.setWindowTitle(_translate("enter_today_dialog", "查询结果"))
+        enter_today_dialog.setWindowTitle(_translate("enter_today_dialog", "当日入库"))
         self.label.setText(_translate("enter_today_dialog", "当日入库 "))

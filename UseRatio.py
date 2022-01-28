@@ -193,7 +193,6 @@ class UseRatio(QDialog):
             )
                 .render("treemap.html")
         )
-
     # 接收查询结果
     @pyqtSlot(tuple)
     def do_receive_data(self, data_tuple):

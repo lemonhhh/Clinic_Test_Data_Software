@@ -1,3 +1,2 @@
-2021-10-16 12:42:36,573 - DEBUG - MainThread - 126 - 语句错误，错误原因为'SearchWindow' object has no attribute 'is_search_valid'
-2021-10-16 14:07:30,904 - DEBUG - MainThread - 131 - 语句错误，错误原因为(1062, "Duplicate entry 'c001' for key 't_sample.PRIMARY'")
-2021-10-16 14:07:30,904 - DEBUG - MainThread - 131 - 语句错误，错误原因为(1062, "Duplicate entry 'c001' for key 't_sample.PRIMARY'")
+2022-01-11 22:02:58,761 - DEBUG - MainThread - 181 - 璇彞閿欒锛岄敊璇師鍥犱负(1054, "Unknown column 'patient_ID' in 'field list'")
+2022-01-11 22:03:59,589 - DEBUG - MainThread - 182 - 璇彞閿欒锛岄敊璇師鍥犱负(1054, "Unknown column 'patient_ID' in 'field list'")

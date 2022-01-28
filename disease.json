@@ -1,0 +1,106 @@
+{
+    "name": "血液疾病",
+    "children": [
+        {
+            "name": "出血疾病",
+            "children": [
+                {
+                    "name": "cluster",
+                    "children": [
+                        {
+                            "name": "AgglomerativeCluster",
+                            "value": 3938
+                        },
+                        {
+                            "name": "HierarchicalCluster",
+                            "value": 6714
+                        },
+                        {
+                            "name": "MergeEdge",
+                            "value": 743
+                        }
+                    ]
+                },
+                {
+                    "name": "graph",
+                    "children": [
+                        {
+                            "name": "BetweennessCentrality",
+                            "value": 3534
+                        },
+                        {
+                            "name": "LinkDistance",
+                            "value": 5731
+                        },
+                        {
+                            "name": "MaxFlowMinCut",
+                            "value": 7840
+                        },
+                        {
+                            "name": "ShortestPaths",
+                            "value": 5914
+                        },
+                        {
+                            "name": "SpanningTree",
+                            "value": 3416
+                        }
+                    ]
+                },
+                {
+                    "name": "optimization",
+                    "children": [
+                        {
+                            "name": "AspectRatioBanker",
+                            "value": 7074
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "血栓疾病",
+            "children": [
+                {
+                    "name": "cluster",
+                    "children": [
+                        {
+                            "name": "AgglomerativeCluster",
+                            "value": 3938
+                        },
+                        {
+                            "name": "HierarchicalCluster",
+                            "value": 6714
+                        },
+                        {
+                            "name": "MergeEdge",
+                            "value": 743
+                        }
+                    ]
+                },
+                {
+                    "name": "按血管",
+                    "children": [
+                        {
+                            "name": "静脉血栓",
+                            "value": 3534
+                        },
+                        {
+                            "name": "动脉血栓",
+                            "value": 5731
+                        }
+                    ]
+                },
+                {
+                    "name": "optimization",
+                    "children": [
+                        {
+                            "name": "AspectRatioBanker",
+                            "value": 7074
+                        }
+                    ]
+                }
+            ]
+        }
+        
+    ]
+}

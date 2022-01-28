@@ -1,12 +1,14 @@
 # 使用UTF-8标准编码避免中文乱码
 # -*- coding: UTF-8 -*-
 
-from PyQt5.QtWidgets import QApplication, QMainWindow, QTableView, QAbstractItemView, QMessageBox, QTreeWidgetItem
-from PyQt5.QtGui import QStandardItemModel, QStandardItem
+from PyQt5.QtWidgets import QApplication, QMainWindow, QTableView, QAbstractItemView, QMessageBox, QTreeWidgetItem, \
+    QPushButton, QComboBox, QVBoxLayout, QWidget, QFrame, QLabel
+from PyQt5.QtGui import QStandardItemModel, QStandardItem, QPixmap
 from PyQt5.QtCore import Qt, pyqtSlot
+#导入UI
+
 
 from UI.Ui_MainWindow import Ui_MainWindow
-#
 # 导入各种类
 from CreateSample import CreateSample
 from RecycleBinDialog import RecycleBinDialog
@@ -15,37 +17,78 @@ from SearchWindow import SearchWindow
 from SampleClass import SampleClass
 from UseRatio import UseRatio
 from SampleCalendar import SampleCalendar
-
-
+from DiseaseTree import DiseaseTree
+#相关配置
 from Util.Common import get_sql_connection, get_logger, show_error_message, show_successful_message
-
-
+#其他必须
 import sys
 import datetime
+#主题
+import qdarkstyle
 from qt_material import apply_stylesheet
-
 
 # 主窗口
 class MainWindow(QMainWindow):
     # 初始化函数
     def __init__(self):
+        #继承QMainWindow基本功能
         super(MainWindow, self).__init__()
+        # self.setStyleSheet("background-color: white;") #设置背景颜色
 
-        self.__UI = Ui_MainWindow()
-        self.__UI.setupUi(self)
+        #创建下拉列表
+        self.frame = QFrame(self)
+        self.frame.resize(823, 600)
+        self.frame.setStyleSheet('border-image: url("./fm.png"); background-repeat: no-repeat;')
+        self.frame.move(300, 100)
 
-        self.setCentralWidget(self.__UI.tabWidget)
-        self.setGeometry(200, 200, 1100, 800)
+        self.cb = QComboBox(self) #下拉列表
+        self.cb.addItems(["出凝血科室", "尿液检验", "其他科室"]) #科室名称（继续添加）
+        self.cb.move(650,750)
+        self.cb.adjustSize()#根据长度自动调节宽度
 
-        # 设置右侧tab的宽度
-        self.set_tableview(self.__UI.tableView_show, horsize=130, versize=50)
-        # 设置model
-        self.data_model = self.get_model()
-        self.set_model()
+        self.btn = QPushButton("确定", self) #确定按钮
+        self.btn.move(750,750)
+        self.btn.clicked.connect(self.cao)  # 绑定槽函数，确定后，显示后续所有ui
 
-        # 自己设置的
-        self.location = ""
-        self.sample_id = ""
+
+    def cao(self):
+        if self.cb.currentText()=='出凝血科室':
+            self.__UI = Ui_MainWindow()
+            self.__UI.setupUi(self)
+
+            self.setCentralWidget(self.__UI.tabWidget)
+            # self.showMaximized()
+            # self.setGeometry(200, 200, 1100, 800)
+            self.desktop = QApplication.desktop()
+            self.screenRect = self.desktop.screenGeometry()
+            self.height = self.screenRect.height()
+            self.width = self.screenRect.width()
+            self.setGeometry(0, 0, self.width, self.height)
+            # 设置右侧tab的宽度
+            self.set_tableview(self.__UI.tableView_show, horsize=130, versize=50)
+            self.set_tableview(self.__UI.tableView_patient, horsize=130, versize=50)
+
+            # 设置model
+            self.data_model = self.get_model()
+            self.set_model()
+            #病人信息
+            self.data_model_patient = self.get_model_patient()
+            self.set_model_patient()
+
+            # 自己设置的
+            self.location = ""
+            self.sample_id = ""
+
+            self.btn.setVisible(False)
+            self.cb.setVisible(False)
+            self.frame.setVisible(False)
+
+
+            self.btn.deleteLater()
+            self.cb.deleteLater()
+            self.frame.deleteLater()
+        else:
+            print("还没做呢")
 
 
 ##  ============================== 自动连接槽函数区 ==============================#
@@ -87,8 +130,24 @@ class MainWindow(QMainWindow):
     def on_calendar_clicked(self):
         self.on_act_calendar_triggered()
 
+    @pyqtSlot()
+    def on_add_exam_clicked(self):
+        self.on_act_addexam_triggered()
 
-    # 槽函数
+    @pyqtSlot()
+    def on_patient_info_clicked(self):
+        print("俺也有")
+
+    #疾病介绍
+    @pyqtSlot()
+    def on_disease_tree_clicked(self):
+        disease_widget = DiseaseTree(self)
+        # sample_class_widget.setAttribute(Qt.WA_DeleteOnClose)
+        disease_widget.show()
+
+
+
+    # 槽函数(为了删除样本)
     def talbe_choose(self):
         row = (self.__UI.tableView_show.currentIndex().row())
         id_data = (self.data_model.itemData(self.data_model.index(row, 0)))
@@ -115,7 +174,7 @@ class MainWindow(QMainWindow):
         self.data_model = self.get_raw_model(
             labels=[
                 '样本编号',
-                '姓名',
+                '病人编号',
                 '样本类型',
                 '样本量',
                 '添加日期',
@@ -149,7 +208,70 @@ class MainWindow(QMainWindow):
         # 传入的参数
         self.location = first_name
 
+    @pyqtSlot(QTreeWidgetItem, QTreeWidgetItem)
+    # 目录树节点变化
+    def on_treeWidget_patient_currentItemChanged( self, current: QTreeWidgetItem, previous: QTreeWidgetItem):
+        flg = False
+        # 表示已经到最后一级了
+        if current.childCount() == 0:
+            flg = True
 
+        # 是当前选中的widget
+        first_name = []
+        first_name.append(current.text(0))
+
+        # 递归地找到路径
+        while current.parent() is not None:
+            current = current.parent()
+            first_name.append(current.text(0))
+
+        self.data_model_patient = self.get_raw_model(
+            labels=[
+                '病人编号',
+                '病人姓名',
+                '年龄',
+                '联系方式',
+                '性别',
+                '诊断结果'],
+            colCount=6)
+        # 连接到数据库
+        connection = get_sql_connection()
+        # 创建游标
+        cursor = connection.cursor()
+        # 已经到最后一级
+
+        if flg:
+            types = first_name[0]
+            if types=='女性':
+                target = '女'
+                sql = """select * from patients where gender = '%s' """ % target
+            if types=='男性':
+                target = '男'
+                sql = """select * from patients where gender = '%s' """ % target
+            if types=='18以下':
+                target=18
+                sql = """select * from patients where age < 18 """
+            if types=='18-35':
+                sql = """select * from patients where age >= 18 and age <= 35 """
+            if types == '36-60':
+                sql = """select * from patients where age >= 36 and age <= 60 """
+            if types == '60以上':
+                sql = """select * from patients where age >60"""
+
+        else:
+            sql = """select * from patients"""
+
+        # 执行查询结果
+        cursor.execute(sql)
+
+        if self.__UI.tableView_patient.model() is not None:
+            self.__UI.tableView_patient.model().clear()
+
+        if cursor.rowcount != 0:
+            self.data_model_patient = self.add_model_data(
+                self.data_model_patient, list(cursor.fetchall()))
+
+            self.set_model_patient()
 ##  ============================== 槽函数区 ==============================#
 
 
@@ -169,16 +291,26 @@ class MainWindow(QMainWindow):
         search_dialog.setAttribute(Qt.WA_DeleteOnClose)
         search_dialog.show()
 
+        # 点击【查询】槽函数
+    @pyqtSlot()
+    def on_act_addexam_triggered(self):
+        print("添加样本")
+
     # 点击【删除】槽函数
     def on_act_delete_triggered(self):
-        sample_id = self.sample_id
-        sql_find = """select * from t_sample where ID=%s """ % (sample_id)
-        connection_find = get_sql_connection()
-        cursor_find = connection_find.cursor()
-        cursor_find.execute(sql_find)
+        sample_id = str(self.sample_id)
+
+        sql_find = """select * from t_sample where ID='%s' """ % (sample_id)
+
+        connection_find = get_sql_connection()#建立链接
+        cursor_find = connection_find.cursor()#建立游标
+        cursor_find.execute(sql_find)#执行查询
         data_find = cursor_find.fetchone()
+        print(data_find)
+
+        #得到数据
         ID = data_find[0]
-        name = data_find[1]
+        patient_id = data_find[1]
         type = data_find[2]
         sample_size = data_find[3]
         creation_date = data_find[4]
@@ -186,35 +318,31 @@ class MainWindow(QMainWindow):
         sample_status = '回收站'
         sample_belong = data_find[7]
         box_loc = data_find[8]
-        result_flag = data_find[9]
 
-        # sql_insert = """insert into recycle_sample(ID,name,type,sample_size,creation_date, modification_date,sample_status, sample_belong,box,result)
-        #     values('%s','%s','%s',%f,'%s','%s','%s', '%s','%s','%s')""" % (ID, name, type, sample_size, creation_date,
-        #                                                                    modification_date, sample_status, sample_belong, box_loc, result_flag)
-        # connection_insert = get_sql_connection()
-        # cursor_insert = connection_insert.cursor()
-        # cursor_insert.execute(sql_insert)
-        # connection_insert.commit()
-
+        #插入到回收站数据库中
+        sql_insert = """insert into recycle_sample(ID,patinent_ID,type,sample_size,creation_date, modification_date,sample_status, sample_belong,box)
+            values('%s','%s','%s',%f,'%s','%s','%s', '%s','%s')""" % (ID, patient_id, type, sample_size, creation_date,
+                                                                           modification_date, sample_status, sample_belong, box_loc)
         #删除
-        sql = """delete from t_sample where ID=%s """ % (sample_id)
-        print("delete sql is ")
-        print(sql)
+        sql = """delete from t_sample where ID='%s' """ % (sample_id)
+
+
+        # try:   # 执行sql语句
+        connection_insert = get_sql_connection()
+        cursor_insert = connection_insert.cursor()
+        cursor_insert.execute(sql_insert)
+        connection_insert.commit()
 
         connection_delete = get_sql_connection()
         cursor_delete = connection_delete.cursor()
+        cursor_delete.execute(sql)
+        connection_delete.commit()
 
-        if sql is not None:
-            try:
-                # 执行sql语句
-                cursor_delete.execute(sql)
-                # 提交结果
-                connection_delete.commit()
-                show_successful_message(self, "删除成功")
-                # 手动发射信号
+        show_successful_message(self, "删除成功")
 
-            except Exception as e:
-                show_error_message(self, "删除错误，请检查")
+
+        # except Exception as e:
+        #     show_error_message(self, "删除错误，请检查")
 
     # 点击【回收站】槽函数
     @pyqtSlot()
@@ -259,13 +387,12 @@ class MainWindow(QMainWindow):
 
 ##  ===========================================================================#
 
-##  ============================== 功能函数区 ==============================#
     # 获取数据模型
     def get_model(self):
         raw_model = self.get_raw_model(
             labels=[
                 '样本编号',
-                '姓名',
+                '病人编号',
                 '样本类型',
                 '样本量',
                 '添加日期',
@@ -281,11 +408,26 @@ class MainWindow(QMainWindow):
         if len(data_list) > 0:
             return self.add_model_data(raw_model, data_list)
 
+    #todo:
+    #先去改add_model_data了
+    def get_model_patient(self):
+        raw_model = self.get_raw_model(
+            labels=[
+                '病人编号',
+                '病人姓名',
+                '年龄',
+                '联系方式',
+                '性别',
+                '诊断结果'],
+            colCount=6)
+        # 从数据库中得到所有的数据
+        data_list = self.read_sql_data_patient()
+
+        if len(data_list) > 0:
+            return self.add_model_data(raw_model, data_list)
+
     # 获取无数据的数据模型
-    def get_raw_model(
-            self,
-            labels: list,
-            colCount: int = 2) -> QStandardItemModel:
+    def get_raw_model(self,labels: list,colCount: int = 2) -> QStandardItemModel:
         '''
         获取无数据的数据模型
         :param colCount:要设置的列数
@@ -306,9 +448,21 @@ class MainWindow(QMainWindow):
         # 返回全部内容
         return cursor.fetchall()
 
+    # 读病人数据库
+    def read_sql_data_patient(self) -> list:
+        # 获取数据库的连接
+        connection = get_sql_connection()
+        # 建立游标
+        cursor = connection.cursor()
+        # 执行sql语句
+        cursor.execute('select * from patients;')
+        # 返回全部内容
+        return cursor.fetchall()
+
+
+
     # 向模型添加数据
-    def add_model_data(self, model: QStandardItemModel,
-                       data_list: list) -> QStandardItemModel:
+    def add_model_data(self, model: QStandardItemModel,data_list: list) -> QStandardItemModel:
         fun = self.choose_add_function(data_list)
         if fun is None:
             show_error_message(self, "数据类型错误,请检查")
@@ -321,7 +475,6 @@ class MainWindow(QMainWindow):
     # 生产者函数：选择添加模式
     def choose_add_function(self, data_list: list):
         method = None
-
         if isinstance(data_list[0], tuple):
             method = self.add_multiple_data
         else:
@@ -381,13 +534,18 @@ class MainWindow(QMainWindow):
             return
         self.__UI.tableView_show.setModel(self.data_model)
 
+    def set_model_patient(self):
+        if self.data_model_patient is None:
+            return
+        self.__UI.tableView_patient.setModel(self.data_model_patient)
 ##  =======================================================================#
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     win = MainWindow()
-    apply_stylesheet(app, theme='light_cyan_500.xml')
+    #设置app主题
+    # apply_stylesheet(app, theme='light_cyan_500.xml')
+    # app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyqt5'))
     win.showFullScreen()
     win.show()
     sys.exit(app.exec())

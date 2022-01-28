@@ -12,9 +12,12 @@ cursor.execute("select * from t_sample")
 # 使用 fetchone() 方法获取一条数据
 data= cursor.fetchone()
 data_list = list(cursor.fetchall())
-print(data_list[1])
+
 
 
 
 # 关闭数据库连接
 db.close()
+target = 18
+sql = """select * from patients where age < %i """ % target
+print(sql)

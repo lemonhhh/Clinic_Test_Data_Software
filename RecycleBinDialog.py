@@ -1,28 +1,60 @@
 # 使用UTF-8标准编码避免中文乱码
 # -*- coding: UTF-8 -*-
+import sys
+import datetime
 
 from PyQt5.QtWidgets import QDialog, QApplication, QAbstractItemView, QTableView
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtCore import pyqtSlot
-from Util.Common import show_error_message
+from PyQt5.QtCore import Qt, pyqtSlot, pyqtSignal
+
+#模块
+from ShowDataDialog import ShowDataDialog
+from Util.Common import get_sql_connection, get_logger, show_error_message
+#导入ui
 from UI.Ui_RecycleBinDialog import Ui_RecycleBinDialog
 
-import datetime
-
-
 class RecycleBinDialog(QDialog):
+    data_signal = pyqtSignal(tuple)
+
     def __init__(self, parent=None):
+        #继承所有dialog的方法
         super(RecycleBinDialog, self).__init__(parent)
+        #设置ui
         self.__UI = Ui_RecycleBinDialog()
         self.__UI.setupUi(self)
+        ##自定义的方法##
+        # 设置model_view
+        self.set_tableview(self.__UI.tableView, horsize=90, versize=80)
 
-        self.set_tableview(self.__UI.tableView, horsize=100, versize=70)
+        # 设置数据模型
         self.data_model = self.get_model()
+
+        #在这里写查询吧
+        self.logger = None
+        self.connection = None
+        self.cursor = None
+
+        self.set_connection_cursor()
+        self.set_logger()
+
+        #获取sql的内容
+        self.sql = self.get_search_sql()
+
+        if self.sql is not None:
+            try:
+                self.cursor.execute(self.sql)  # 执行sql语句
+                self.show_search_data()
+            except Exception as e:
+                self.record_debug(e)
+                show_error_message(self, '查询失败')
+
 
     # 接收查询结果
     @pyqtSlot(tuple)
     def do_receive_data(self, data_tuple):
+        #将数据模型更新为添加数据之后的
         self.data_model = self.add_model_data(self.data_model, list(data_tuple))
+        #将数据模型应用到view上
         self.set_model()
 
     # 初始化table_view函数
@@ -35,10 +67,54 @@ class RecycleBinDialog(QDialog):
         widget.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
 ##  ============================== 功能函数区 ==============================#
-    # 获取数据模型
+
+    # 设置cursor和connection
+    def set_connection_cursor(self) -> None:
+        self.connection = get_sql_connection()
+        self.cursor = self.connection.cursor()
+
+    def set_logger(self) -> None:
+        self.logger = get_logger("my_logger")
+
+    # 获得查询语句
+    def get_search_sql(self) -> str:
+        sql = None
+        #今日日期
+        today_date = datetime.datetime.now().strftime("%Y-%m-%d")
+
+        sql = """select * from recycle_sample"""
+        return sql
+
+
+    def show_search_data(self):
+        if self.is_search_valid():
+            data_tuple = self.cursor.fetchall()
+            self.create_show_dialog()
+
+            #发出信号，参数是发射的内容
+            self.data_signal.emit(data_tuple)
+
+        else:
+            show_error_message(self, "没有查找到任何结果")
+
+    def create_show_dialog(self):
+        self.data_signal.connect(self.do_receive_data)
+
+
+    # 检查查询是否有效
+    def is_search_valid(self):
+        return True if self.cursor.rowcount != 0 else False
+
+    # 记录Debug信息
+    def record_debug(self, debug_message: str) -> None:
+        self.logger.debug("语句错误，错误原因为{}".format(debug_message))
+
+
+    # 获取（原始）数据模型
     def get_model(self):
-        raw_model = self.get_raw_model(labels=['样本编号', '姓名', '样本类型',
-                                               '样本量', '添加日期', '更新时间', '状态', '归属'], colCount=8)
+        #传入标签的名称和数量
+        raw_model = self.get_raw_model(labels=['样本编号', '病人ID', '样本类型',
+                                               '样本量', '添加日期', '更新时间', '状态', '归属','位置'], colCount=9)
         return raw_model
 
     #获取无数据的数据模型
@@ -50,6 +126,7 @@ class RecycleBinDialog(QDialog):
         '''
         raw_model = QStandardItemModel(0, colCount)
         raw_model.setHorizontalHeaderLabels(labels)
+
         return raw_model
 
     # 向模型添加数据
@@ -94,6 +171,7 @@ class RecycleBinDialog(QDialog):
     def process_data(self, data: any) -> any:
         if isinstance(data, str):
             pass
+        #处理日期格式的
         elif isinstance(data, datetime.datetime):
             data = data.strftime("%Y-%m-%d %H:%M:%S")
         else:
@@ -101,7 +179,6 @@ class RecycleBinDialog(QDialog):
 
         return data
 
-        # 设置数据模型
 
     # 设置模型
     def set_model(self):

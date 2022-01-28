@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>pictures/tree.png</file>
+    <file>pictures/wrench--plus.png</file>
     <file>pictures/zone--plus.png</file>
     <file>pictures/wrench--arrow.png</file>
     <file>pictures/alarm-clock-select.png</file>

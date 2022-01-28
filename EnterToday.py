@@ -19,7 +19,6 @@ from UI.Ui_SearchWindow import Ui_Dialog
 
 
 
-
 class EnterToday(QDialog):
     data_signal = pyqtSignal(tuple)
 
@@ -32,7 +31,7 @@ class EnterToday(QDialog):
 
         ##自定义的方法##
         # 设置model_view
-        self.set_tableview(self.__UI.tableView, horsize=100, versize=200)
+        self.set_tableview(self.__UI.tableView, horsize=90, versize=80)
 
         # 设置数据模型
         self.data_model = self.get_model()
@@ -55,9 +54,6 @@ class EnterToday(QDialog):
             except Exception as e:
                 self.record_debug(e)
                 show_error_message(self, '查询失败')
-
-
-
 
 
     # 接收查询结果

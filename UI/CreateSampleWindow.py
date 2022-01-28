@@ -38,9 +38,11 @@ class Ui_Dialog(object):
         self.label_3 = QtWidgets.QLabel(self.layoutWidget)
         self.label_3.setObjectName("label_3")
         self.gridLayout.addWidget(self.label_3, 2, 0, 1, 1)
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem, 2, 1, 1, 1)
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem1 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem1, 0, 1, 1, 1)
         self.comboBox_sample_type = QtWidgets.QComboBox(self.layoutWidget)
         self.comboBox_sample_type.setMinimumSize(QtCore.QSize(0, 30))
@@ -51,9 +53,11 @@ class Ui_Dialog(object):
         self.label = QtWidgets.QLabel(self.layoutWidget)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
-        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem2 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem2, 4, 1, 1, 1)
-        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem3 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem3, 1, 1, 1, 1)
         self.lineEdit_name = QtWidgets.QLineEdit(self.layoutWidget)
         self.lineEdit_name.setMinimumSize(QtCore.QSize(0, 30))
@@ -80,4 +84,5 @@ class Ui_Dialog(object):
         self.comboBox_sample_type.setItemText(1, _translate("Dialog", "血细胞"))
         self.label.setText(_translate("Dialog", "姓名"))
         self.lineEdit_name.setPlaceholderText(_translate("Dialog", "姓名"))
-        self.lineEdit_sample_size.setPlaceholderText(_translate("Dialog", "样本量"))
+        self.lineEdit_sample_size.setPlaceholderText(
+            _translate("Dialog", "样本量"))

@@ -8,6 +8,14 @@ app = QApplication(sys.argv)
 class Logging(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.desktop = QApplication.desktop()
+        self.screenRect = self.desktop.screenGeometry()
+        self.height = self.screenRect.height()
+        self.width = self.screenRect.width()
+
+        print(self.height)
+        print(self.width)
+
         self.resize(600,600)
         self.btn = QPushButton("你好",self)
         self.btn.clicked.connect(self.cao)

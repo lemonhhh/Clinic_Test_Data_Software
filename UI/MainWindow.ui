@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <property name="documentMode">
      <bool>true</bool>
@@ -91,6 +91,188 @@
         <widget class="QLabel" name="label_7">
          <property name="text">
           <string>随访管理：</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="SystemManagement">
+     <attribute name="title">
+      <string>系统管理</string>
+     </attribute>
+     <widget class="QWidget" name="layoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>531</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_patient_2" stretch="0,0,0,0,0,0,0,0,0">
+       <property name="spacing">
+        <number>8</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetFixedSize</enum>
+       </property>
+       <property name="topMargin">
+        <number>1</number>
+       </property>
+       <property name="bottomMargin">
+        <number>1</number>
+       </property>
+       <item>
+        <widget class="QToolButton" name="suifang_find_2">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>程序目录</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/blue-document-table.png</normaloff>:/newPrefix/pictures/blue-document-table.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="delete_sample_4">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>窗口</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/application-icon-large.png</normaloff>:/newPrefix/pictures/application-icon-large.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="search_sample_4">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>退出</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/block.png</normaloff>:/newPrefix/pictures/block.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="trash_4">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>标本类型</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/xfn-friend.png</normaloff>:/newPrefix/pictures/xfn-friend.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="sample_class_4">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>标本盒类型</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/alarm-clock-select.png</normaloff>:/newPrefix/pictures/alarm-clock-select.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="use_ratio_4">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>患者属性</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/wrench--arrow.png</normaloff>:/newPrefix/pictures/wrench--arrow.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="enter_today_4">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>标签配置</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/zone--plus.png</normaloff>:/newPrefix/pictures/zone--plus.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="enter_today_5">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>标签编码</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/zone--plus.png</normaloff>:/newPrefix/pictures/zone--plus.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="enter_today_6">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>数据备份</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/zone--plus.png</normaloff>:/newPrefix/pictures/zone--plus.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
          </property>
         </widget>
        </item>
@@ -703,54 +885,14 @@
                 <string>样本盒1</string>
                </property>
               </item>
-             </item>
-             <item>
-              <property name="text">
-               <string>抽屉2</string>
-              </property>
               <item>
                <property name="text">
-                <string>样本盒1</string>
+                <string>样本盒2</string>
                </property>
               </item>
-             </item>
-             <item>
-              <property name="text">
-               <string>抽屉3</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>抽屉4</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>抽屉5</string>
-              </property>
-             </item>
-            </item>
-           </item>
-          </item>
-          <item>
-           <property name="text">
-            <string>血栓病冰箱</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>层1</string>
-            </property>
-            <item>
-             <property name="text">
-              <string>架子1</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>抽屉1</string>
-              </property>
               <item>
                <property name="text">
-                <string>样本盒1</string>
+                <string>样本盒3</string>
                </property>
               </item>
              </item>
@@ -778,16 +920,176 @@
               <property name="text">
                <string>抽屉3</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>样本盒2</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>样本盒3</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉4</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>样本盒2</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>样本盒3</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉5</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>样本盒2</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>样本盒3</string>
+               </property>
+              </item>
+             </item>
+            </item>
+           </item>
+          </item>
+          <item>
+           <property name="text">
+            <string>血栓病冰箱</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>层1</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>架子1</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>抽屉1</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>样本盒2</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>样本盒3</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉2</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>样本盒2</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>样本盒3</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉3</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>样本盒2</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>样本盒3</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉4</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>样本盒2</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>样本盒3</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>抽屉5</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>样本盒2</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>样本盒3</string>
+               </property>
+              </item>
              </item>
             </item>
             <item>
@@ -818,16 +1120,31 @@
               <property name="text">
                <string>抽屉3</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉4</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒2</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉5</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒3</string>
+               </property>
+              </item>
              </item>
             </item>
             <item>
@@ -838,26 +1155,51 @@
               <property name="text">
                <string>抽屉1</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉2</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒2</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉3</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒3</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉4</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉5</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
              </item>
             </item>
            </item>
@@ -873,26 +1215,51 @@
               <property name="text">
                <string>抽屉1</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉2</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒2</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉3</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒3</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉4</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉5</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
              </item>
             </item>
             <item>
@@ -1018,21 +1385,41 @@
               <property name="text">
                <string>抽屉2</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉3</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉4</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
              </item>
              <item>
               <property name="text">
                <string>抽屉5</string>
               </property>
+              <item>
+               <property name="text">
+                <string>样本盒1</string>
+               </property>
+              </item>
              </item>
             </item>
             <item>
@@ -1356,14 +1743,20 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>10</y>
         <width>571</width>
         <height>56</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_sample" stretch="0,0,0,0,0,0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_sample" stretch="0,0,0,0,0,0,0,0,0">
+       <property name="spacing">
+        <number>8</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetFixedSize</enum>
+       </property>
        <property name="topMargin">
-        <number>0</number>
+        <number>1</number>
        </property>
        <property name="bottomMargin">
         <number>1</number>
@@ -1414,6 +1807,23 @@
          <property name="icon">
           <iconset resource="icon.qrc">
            <normaloff>:/newPrefix/pictures/blue-document-search-result.png</normaloff>:/newPrefix/pictures/blue-document-search-result.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="add_exam">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>添加结果</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/wrench--plus.png</normaloff>:/newPrefix/pictures/wrench--plus.png</iconset>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -1508,197 +1918,15 @@
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="SystemManagement">
-     <attribute name="title">
-      <string>系统管理</string>
-     </attribute>
-     <widget class="QWidget" name="layoutWidget_4">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>531</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_patient_2" stretch="0,0,0,0,0,0,0,0,0">
-       <property name="spacing">
-        <number>8</number>
-       </property>
-       <property name="sizeConstraint">
-        <enum>QLayout::SetFixedSize</enum>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>1</number>
-       </property>
-       <item>
-        <widget class="QToolButton" name="suifang_find_2">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>程序目录</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/blue-document-table.png</normaloff>:/newPrefix/pictures/blue-document-table.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="delete_sample_4">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>窗口</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/application-icon-large.png</normaloff>:/newPrefix/pictures/application-icon-large.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="search_sample_4">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>退出</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/block.png</normaloff>:/newPrefix/pictures/block.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="trash_4">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>标本类型</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/xfn-friend.png</normaloff>:/newPrefix/pictures/xfn-friend.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="sample_class_4">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>标本盒类型</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/alarm-clock-select.png</normaloff>:/newPrefix/pictures/alarm-clock-select.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="use_ratio_4">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>患者属性</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/wrench--arrow.png</normaloff>:/newPrefix/pictures/wrench--arrow.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="enter_today_4">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>标签配置</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/zone--plus.png</normaloff>:/newPrefix/pictures/zone--plus.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="enter_today_5">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>标签编码</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/zone--plus.png</normaloff>:/newPrefix/pictures/zone--plus.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="enter_today_6">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>数据备份</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/zone--plus.png</normaloff>:/newPrefix/pictures/zone--plus.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
     <widget class="QWidget" name="PatientManagement">
      <attribute name="title">
-      <string>随访管理</string>
+      <string>病人管理</string>
      </attribute>
      <widget class="QWidget" name="layoutWidget_3">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>10</y>
         <width>461</width>
         <height>56</height>
        </rect>
@@ -1711,11 +1939,28 @@
         <enum>QLayout::SetFixedSize</enum>
        </property>
        <property name="topMargin">
-        <number>0</number>
+        <number>1</number>
        </property>
        <property name="bottomMargin">
         <number>1</number>
        </property>
+       <item>
+        <widget class="QToolButton" name="patient_info">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>患者信息</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/xfn-friend.png</normaloff>:/newPrefix/pictures/xfn-friend.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QToolButton" name="suifang_find">
          <property name="styleSheet">
@@ -1734,7 +1979,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="delete_sample_3">
+        <widget class="QToolButton" name="patient_suifang">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>
@@ -1761,23 +2006,6 @@
          <property name="icon">
           <iconset resource="icon.qrc">
            <normaloff>:/newPrefix/pictures/block.png</normaloff>:/newPrefix/pictures/block.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="trash_3">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>患者信息</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/xfn-friend.png</normaloff>:/newPrefix/pictures/xfn-friend.png</iconset>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -1837,6 +2065,162 @@
        </item>
       </layout>
      </widget>
+     <widget class="QSplitter" name="splitter_3">
+      <property name="geometry">
+       <rect>
+        <x>-10</x>
+        <y>60</y>
+        <width>1391</width>
+        <height>9000</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>1000</width>
+        <height>9000</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="lineWidth">
+       <number>3</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="opaqueResize">
+       <bool>true</bool>
+      </property>
+      <property name="handleWidth">
+       <number>5</number>
+      </property>
+      <property name="childrenCollapsible">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="layoutWidget_10">
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <property name="leftMargin">
+         <number>10</number>
+        </property>
+        <item>
+         <widget class="QTreeWidget" name="treeWidget_patient">
+          <column>
+           <property name="text">
+            <string>病人信息</string>
+           </property>
+          </column>
+          <item>
+           <property name="text">
+            <string>性别</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>女性</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>男性</string>
+            </property>
+           </item>
+          </item>
+          <item>
+           <property name="text">
+            <string>年龄</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>18以下</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>18-35</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>36-60</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>60以上</string>
+            </property>
+           </item>
+          </item>
+          <item>
+           <property name="text">
+            <string>疾病</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>出血病</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>血栓病</string>
+            </property>
+           </item>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_15">
+          <property name="font">
+           <font>
+            <family>PingFang SC</family>
+            <pointsize>13</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 13pt &quot;PingFang SC&quot;;</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>1</number>
+          </property>
+          <property name="text">
+           <string>样本管理树</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QTableView" name="tableView_patient">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>1100</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="Analysis">
      <attribute name="title">
@@ -1851,7 +2235,7 @@
         <height>56</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_patient_5" stretch="0,0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_patient_5" stretch="0,0,0,0,0,0">
        <property name="spacing">
         <number>8</number>
        </property>
@@ -1859,13 +2243,30 @@
         <enum>QLayout::SetFixedSize</enum>
        </property>
        <property name="topMargin">
-        <number>0</number>
+        <number>1</number>
        </property>
        <property name="bottomMargin">
         <number>1</number>
        </property>
        <item>
-        <widget class="QToolButton" name="suifang_find_5">
+        <widget class="QToolButton" name="disease_tree">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>疾病简介</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/tree.png</normaloff>:/newPrefix/pictures/tree.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="suifang_find_6">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>
@@ -1900,6 +2301,23 @@
        </item>
        <item>
         <widget class="QToolButton" name="search_sample_7">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>按操作类型</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/block.png</normaloff>:/newPrefix/pictures/block.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="search_sample_8">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>
