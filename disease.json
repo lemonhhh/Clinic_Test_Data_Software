@@ -5,53 +5,195 @@
             "name": "出血疾病",
             "children": [
                 {
-                    "name": "cluster",
+                    "name": "获得性",
                     "children": [
                         {
-                            "name": "AgglomerativeCluster",
-                            "value": 3938
+                            "name": "血小板减少症",
+                            "children": [
+                                {
+                                    "name": "自体免疫和异体免疫"
+                                },
+                                {
+                                    "name": "药物诱发"
+                                },
+                                {
+                                    "name": "脾功能亢进"
+                                },
+                                {
+                                    "name": "骨髓增生减低"
+                                },
+                                {
+                                    "name": "DIC"
+                                }
+                            ]
                         },
                         {
-                            "name": "HierarchicalCluster",
-                            "value": 6714
+                            "name": "肝脏疾病",
+                            "children": [
+                                {
+                                    "name": "肝硬化"
+                                },
+                                {
+                                    "name": "急性肝衰竭"
+                                },
+                                {
+                                    "name": "肝移植"
+                                }
+                            ]
                         },
                         {
-                            "name": "MergeEdge",
+                            "name": "肾衰竭",
+                            "children": [
+                                {
+                                    "name": "吸收不良综合征"
+                                },
+                                {
+                                    "name": "新生儿出血疾病"
+                                },
+                                {
+                                    "name": "抗生素治疗延长"
+                                },
+                                {
+                                    "name": "营养不良"
+                                },
+                                {
+                                    "name": "胆道梗阻时间延长"
+                                }
+
+                            ]
+                        },
+                        {
+                            "name": "维生素K缺乏",
                             "value": 743
+                        },
+                        {
+                            "name": "血液病",
+                            "children": [
+                                {
+                                    "name": "急性白血病"
+
+                                },
+                                {
+                                    "name": "骨髓发育不良"
+                                },
+                                {
+                                    "name": "单克隆丙种蛋白病"
+                                },
+                                {
+                                    "name": "原发性血小板增多症"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "获得性凝血因子抗体",
+                            "children": [
+                                {
+                                    "name": "抗体-凝血因子复合物清楚加速"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "弥散性血管内凝血",
+                            "children": [
+                                {
+                                    "name": "急性"
+                                },
+                                {
+                                    "name": "慢性"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "药物性",
+                            "children":[
+                                {
+                                    "name": "抗血小板药"
+                                },
+                                {
+                                    "name": "抗凝血药"
+                                },
+                                {
+                                    "name": "抗凝血酶和溶栓药"
+                                },
+                                {
+                                    "name": "骨髓抑制剂"
+                                },
+                                {
+                                    "name": "肝毒性剂和肾毒性药物"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "血管性",
+                            "children": [
+                                {
+                                    "name": "不高于皮面的紫癜"
+                                },
+                                {
+                                    "name": "使用皮质类固醇"
+                                },
+                                {
+                                    "name": "维生素C缺乏症"
+                                },
+                                {
+                                    "name": "爆发性紫癜"
+                                },
+                                {
+                                    "name": "可触及的紫癜"
+                                }
+                            ]
                         }
                     ]
                 },
                 {
-                    "name": "graph",
+                    "name": "遗传性",
                     "children": [
                         {
-                            "name": "BetweennessCentrality",
-                            "value": 3534
+                            "name": "凝血因子缺乏",
+                            "children": [
+                                {
+                                    "name": "血友病A"
+                                },
+                                {
+                                    "name": "血友病B"
+                                },
+                                {
+                                    "name": "血管性血友病"
+                                }
+                            ]
                         },
                         {
-                            "name": "LinkDistance",
-                            "value": 5731
+                            "name": "血小板疾病",
+                            "children": [
+                                {
+                                    "name": "Glanzmann血小板无力症"
+                                },
+                                {
+                                    "name": "Bernard-Soulier综合征"
+                                },
+                                {
+                                    "name": "血小板颗粒异常"
+                                }
+                            ]
                         },
                         {
-                            "name": "MaxFlowMinCut",
+                            "name": "纤溶异常",
                             "value": 7840
                         },
                         {
-                            "name": "ShortestPaths",
+                            "name": "血管性",
                             "value": 5914
                         },
                         {
-                            "name": "SpanningTree",
-                            "value": 3416
-                        }
-                    ]
-                },
-                {
-                    "name": "optimization",
-                    "children": [
-                        {
-                            "name": "AspectRatioBanker",
-                            "value": 7074
+                            "name": "结缔组织疾病",
+                            "children": [
+                                {
+                                    "name": "出血性毛细血管扩张症"
+                                },
+                                {
+                                    "name": "Ehlers-Danlos综合征"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -61,43 +203,16 @@
             "name": "血栓疾病",
             "children": [
                 {
-                    "name": "cluster",
-                    "children": [
-                        {
-                            "name": "AgglomerativeCluster",
-                            "value": 3938
-                        },
-                        {
-                            "name": "HierarchicalCluster",
-                            "value": 6714
-                        },
-                        {
-                            "name": "MergeEdge",
-                            "value": 743
-                        }
-                    ]
+                    "name": "白色血栓"
                 },
                 {
-                    "name": "按血管",
-                    "children": [
-                        {
-                            "name": "静脉血栓",
-                            "value": 3534
-                        },
-                        {
-                            "name": "动脉血栓",
-                            "value": 5731
-                        }
-                    ]
+                    "name": "混合血栓"
                 },
                 {
-                    "name": "optimization",
-                    "children": [
-                        {
-                            "name": "AspectRatioBanker",
-                            "value": 7074
-                        }
-                    ]
+                    "name": "红色血栓"
+                },
+                {
+                    "name": "透明血栓"
                 }
             ]
         }

@@ -1,5 +1,13 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>pictures/shield--pencil.png</file>
+    <file>pictures/user-yellow.png</file>
+    <file>pictures/mind.png</file>
+    <file>pictures/图片 1.png</file>
+    <file>pictures/user-medical.png</file>
+    <file>pictures/database-share.png</file>
+    <file>pictures/microformats.png</file>
+    <file>pictures/blog.png</file>
     <file>pictures/tree.png</file>
     <file>pictures/wrench--plus.png</file>
     <file>pictures/zone--plus.png</file>

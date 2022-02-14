@@ -1,0 +1,2 @@
+2022-01-11 22:02:58,761 - DEBUG - MainThread - 181 - 语句错误，错误原因为(1054, "Unknown column 'patient_ID' in 'field list'")
+2022-01-11 22:03:59,589 - DEBUG - MainThread - 182 - 语句错误，错误原因为(1054, "Unknown column 'patient_ID' in 'field list'")

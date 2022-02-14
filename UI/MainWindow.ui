@@ -32,71 +32,6 @@
     <property name="movable">
      <bool>false</bool>
     </property>
-    <widget class="QWidget" name="StartPage">
-     <attribute name="title">
-      <string>开始页</string>
-     </attribute>
-     <widget class="QWidget" name="verticalLayoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>431</width>
-        <height>351</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <property name="spacing">
-        <number>6</number>
-       </property>
-       <property name="sizeConstraint">
-        <enum>QLayout::SetFixedSize</enum>
-       </property>
-       <item>
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>工具介绍</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>临床样本数据库管理系统，方便临床研究人员对样本的管理、分析</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>使用方法</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>样本管理：</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_6">
-         <property name="text">
-          <string>系统管理：</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>随访管理：</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
     <widget class="QWidget" name="SystemManagement">
      <attribute name="title">
       <string>系统管理</string>
@@ -110,7 +45,7 @@
         <height>61</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_patient_2" stretch="0,0,0,0,0,0,0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_patient_2" stretch="0,0,0,0,0,0,0">
        <property name="spacing">
         <number>8</number>
        </property>
@@ -124,7 +59,7 @@
         <number>1</number>
        </property>
        <item>
-        <widget class="QToolButton" name="suifang_find_2">
+        <widget class="QToolButton" name="produce_catalog">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>
@@ -141,41 +76,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="delete_sample_4">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>窗口</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/application-icon-large.png</normaloff>:/newPrefix/pictures/application-icon-large.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="search_sample_4">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>退出</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/block.png</normaloff>:/newPrefix/pictures/block.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="trash_4">
+        <widget class="QToolButton" name="sample_type">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>
@@ -192,7 +93,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="sample_class_4">
+        <widget class="QToolButton" name="box_type">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>
@@ -209,7 +110,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="use_ratio_4">
+        <widget class="QToolButton" name="patient_type">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>
@@ -226,7 +127,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="enter_today_4">
+        <widget class="QToolButton" name="label_set">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>
@@ -243,7 +144,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="enter_today_5">
+        <widget class="QToolButton" name="label_code">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>
@@ -260,7 +161,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="enter_today_6">
+        <widget class="QToolButton" name="data_copy">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>
@@ -277,6 +178,45 @@
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QFrame" name="frame">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>80</y>
+        <width>381</width>
+        <height>251</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/newPrefix/pictures/mind.png);</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>360</y>
+        <width>471</width>
+        <height>331</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+border-image: url(:/newPrefix/pictures/图片 1.png);</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab">
@@ -1931,7 +1871,7 @@
         <height>56</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_patient" stretch="0,0,0,0,0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_patient" stretch="0,0,0,0,0,0,0,0">
        <property name="spacing">
         <number>8</number>
        </property>
@@ -1945,6 +1885,23 @@
         <number>1</number>
        </property>
        <item>
+        <widget class="QToolButton" name="add_patient">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>添加患者</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/user-yellow.png</normaloff>:/newPrefix/pictures/user-yellow.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QToolButton" name="patient_info">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
@@ -1955,6 +1912,23 @@
          <property name="icon">
           <iconset resource="icon.qrc">
            <normaloff>:/newPrefix/pictures/xfn-friend.png</normaloff>:/newPrefix/pictures/xfn-friend.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="use_ratio_3">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>疾病预测</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/shield--pencil.png</normaloff>:/newPrefix/pictures/shield--pencil.png</iconset>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -2023,23 +1997,6 @@
          <property name="icon">
           <iconset resource="icon.qrc">
            <normaloff>:/newPrefix/pictures/alarm-clock-select.png</normaloff>:/newPrefix/pictures/alarm-clock-select.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="use_ratio_3">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>数据审核</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/wrench--arrow.png</normaloff>:/newPrefix/pictures/wrench--arrow.png</iconset>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -2231,11 +2188,11 @@
        <rect>
         <x>0</x>
         <y>10</y>
-        <width>461</width>
+        <width>651</width>
         <height>56</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_patient_5" stretch="0,0,0,0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_patient_5" stretch="0,0,0,0,0,0,0,0,0,0">
        <property name="spacing">
         <number>8</number>
        </property>
@@ -2259,6 +2216,74 @@
          <property name="icon">
           <iconset resource="icon.qrc">
            <normaloff>:/newPrefix/pictures/tree.png</normaloff>:/newPrefix/pictures/tree.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="exam_sta">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>检验数据统计</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/blog.png</normaloff>:/newPrefix/pictures/blog.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="auto_diag">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>批量诊断</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/microformats.png</normaloff>:/newPrefix/pictures/microformats.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="man_diag">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>人工诊断</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/user-medical.png</normaloff>:/newPrefix/pictures/user-medical.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="diag_sta">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>诊断统计</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/database-share.png</normaloff>:/newPrefix/pictures/database-share.png</iconset>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>

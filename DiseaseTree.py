@@ -60,7 +60,8 @@ class DiseaseTree(QDialog):
             j = json.load(f)
         c = (
             Tree()
-                .add("", [j], collapse_interval=2, layout="radial")
+                # .add("", [j], collapse_interval=2, layout="radial")
+                .add("", [j])
                 .set_global_opts(title_opts=opts.TitleOpts(title="血液疾病介绍"))
                 .render("tree_layout.html")
         )
