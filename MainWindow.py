@@ -8,7 +8,7 @@ from PyQt5.QtCore import Qt, pyqtSlot
 
 # 导入UI
 from UI.Ui_MainWindow import Ui_MainWindow
-# 导入各种类
+# 导入各种类【功能函数】
 from CreateSample import CreateSample #添加样本
 from RecycleBinDialog import RecycleBinDialog #查看回收站样本
 from EnterToday import EnterToday #查看今日入库
@@ -20,7 +20,8 @@ from SampleCalendar import SampleCalendar #按天入库样本数
 from DiseaseTree import DiseaseTree #疾病树
 from ExamSta import ExamStatis #检验结果统计
 from AddPatient import AddPatient#添加病人
-from PatientSearch import PatientSearch
+from PatientSearch import PatientSearch#查询病人信息
+from PredictDisease import PredictDisease#疾病预测
 
 # 相关配置
 from Util.Common import get_sql_connection, get_logger, show_error_message, show_successful_message
@@ -32,8 +33,6 @@ import qdarkstyle
 from qt_material import apply_stylesheet
 
 # 主窗口
-
-
 class MainWindow(QMainWindow):
     # 初始化函数
     def __init__(self):
@@ -109,53 +108,52 @@ class MainWindow(QMainWindow):
 
 
 ##  ============================== 自动连接槽函数区 ==============================#
-    # 查询
-
+    # 点击【查询样本】
     @pyqtSlot()
     def on_search_sample_clicked(self):
         self.on_act_search_triggered()
 
-    # 新增样本
+    # 点击【新增样本】
     @pyqtSlot()
     def on_add_sample_clicked(self):
         self.on_act_create_triggered()
 
-    # 删除样本
+    # 点击【删除样本】
     @pyqtSlot()
     def on_delete_sample_clicked(self):
         self.on_act_delete_triggered()
 
-    # 查看回收站样本
+    # 点击【查看回收站样本】
     @pyqtSlot()
     def on_trash_clicked(self):
         self.on_act_recyclebin_triggered()
 
-    # 当日入库
+    # 点击【当日入库】
     @pyqtSlot()
     def on_enter_today_clicked(self):
         self.on_act_look_today_triggered()
 
-    # 样本类别
+    # 点击【样本类别】
     @pyqtSlot()
     def on_sample_class_clicked(self):
         self.on_act_sample_class_triggered()
 
-    # 容器使用率
+    # 点击【容器使用率】
     @pyqtSlot()
     def on_use_ratio_clicked(self):
         self.on_act_compute_use_triggered()
 
-    # 日期热图
+    # 点击【日期热图】
     @pyqtSlot()
     def on_calendar_clicked(self):
         self.on_act_calendar_triggered()
 
-    # 添加检验结果
+    # 点击【添加检验结果】
     @pyqtSlot()
     def on_add_exam_clicked(self):
         self.on_act_addexam_triggered()
 
-    #添加病人
+    #点击【添加病人】
     @pyqtSlot()
     def on_add_patient_clicked(self):
         print("添加病人")
@@ -174,6 +172,21 @@ class MainWindow(QMainWindow):
         psearch_dialog = PatientSearch(self)
         psearch_dialog.setAttribute(Qt.WA_DeleteOnClose)
         psearch_dialog.show()
+
+    #点击【添加病史】
+    @pyqtSlot()
+    def on_add_history_clicked(self):
+        print("添加病史")
+        # psearch_dialog = PatientSearch(self)
+        # psearch_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        # psearch_dialog.show()
+
+    @pyqtSlot()
+    def on_predict_disease_clicked(self):
+        print("疾病预测")
+        predict_dialog = PredictDisease(self)
+        predict_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        predict_dialog.show()
 
     # 疾病介绍
     @pyqtSlot()
