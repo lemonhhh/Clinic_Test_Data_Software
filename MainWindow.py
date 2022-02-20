@@ -91,7 +91,7 @@ class MainWindow(QMainWindow):
             # 样本id
             self.sample_id = ""
             # 病人id
-            self.patiend_id = ""
+            self.patient_id = ""
 
             # 设置为不可见
             self.btn.setVisible(False)
@@ -111,12 +111,18 @@ class MainWindow(QMainWindow):
     # 点击【查询样本】
     @pyqtSlot()
     def on_search_sample_clicked(self):
-        self.on_act_search_triggered()
+        search_dialog = SearchWindow(self)
+        search_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        search_dialog.show()
 
     # 点击【新增样本】
     @pyqtSlot()
     def on_add_sample_clicked(self):
-        self.on_act_create_triggered()
+        creation_dialog = CreateSample(self, self.location)
+        creation_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        # 连接槽函数
+        creation_dialog.data_update_signal.connect(self.do_receive_data)
+        creation_dialog.show()
 
     # 点击【删除样本】
     @pyqtSlot()
@@ -126,32 +132,44 @@ class MainWindow(QMainWindow):
     # 点击【查看回收站样本】
     @pyqtSlot()
     def on_trash_clicked(self):
-        self.on_act_recyclebin_triggered()
+        recycle_dialog = RecycleBinDialog(self)
+        recycle_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        recycle_dialog.show()
 
     # 点击【当日入库】
     @pyqtSlot()
     def on_enter_today_clicked(self):
-        self.on_act_look_today_triggered()
+        today_dialog = EnterToday(self)
+        today_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        today_dialog.show()
 
     # 点击【样本类别】
     @pyqtSlot()
     def on_sample_class_clicked(self):
-        self.on_act_sample_class_triggered()
+        sample_class_widget = SampleClass(self)
+        # sample_class_widget.setAttribute(Qt.WA_DeleteOnClose)
+        sample_class_widget.show()
 
     # 点击【容器使用率】
     @pyqtSlot()
     def on_use_ratio_clicked(self):
-        self.on_act_compute_use_triggered()
+        ratio_dialog = UseRatio(self)
+        ratio_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        ratio_dialog.show()
 
     # 点击【日期热图】
     @pyqtSlot()
     def on_calendar_clicked(self):
-        self.on_act_calendar_triggered()
+        calender_dialog = SampleCalendar(self)
+        calender_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        calender_dialog.show()
 
     # 点击【添加检验结果】
     @pyqtSlot()
     def on_add_exam_clicked(self):
-        self.on_act_addexam_triggered()
+        add_dialog = InsertExam(self, self.sample_id, self.patient_id)  # 示例化
+        add_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        add_dialog.show()
 
     #点击【添加病人】
     @pyqtSlot()
@@ -181,6 +199,7 @@ class MainWindow(QMainWindow):
         # psearch_dialog.setAttribute(Qt.WA_DeleteOnClose)
         # psearch_dialog.show()
 
+    #点击【疾病预测】
     @pyqtSlot()
     def on_predict_disease_clicked(self):
         print("疾病预测")
@@ -188,7 +207,7 @@ class MainWindow(QMainWindow):
         predict_dialog.setAttribute(Qt.WA_DeleteOnClose)
         predict_dialog.show()
 
-    # 疾病介绍
+    # 点击【疾病介绍】
     @pyqtSlot()
     def on_disease_tree_clicked(self):
         disease_widget = DiseaseTree(self)
@@ -202,16 +221,13 @@ class MainWindow(QMainWindow):
         exam_sta_widget.setAttribute(Qt.WA_DeleteOnClose)
         exam_sta_widget.show()
 
-    # 检验数据统计
-    # todo:
-    # 可以设置一些简单的规则
+    # 点击【自动诊断】
     @pyqtSlot()
     def on_auto_diag_clicked(self):
         print("自动诊断")
         try:   # 执行sql语句
             sql1 = """UPDATE diagnosis INNER JOIN exam_result ON diagnosis.patient_ID=exam_result.patient_ID SET diagnosis.auto_result = '出血病' WHERE (exam_result.pt >= 17 OR exam_result.aptt >= 38) """
             sql2 = """UPDATE diagnosis INNER JOIN exam_result ON diagnosis.patient_ID=exam_result.patient_ID SET diagnosis.auto_result = '血栓病' WHERE (exam_result.pt <= 8 OR exam_result.aptt <= 15) """
-
 
             connection_auto = get_sql_connection()
             cursor_auto = connection_auto.cursor()
@@ -224,14 +240,18 @@ class MainWindow(QMainWindow):
             print(e)
             show_error_message(self, "删除错误，请检查")
 
-    # 槽函数(为了删除样本)
+##  ============================== 槽函数区 ==============================#
 
+    # 槽函数(为了删除样本)
+    #槽函数选择是在Qt Designer中定义的
     def talbe_choose(self):
         row = (self.__UI.tableView_show.currentIndex().row())
         id_data = (self.data_model.itemData(self.data_model.index(row, 0)))
         p_data = (self.data_model.itemData(self.data_model.index(row, 1)))
         self.sample_id = (id_data[0])
-        self.patiend_id = (p_data[0])
+        self.patient_id = (p_data[0])
+
+##  ============================== 点击不同的层级 ==============================#
 
     @pyqtSlot(QTreeWidgetItem, QTreeWidgetItem)
     # 目录树节点变化
@@ -241,7 +261,6 @@ class MainWindow(QMainWindow):
         # 表示已经到最后一级了
         if current.childCount() == 0:
             flg = True
-
         # 是当前选中的widget
         first_name = current.text(0)
 
@@ -286,6 +305,7 @@ class MainWindow(QMainWindow):
             self.set_model()
         # 传入的参数
         self.location = first_name
+
 
     @pyqtSlot(QTreeWidgetItem, QTreeWidgetItem)
     # 目录树节点变化
@@ -338,10 +358,8 @@ class MainWindow(QMainWindow):
                 sql = """select * from patients where age >= 36 and age <= 60 """
             if types == '60以上':
                 sql = """select * from patients where age >60"""
-
         else:
             sql = """select * from patients"""
-
         # 执行查询结果
         cursor.execute(sql)
 
@@ -351,34 +369,11 @@ class MainWindow(QMainWindow):
         if cursor.rowcount != 0:
             self.data_model_patient = self.add_model_data(
                 self.data_model_patient, list(cursor.fetchall()))
-
             self.set_model_patient()
+
+
 ##  ============================== 槽函数区 ==============================#
 
-    # 点击【新增】选项槽函数
-
-    @pyqtSlot()
-    def on_act_create_triggered(self):
-        # 示例化样本
-        creation_dialog = CreateSample(self, self.location)
-        creation_dialog.setAttribute(Qt.WA_DeleteOnClose)
-        # 连接槽函数
-        creation_dialog.data_update_signal.connect(self.do_receive_data)
-        creation_dialog.show()
-
-    # 点击【查询】槽函数
-    @pyqtSlot()
-    def on_act_search_triggered(self):
-        search_dialog = SearchWindow(self)
-        search_dialog.setAttribute(Qt.WA_DeleteOnClose)
-        search_dialog.show()
-
-    # 点击【添加结果】槽函数
-    @pyqtSlot()
-    def on_act_addexam_triggered(self):
-        add_dialog = InsertExam(self, self.sample_id, self.patiend_id)  # 示例化
-        add_dialog.setAttribute(Qt.WA_DeleteOnClose)
-        add_dialog.show()
 
     # 点击【删除】槽函数
     def on_act_delete_triggered(self):
@@ -427,40 +422,7 @@ class MainWindow(QMainWindow):
         except Exception as e:
             show_error_message(self, "删除错误，请检查")
 
-    # 点击【回收站】槽函数
-    @pyqtSlot()
-    def on_act_recyclebin_triggered(self):
-        recycle_dialog = RecycleBinDialog(self)
-        recycle_dialog.setAttribute(Qt.WA_DeleteOnClose)
-        recycle_dialog.show()
 
-    # 点击【今日入库】槽函数
-    def on_act_look_today_triggered(self):
-        today_dialog = EnterToday(self)
-        today_dialog.setAttribute(Qt.WA_DeleteOnClose)
-        today_dialog.show()
-
-    # 点击【样本类别】槽函数
-    def on_act_sample_class_triggered(self):
-        sample_class_widget = SampleClass(self)
-        # sample_class_widget.setAttribute(Qt.WA_DeleteOnClose)
-        sample_class_widget.show()
-
-    # 点击【样本类别】槽函数
-
-    @pyqtSlot()
-    def on_act_compute_use_triggered(self):
-        ratio_dialog = UseRatio(self)
-        ratio_dialog.setAttribute(Qt.WA_DeleteOnClose)
-        ratio_dialog.show()
-
-        # 点击【样本类别】槽函数
-    @pyqtSlot()
-    def on_act_calendar_triggered(self):
-        calender_dialog = SampleCalendar(self)
-        calender_dialog.setAttribute(Qt.WA_DeleteOnClose)
-        calender_dialog.show()
-##  ===========================================================================#
 
 ##  ============================== 自定义槽函数区 ==============================#
 
@@ -468,7 +430,7 @@ class MainWindow(QMainWindow):
     def do_receive_data(self, data_list: list):
         self.data_model = self.add_model_data(self.data_model, data_list)
 
-##  ===========================================================================#
+##  =================【数据模型】==========================================================#
 
     # 获取数据模型
     def get_model(self):
@@ -598,7 +560,6 @@ class MainWindow(QMainWindow):
             data = data.strftime("%Y-%m-%d %H:%M:%S")
         else:
             data = str(data)
-
         return data
 
     # 初始化table_view函数
@@ -615,16 +576,21 @@ class MainWindow(QMainWindow):
         widget.verticalHeader().setDefaultSectionSize(versize)
         widget.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
-    # 设置数据模型
+
+
+    # 设置【样本信息】数据模型
     def set_model(self):
         if self.data_model is None:
             return
         self.__UI.tableView_show.setModel(self.data_model)
 
+    # 设置【病人信息】数据模型
     def set_model_patient(self):
         if self.data_model_patient is None:
             return
         self.__UI.tableView_patient.setModel(self.data_model_patient)
+
+
 ##  =======================================================================#
 
 
