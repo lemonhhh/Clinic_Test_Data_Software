@@ -22,6 +22,7 @@ from ExamSta import ExamStatis #检验结果统计
 from AddPatient import AddPatient#添加病人
 from PatientSearch import PatientSearch#查询病人信息
 from PredictDisease import PredictDisease#疾病预测
+from AddHistory import AddHistory
 
 # 相关配置
 from Util.Common import get_sql_connection, get_logger, show_error_message, show_successful_message
@@ -92,6 +93,8 @@ class MainWindow(QMainWindow):
             self.sample_id = ""
             # 病人id
             self.patient_id = ""
+
+            self.patient_id_fromP = ""
 
             # 设置为不可见
             self.btn.setVisible(False)
@@ -194,16 +197,16 @@ class MainWindow(QMainWindow):
     #点击【添加病史】
     @pyqtSlot()
     def on_add_history_clicked(self):
-        print("添加病史")
-        # psearch_dialog = PatientSearch(self)
-        # psearch_dialog.setAttribute(Qt.WA_DeleteOnClose)
-        # psearch_dialog.show()
+        print("添加病史:", self.patient_id_fromP)
+        history_dialog = AddHistory(self, self.patient_id_fromP)
+        history_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        history_dialog.show()
 
     #点击【疾病预测】
     @pyqtSlot()
     def on_predict_disease_clicked(self):
         print("疾病预测")
-        predict_dialog = PredictDisease(self)
+        predict_dialog = PredictDisease(self,self.patient_id_fromP)
         predict_dialog.setAttribute(Qt.WA_DeleteOnClose)
         predict_dialog.show()
 
@@ -245,11 +248,21 @@ class MainWindow(QMainWindow):
     # 槽函数(为了删除样本)
     #槽函数选择是在Qt Designer中定义的
     def talbe_choose(self):
+        print("触发table_choose")
         row = (self.__UI.tableView_show.currentIndex().row())
         id_data = (self.data_model.itemData(self.data_model.index(row, 0)))
         p_data = (self.data_model.itemData(self.data_model.index(row, 1)))
         self.sample_id = (id_data[0])
         self.patient_id = (p_data[0])
+
+    #todo:
+    def table_patient_choose(self):
+        print("触发了")
+        row = (self.__UI.tableView_patient.currentIndex().row())
+        p_data = (self.data_model_patient.itemData(self.data_model_patient.index(row, 0)))
+
+        self.patient_id_fromP = (p_data[0])
+
 
 ##  ============================== 点击不同的层级 ==============================#
 

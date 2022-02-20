@@ -28,7 +28,6 @@ class InsertExam(QDialog):
         self.__UI.lineEdit_patientID.setText(patient_id)
 
 
-
         self.connection = None
         self.cursor = None
         self.logger = None

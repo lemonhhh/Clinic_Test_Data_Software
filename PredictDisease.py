@@ -17,18 +17,19 @@ class PredictDisease(QDialog):
     #发出信号(类型是list)
     data_update_signal = pyqtSignal(list)
     #把当前位置location串进来了
-    def __init__(self, parent=None,location=None):
+    def __init__(self, parent=None,patient_id=None):
         super(PredictDisease, self).__init__(parent)
         #ui初始化
         self.__UI = Ui_Dialog_predict()
         self.__UI.setupUi(self)
+        self.__UI.lineEdit_pID.setText(patient_id)
         #初始化sql相关
         self.connection = None
         self.cursor = None
         self.logger = None
         self.set_connection_cursor()
         self.set_logger()
-        self.location = location
+
 
     # 单击【提交】按钮槽函数
     @pyqtSlot()

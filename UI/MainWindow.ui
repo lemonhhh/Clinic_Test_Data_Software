@@ -1919,6 +1919,23 @@ border-image: url(:/newPrefix/pictures/图片 1.png);</string>
         </widget>
        </item>
        <item>
+        <widget class="QToolButton" name="delete_patient">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>删除病人</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/minus-white.png</normaloff>:/newPrefix/pictures/minus-white.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QToolButton" name="add_history">
          <property name="styleSheet">
           <string notr="true">border:none</string>
@@ -2014,23 +2031,6 @@ border-image: url(:/newPrefix/pictures/图片 1.png);</string>
          <property name="icon">
           <iconset resource="icon.qrc">
            <normaloff>:/newPrefix/pictures/blue-document-table.png</normaloff>:/newPrefix/pictures/blue-document-table.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="sample_class_3">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>随访提醒</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/alarm-clock-select.png</normaloff>:/newPrefix/pictures/alarm-clock-select.png</iconset>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -2491,8 +2491,25 @@ border-image: url(:/newPrefix/pictures/图片 1.png);</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>tableView_patient</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>table_patient_choose()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>685</x>
+     <y>210</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>618</x>
+     <y>826</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>talbe_choose()</slot>
+  <slot>table_patient_choose()</slot>
  </slots>
 </ui>
