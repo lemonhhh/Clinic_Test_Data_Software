@@ -42,8 +42,6 @@ class UseRatio(QDialog):
         self.mainLayout()
 
 
-
-
     def initUI(self):
         self.setWindowTitle("使用率统计")
         self.setMinimumSize(1000,800)

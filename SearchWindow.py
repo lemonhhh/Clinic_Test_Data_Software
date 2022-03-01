@@ -62,7 +62,9 @@ class SearchWindow(QDialog):
         sql = None
 
         if name != '':
-            sql = """select * from t_sample where t_sample.name = '%s'""" % name
+            sql = """select t_sample.* ,patients.* from t_sample,patients where t_sample.patient_ID=patients.patient_ID 
+                        and patients.patient_name='%s'""" % name
+
         else:
             sql = """select * from t_sample where t_sample.ID = '%s'""" % ID
 

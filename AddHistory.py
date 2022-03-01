@@ -18,7 +18,6 @@ class AddHistory(QDialog):
     data_update_signal = pyqtSignal(list)
     #把当前位置location串进来了
     def __init__(self, parent=None,patient_id=None):
-        print(patient_id)
         super(AddHistory, self).__init__(parent)
         #ui初始化
         self.__UI = Ui_Dialog()
@@ -30,14 +29,17 @@ class AddHistory(QDialog):
         self.connection = None
         self.cursor = None
         self.logger = None
+
         self.set_connection_cursor()
         self.set_logger()
 
 
     # 单击【提交】按钮槽函数
     @pyqtSlot()
-    def on_btn_commit_clicked(self):
+    def on_btn_confirm_clicked(self):
         sql,data_list = self.get_insert_sql_data()
+        print("得到了sql")
+
         if sql is not None:
             try:
                 # 执行sql语句
@@ -47,6 +49,7 @@ class AddHistory(QDialog):
 
                 #手动发射信号
                 self.data_update_signal.emit(data_list)
+
             except Exception as e:
                 show_error_message(self, "插入错误，请检查")
                 self.record_debug(e)
@@ -69,34 +72,37 @@ class AddHistory(QDialog):
         sql = None
         #列表
         data_list = []
-        #病人编号
-        pID = self.__UI.lineEdit_pID.text()
-        #病人姓名
-        pname = self.__UI.lineEdit_pname.text()
-        #年龄
-        age = int(self.__UI.lineEdit_age.text())
-        #性别
-        gender = str(self.__UI.comboBox_gender.currentText())
-        #联系电话
-        phone = self.__UI.lineEdit_phone.text()
-        #是否有诊断结果
-        result_flag = self.__UI.comboBox_result.currentText()
-        # 创建日期
-        creation_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+        #病人编号
+        pID = self.__UI.lineEdit_patientID.text()
+
+        #是否吸烟
+        smoke = self.__UI.cb_smoke.currentText()
+        #饮酒
+        drink = self.__UI.cb_drink.currentText()
+        #输血
+        trans = self.__UI.cb_trans.currentText()
+        #手术
+        sur = self.__UI.cb_sur.currentText()
+        #传染病
+        infect = self.__UI.cb_infect.currentText()
+        # 过敏
+        allergy = self.__UI.cb_allergy.currentText()
 
         data_list.append(pID)
-        data_list.append(pname)
-        data_list.append(age)
-        data_list.append(gender)
-        data_list.append(phone)
-        data_list.append(result_flag)
-        data_list.append(creation_date)
+        data_list.append(smoke)
+        data_list.append(drink)
+        data_list.append(trans)
+        data_list.append(sur)
+        data_list.append(infect)
+        data_list.append(allergy)
 
-        sql = """insert into patients(patient_ID, patient_name, age, gender,phone, result, create_date) 
-            values('%s','%s','%d','%s','%s','%s','%s')""" % (pID,pname,age,gender,phone, result_flag,creation_date)
+        print(data_list)
 
-        print(sql)
+        sql = """UPDATE  history SET smoke='%s',drink='%s',transfusion='%s',operation='%s',infectious='%s',allergy='%s'
+WHERE patient_ID='%s'""" % (smoke,drink,trans,sur,infect,allergy,pID)
+
+        print("插入病史sql",sql)
         return sql, data_list
 
     # 记录debug信息

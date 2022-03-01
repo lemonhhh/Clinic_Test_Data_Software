@@ -1,5 +1,17 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>pictures/4p.png.png</file>
+    <file>pictures/database-sql.png</file>
+    <file>pictures/blue-folder-network-horizontal-open.png</file>
+    <file>pictures/blue-document-tag.png</file>
+    <file>pictures/bookmark--plus.png</file>
+    <file>pictures/box-document.png</file>
+    <file>pictures/chart-pie.png</file>
+    <file>pictures/flask--pencil.png</file>
+    <file>pictures/infocard.png</file>
+    <file>pictures/layout-header-3-mix.png</file>
+    <file>pictures/4part.png</file>
+    <file>pictures/er.png</file>
     <file>pictures/minus-white.png</file>
     <file>pictures/sticky-note--plus.png</file>
     <file>pictures/shield--pencil.png</file>

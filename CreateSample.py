@@ -194,6 +194,8 @@ class CreateSample(QDialog):
             sql = """insert into t_sample(ID,patient_ID,type,sample_size,creation_date, modification_date,sample_status, sample_belong,box,result) 
             values('%s','%s','%s',%f,'%s','%s','%s', '%s','%s','%s')""" % (ID, patient_ID, type, sample_size, creation_date,
                                                             modification_date, sample_status, sample_belong,box_loc,result_flag)
+
+        #更新容器的使用情况
         sql_position = """update positions set flag=1 where cubes='%s' and belong='%s' """ %(box_loc,sample_belong)
         return sql,sql_position, data_list
 
