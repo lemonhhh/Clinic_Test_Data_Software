@@ -177,7 +177,7 @@ class MainWindow(QMainWindow):
     @pyqtSlot()
     def on_sample_class_clicked(self):
         sample_class_widget = SampleClass(self)
-        # sample_class_widget.setAttribute(Qt.WA_DeleteOnClose)
+        sample_class_widget.setAttribute(Qt.WA_DeleteOnClose)
         sample_class_widget.show()
 
     # 点击【容器使用率】
@@ -300,7 +300,6 @@ class MainWindow(QMainWindow):
 
     #todo:
     def table_patient_choose(self):
-        print("触发了")
         row = (self.__UI.tableView_patient.currentIndex().row())
         p_data = (self.data_model_patient.itemData(self.data_model_patient.index(row, 0)))
 

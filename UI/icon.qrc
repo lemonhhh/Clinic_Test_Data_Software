@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>pictures/blue-document-smiley.png</file>
     <file>pictures/4p.png.png</file>
     <file>pictures/database-sql.png</file>
     <file>pictures/blue-folder-network-horizontal-open.png</file>

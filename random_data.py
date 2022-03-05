@@ -1,5 +1,5 @@
 from Util.Common import get_sql_connection, get_logger, show_error_message, show_successful_message
-import  random
+import random
 
 
 def set_connection_cursor():

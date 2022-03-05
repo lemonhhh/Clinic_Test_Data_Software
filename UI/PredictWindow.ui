@@ -25,7 +25,7 @@
   <property name="windowTitle">
    <string>疾病风险预测</string>
   </property>
-  <widget class="QPushButton" name="btn_exam">
+  <widget class="QPushButton" name="btn_confirm">
    <property name="geometry">
     <rect>
      <x>10</x>

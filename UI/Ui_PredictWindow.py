@@ -21,10 +21,10 @@ class Ui_Dialog_predict(object):
         sizePolicy.setHeightForWidth(Dialog_predict.sizePolicy().hasHeightForWidth())
         Dialog_predict.setSizePolicy(sizePolicy)
         Dialog_predict.setMinimumSize(QtCore.QSize(700, 600))
-        self.btn_exam = QtWidgets.QPushButton(Dialog_predict)
-        self.btn_exam.setGeometry(QtCore.QRect(10, 450, 113, 32))
-        self.btn_exam.setStyleSheet("font: 13pt \"Hei\";")
-        self.btn_exam.setObjectName("btn_exam")
+        self.btn_confirm = QtWidgets.QPushButton(Dialog_predict)
+        self.btn_confirm.setGeometry(QtCore.QRect(10, 450, 113, 32))
+        self.btn_confirm.setStyleSheet("font: 13pt \"Hei\";")
+        self.btn_confirm.setObjectName("btn_confirm")
         self.verticalLayoutWidget_3 = QtWidgets.QWidget(Dialog_predict)
         self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(20, 50, 160, 112))
         self.verticalLayoutWidget_3.setObjectName("verticalLayoutWidget_3")
@@ -61,7 +61,7 @@ class Ui_Dialog_predict(object):
     def retranslateUi(self, Dialog_predict):
         _translate = QtCore.QCoreApplication.translate
         Dialog_predict.setWindowTitle(_translate("Dialog_predict", "疾病风险预测"))
-        self.btn_exam.setText(_translate("Dialog_predict", "确定"))
+        self.btn_confirm.setText(_translate("Dialog_predict", "确定"))
         self.label.setText(_translate("Dialog_predict", "输入病人编号"))
         self.label_2.setText(_translate("Dialog_predict", "预测疾病种类"))
         self.comboBox_type.setItemText(0, _translate("Dialog_predict", "新冠"))

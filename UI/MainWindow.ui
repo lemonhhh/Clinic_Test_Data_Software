@@ -1869,11 +1869,11 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
        <rect>
         <x>0</x>
         <y>10</y>
-        <width>507</width>
+        <width>564</width>
         <height>56</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_patient" stretch="0,0,0,0,0,0,0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_patient" stretch="0,0,0,0,0,0,0,0,0,0">
        <property name="spacing">
         <number>8</number>
        </property>
@@ -1886,6 +1886,23 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
        <property name="bottomMargin">
         <number>1</number>
        </property>
+       <item>
+        <widget class="QToolButton" name="patient_sta">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>统计分析</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/blue-document-smiley.png</normaloff>:/newPrefix/pictures/blue-document-smiley.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QToolButton" name="add_patient">
          <property name="styleSheet">
@@ -1989,7 +2006,7 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="predict_disease">
+        <widget class="QToolButton" name="predict_disease_2">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>

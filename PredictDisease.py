@@ -1,58 +1,95 @@
 # 使用UTF-8标准编码避免中文乱码
 # -*- coding: UTF-8 -*-
-#Qt相关
-from PyQt5.QtWidgets import QDialog, QMessageBox
-from PyQt5.QtCore import pyqtSlot, pyqtSignal,Qt
+# Qt相关
 
-#加载UI
+
+from PyQt5.QtWidgets import QDialog, QMessageBox
+from PyQt5.QtCore import pyqtSlot, pyqtSignal, Qt
+from SampleClass import SampleClass #分析样本类别
+from PredictResult import PredictResult
+# 加载UI
 from UI.Ui_PredictWindow import Ui_Dialog_predict
 
-#导入配置文件
+# 导入配置文件
 from Util.Common import get_sql_connection, get_logger, show_error_message, show_successful_message
-import datetime
-
+import pickle
+import numpy as np
+import pandas as pd
+from xgboost import XGBClassifier as XGBC
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix as cm, roc_auc_score as auc
 
 # 添加新样品类
+
+
 class PredictDisease(QDialog):
-    #发出信号(类型是list)
+    # 发出信号(类型是list)
     data_update_signal = pyqtSignal(list)
-    #把当前位置location串进来了
-    def __init__(self, parent=None,patient_id=None):
+    # 把当前位置location串进来了
+
+    def __init__(self, parent=None, patient_id=None):
         super(PredictDisease, self).__init__(parent)
-        #ui初始化
+        # ui初始化
         self.__UI = Ui_Dialog_predict()
         self.__UI.setupUi(self)
         self.__UI.lineEdit_pID.setText(patient_id)
-        #初始化sql相关
+
+        self.title=""
+        self.result = 0
+        self.x_column = None
+        self.type = None
+        self.get_predict_type()
+
+        self.data = None
         self.connection = None
         self.cursor = None
         self.logger = None
         self.set_connection_cursor()
         self.set_logger()
 
-
     # 单击【提交】按钮槽函数
+
     @pyqtSlot()
-    def on_btn_commit_clicked(self):
-        sql,data_list = self.get_insert_sql_data()
-        if sql is not None:
-            try:
-                # 执行sql语句
-                self.cursor.execute(sql)
-                self.connection.commit()
-                show_successful_message(self, "插入成功")
+    def on_btn_confirm_clicked(self):
+        # 取数据
+        self.get_data()
+        # 加载与训练模型
+        if self.type == '新冠':
+            f = open('model/covid19.pickle', 'rb')
+            model = pickle.load(f)
+            f.close()
 
-                #手动发射信号
-                self.data_update_signal.emit(data_list)
-            except Exception as e:
-                show_error_message(self, "插入错误，请检查")
-                self.record_debug(e)
-            self.close()
+        # todo:
+        # predict
+        predict_df = pd.DataFrame(columns=self.x_column)
+        predict_df.loc[0] = self.data
+        predict_df = predict_df.astype("float")
+        # 预测
+        r = model.predict_proba(predict_df)
+        self.result = r[0, 1]
 
+        #新窗口
+        result_dialog = PredictResult(self,self.result,self.title)
+        result_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        result_dialog.show()
 
-
+    def get_data(self):
+        # 病人编号
+        pID = self.__UI.lineEdit_pID.text()
+        sql = ""
+        # 得到sql
+        if self.type == '新冠':
+            sql = """SELECT respiratory_rate,lactate,diastolic,sistolic,neutrophiles,oxyden_saturation,hemoglobin,urea,dimer,platelets,hemetocrite
+                    FROM exam_result WHERE patient_ID='%s' """ % pID
+        # 取数据
+        self.cursor.execute(sql)
+        self.connection.commit()
+        data_list = list(self.cursor.fetchall()[0])
+        # list
+        self.data = data_list
 
     # 设置cursor和connection
+
     def set_connection_cursor(self) -> None:
         self.connection = get_sql_connection()
         self.cursor = self.connection.cursor()
@@ -61,42 +98,20 @@ class PredictDisease(QDialog):
     def set_logger(self) -> None:
         self.logger = get_logger("my_logger")
 
-
-    def get_insert_sql_data(self) -> (str, list):
-        sql = None
-        #列表
-        data_list = []
-        #病人编号
-        pID = self.__UI.lineEdit_pID.text()
-        #病人姓名
-        pname = self.__UI.lineEdit_pname.text()
-        #年龄
-        age = int(self.__UI.lineEdit_age.text())
-        #性别
-        gender = str(self.__UI.comboBox_gender.currentText())
-        #联系电话
-        phone = self.__UI.lineEdit_phone.text()
-        #是否有诊断结果
-        result_flag = self.__UI.comboBox_result.currentText()
-        # 创建日期
-        creation_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-
-        data_list.append(pID)
-        data_list.append(pname)
-        data_list.append(age)
-        data_list.append(gender)
-        data_list.append(phone)
-        data_list.append(result_flag)
-        data_list.append(creation_date)
-
-        sql = """insert into patients(patient_ID, patient_name, age, gender,phone, result, create_date) 
-            values('%s','%s','%d','%s','%s','%s','%s')""" % (pID,pname,age,gender,phone, result_flag,creation_date)
-
-        print(sql)
-        return sql, data_list
-
-    # 记录debug信息
-    def record_debug(self, debug_message: str) -> None:
-        self.logger.debug("语句错误，错误原因为{}".format(debug_message))
-
+    def get_predict_type(self):
+        self.type = self.__UI.comboBox_type.currentText()
+        if self.type == '新冠':
+            print("新冠来了")
+            self.title='患有严重新冠的可能性'
+            self.x_column = [
+                'RESPIRATORY_RATE_MEAN',
+                'LACTATE_MEAN',
+                'BLOODPRESSURE_DIASTOLIC_MEAN',
+                'BLOODPRESSURE_SISTOLIC_MEAN',
+                'NEUTROPHILES_MEAN',
+                'OXYGEN_SATURATION_MEAN',
+                'HEMOGLOBIN_MEAN',
+                'UREA_MEAN',
+                'DIMER_MEAN',
+                'PLATELETS_MEAN',
+                'HEMATOCRITE_MEAN']
