@@ -15,13 +15,13 @@ import datetime
 
 
 class ShowDataDialog(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None,label=None):
         super(ShowDataDialog, self).__init__(parent)
         self.__UI = Ui_show_data_dialog()
         self.__UI.setupUi(self)
 
         self.set_tableview(self.__UI.tableView, horsize=100, versize=70)
-        self.data_model = self.get_model()
+        self.data_model = self.get_model(label)
 
     # 接收查询结果
     @pyqtSlot(tuple)
@@ -41,9 +41,8 @@ class ShowDataDialog(QDialog):
 
 ##  ============================== 功能函数区 ==============================#
     # 获取数据模型
-    def get_model(self):
-        raw_model = self.get_raw_model(labels=['样本编号', '姓名', '样本类型',
-                                               '样本量', '添加日期', '更新时间', '状态', '归属'], colCount=8)
+    def get_model(self,label):
+        raw_model = self.get_raw_model(labels=label, colCount=len(label))
         return raw_model
 
     #获取无数据的数据模型

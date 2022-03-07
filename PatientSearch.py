@@ -36,8 +36,24 @@ class PatientSearch(QDialog):
         sql = self.get_search_sql()
         if sql is not None:
             try:
+                print("sql here",sql)
                 self.cursor.execute(sql)  # 执行sql语句
-                self.show_search_data()
+                label = [
+                    '病人编号',
+                    '病人姓名',
+                    '年龄',
+                    '性别',
+                    '联系方式',
+                    '是否有诊断结果',
+                    '是否吸烟',
+                    '是否饮酒',
+                    '是否有输血史',
+                    '是否有手术史',
+                    '是否有传染疾病史',
+                    '是否过敏史',
+                ]
+                self.show_search_data(label)
+
             except Exception as e:
                 self.record_debug(e)
                 show_error_message(self, '查询失败')
@@ -67,24 +83,25 @@ class PatientSearch(QDialog):
 
         if pname:
             #按照姓名查找
-            sql = """select * from patients where patients.patient_name = '%s'""" % pname
+            sql = """select * from Patient_table where name = '%s'""" % pname
         if pID:
-            sql = """select * from patients where patients.patient_ID = '%s'""" % pID
+            sql = """select * from Patient_table where patient_ID = '%s'""" % pID
         if sID:
             #根据sID找到pID
-            sql = """SELECT patients.* FROM patients,t_sample WHERE patients.patient_ID=t_sample.patient_ID AND t_sample.ID='%s' """ % sID
+            sql = """SELECT Patient_table.* FROM Patient_table,t_sample WHERE Patient_table.patient_ID=t_sample.patient_ID AND t_sample.ID='%s' """ % sID
         if eID:
             #根据eID找到pID
-            sql = """SELECT patients.* FROM patients,exam_result WHERE patients.patient_ID=exam_result.patient_ID AND exam_result.exam_ID='%s'"""  % eID
+            sql = """SELECT Patient_table.* FROM Patient_table,Exam_table WHERE Patient_table.patient_ID=Exam_table.patient_ID AND Exam_table.exam_ID='%s'"""  % eID
 
-        print(sql)
+        print("sql is ",sql)
         return sql
 
     # 显示查询结果
-    def show_search_data(self):
+    def show_search_data(self,label):
         if self.is_search_valid():
+
             data_tuple = self.cursor.fetchall()
-            self.create_show_dialog()
+            self.create_show_dialog(label)
             #发出信号，参数是发射的内容
             self.data_signal.emit(data_tuple)
 
@@ -92,8 +109,8 @@ class PatientSearch(QDialog):
             show_error_message(self, "没有查找到任何结果")
 
     # 创建展示窗口
-    def create_show_dialog(self):
-        show_data_dialog = ShowDataDialog(self)
+    def create_show_dialog(self,label):
+        show_data_dialog = ShowDataDialog(self,label)
         show_data_dialog.setAttribute(Qt.WA_DeleteOnClose)
         #连接信号和槽
         self.data_signal.connect(show_data_dialog.do_receive_data)

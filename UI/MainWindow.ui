@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1440</width>
-    <height>900</height>
+    <width>747</width>
+    <height>806</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>4</number>
     </property>
     <property name="documentMode">
      <bool>true</bool>
@@ -1873,7 +1873,7 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
         <height>56</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_patient" stretch="0,0,0,0,0,0,0,0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_patient" stretch="0,0,0,0,0,0,0,0,0">
        <property name="spacing">
         <number>8</number>
        </property>
@@ -1921,23 +1921,6 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="patient_info">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>患者信息</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/xfn-friend.png</normaloff>:/newPrefix/pictures/xfn-friend.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QToolButton" name="delete_patient">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
@@ -1955,16 +1938,16 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="add_history">
+        <widget class="QToolButton" name="patient_info">
          <property name="styleSheet">
-          <string notr="true">border:none</string>
+          <string notr="true">border:none;</string>
          </property>
          <property name="text">
-          <string>添加病史</string>
+          <string>患者信息</string>
          </property>
          <property name="icon">
           <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/sticky-note--plus.png</normaloff>:/newPrefix/pictures/sticky-note--plus.png</iconset>
+           <normaloff>:/newPrefix/pictures/xfn-friend.png</normaloff>:/newPrefix/pictures/xfn-friend.png</iconset>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -2200,6 +2183,246 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
       </widget>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>检验管理</string>
+     </attribute>
+     <widget class="QWidget" name="layoutWidget_8">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>651</width>
+        <height>56</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_patient_6" stretch="0,0,0,0,0">
+       <property name="spacing">
+        <number>8</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetFixedSize</enum>
+       </property>
+       <property name="topMargin">
+        <number>1</number>
+       </property>
+       <property name="bottomMargin">
+        <number>1</number>
+       </property>
+       <item>
+        <widget class="QToolButton" name="exam_statis">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>检验数据统计</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/blog.png</normaloff>:/newPrefix/pictures/blog.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="trash_8">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>按日期统计</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/xfn-friend.png</normaloff>:/newPrefix/pictures/xfn-friend.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="auto_diag_2">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>批量诊断</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/microformats.png</normaloff>:/newPrefix/pictures/microformats.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="man_diag_2">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>人工诊断</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/user-medical.png</normaloff>:/newPrefix/pictures/user-medical.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="search_sample_9">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>报告审核</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/block.png</normaloff>:/newPrefix/pictures/block.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QSplitter" name="splitter_2">
+      <property name="geometry">
+       <rect>
+        <x>-10</x>
+        <y>60</y>
+        <width>1391</width>
+        <height>9000</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>1000</width>
+        <height>9000</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="lineWidth">
+       <number>3</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="opaqueResize">
+       <bool>true</bool>
+      </property>
+      <property name="handleWidth">
+       <number>5</number>
+      </property>
+      <property name="childrenCollapsible">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="layoutWidget_2">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="leftMargin">
+         <number>10</number>
+        </property>
+        <item>
+         <widget class="QTreeWidget" name="treeWidget_exam">
+          <column>
+           <property name="text">
+            <string>检验结果</string>
+           </property>
+          </column>
+          <item>
+           <property name="text">
+            <string>血型</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>A</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>B</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>O</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>AB</string>
+            </property>
+           </item>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_exam">
+          <property name="font">
+           <font>
+            <family>PingFang SC</family>
+            <pointsize>13</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 13pt &quot;PingFang SC&quot;;</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>1</number>
+          </property>
+          <property name="text">
+           <string>样本管理树</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QTableView" name="tableView_exam">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>1100</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
+     </widget>
+    </widget>
     <widget class="QWidget" name="Analysis">
      <attribute name="title">
       <string>诊断管理</string>
@@ -2213,7 +2436,7 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
         <height>56</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_patient_5" stretch="0,0,0,0,0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_patient_5" stretch="0,0,0,0,0">
        <property name="spacing">
         <number>8</number>
        </property>
@@ -2237,23 +2460,6 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
          <property name="icon">
           <iconset resource="icon.qrc">
            <normaloff>:/newPrefix/pictures/tree.png</normaloff>:/newPrefix/pictures/tree.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="exam_sta">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>检验数据统计</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/blog.png</normaloff>:/newPrefix/pictures/blog.png</iconset>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -2328,23 +2534,6 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QToolButton" name="search_sample_8">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>报告审核</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/block.png</normaloff>:/newPrefix/pictures/block.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
      <widget class="QSplitter" name="splitter_4">
@@ -2402,6 +2591,41 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
            <property name="text">
             <string>出血病</string>
            </property>
+           <item>
+            <property name="text">
+             <string>血管性血友病</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>3</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>2A</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>2B</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>2M</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>2N</string>
+             </property>
+            </item>
+           </item>
           </item>
           <item>
            <property name="text">

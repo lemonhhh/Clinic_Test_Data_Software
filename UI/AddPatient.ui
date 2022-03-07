@@ -31,13 +31,80 @@
      <x>30</x>
      <y>40</y>
      <width>511</width>
-     <height>328</height>
+     <height>350</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <property name="sizeConstraint">
      <enum>QLayout::SetFixedSize</enum>
     </property>
+    <item row="10" column="3">
+     <widget class="QComboBox" name="comboBox_sur">
+      <item>
+       <property name="text">
+        <string>是</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>否</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>未知</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="7" column="3">
+     <widget class="QLabel" name="label_5">
+      <property name="styleSheet">
+       <string notr="true">font: 13pt &quot;Hei&quot;;</string>
+      </property>
+      <property name="text">
+       <string>是否饮酒</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="1">
+     <widget class="QComboBox" name="comboBox_trans">
+      <item>
+       <property name="text">
+        <string>是</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>否</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>未知</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="8" column="1">
+     <widget class="QComboBox" name="comboBox_smoke">
+      <item>
+       <property name="text">
+        <string>是</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>否</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>未知</string>
+       </property>
+      </item>
+     </widget>
+    </item>
     <item row="1" column="3">
      <widget class="QLineEdit" name="lineEdit_pname">
       <property name="text">
@@ -45,6 +112,16 @@
       </property>
       <property name="placeholderText">
        <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="3">
+     <widget class="QLabel" name="label_2">
+      <property name="styleSheet">
+       <string notr="true">font: 13pt &quot;Hei&quot;;</string>
+      </property>
+      <property name="text">
+       <string>是否有诊断结果</string>
       </property>
      </widget>
     </item>
@@ -74,6 +151,25 @@
       </property>
      </widget>
     </item>
+    <item row="3" column="3">
+     <widget class="QComboBox" name="comboBox_gender">
+      <item>
+       <property name="text">
+        <string>女</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>男</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>其他</string>
+       </property>
+      </item>
+     </widget>
+    </item>
     <item row="0" column="1">
      <widget class="QLabel" name="label_ID">
       <property name="styleSheet">
@@ -81,16 +177,6 @@
       </property>
       <property name="text">
        <string>病人编号</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="1">
-     <widget class="QLabel" name="label">
-      <property name="styleSheet">
-       <string notr="true">font: 13pt &quot;Hei&quot;;</string>
-      </property>
-      <property name="text">
-       <string>联系电话</string>
       </property>
      </widget>
     </item>
@@ -104,13 +190,27 @@
       </property>
      </widget>
     </item>
-    <item row="5" column="3">
-     <widget class="QLabel" name="label_2">
+    <item row="6" column="3">
+     <widget class="QComboBox" name="comboBox_result">
+      <item>
+       <property name="text">
+        <string>有</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>无</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLabel" name="label">
       <property name="styleSheet">
        <string notr="true">font: 13pt &quot;Hei&quot;;</string>
       </property>
       <property name="text">
-       <string>是否有诊断结果</string>
+       <string>联系电话</string>
       </property>
      </widget>
     </item>
@@ -118,6 +218,22 @@
      <widget class="QLabel" name="label_3">
       <property name="text">
        <string>病人姓名</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLineEdit" name="lineEdit_phone">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string/>
       </property>
      </widget>
     </item>
@@ -150,24 +266,48 @@
       </property>
      </widget>
     </item>
-    <item row="6" column="1">
-     <widget class="QLineEdit" name="lineEdit_phone">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>30</height>
-       </size>
+    <item row="7" column="1">
+     <widget class="QLabel" name="label_4">
+      <property name="styleSheet">
+       <string notr="true">font: 13pt &quot;Hei&quot;;</string>
       </property>
       <property name="text">
-       <string/>
-      </property>
-      <property name="placeholderText">
-       <string/>
+       <string>是否吸烟</string>
       </property>
      </widget>
     </item>
-    <item row="6" column="3">
-     <widget class="QComboBox" name="comboBox_result">
+    <item row="9" column="3">
+     <widget class="QLabel" name="label_7">
+      <property name="styleSheet">
+       <string notr="true">font: 13pt &quot;Hei&quot;;</string>
+      </property>
+      <property name="text">
+       <string>是否有手术史</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="3">
+     <widget class="QLabel" name="label_9">
+      <property name="styleSheet">
+       <string notr="true">font: 13pt &quot;Hei&quot;;</string>
+      </property>
+      <property name="text">
+       <string>是否有过敏史</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="1">
+     <widget class="QLabel" name="label_8">
+      <property name="styleSheet">
+       <string notr="true">font: 13pt &quot;Hei&quot;;</string>
+      </property>
+      <property name="text">
+       <string>是否有传染病史</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="3">
+     <widget class="QComboBox" name="comboBox_drink">
       <item>
        <property name="text">
         <string>是</string>
@@ -178,23 +318,57 @@
         <string>否</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>未知</string>
+       </property>
+      </item>
      </widget>
     </item>
-    <item row="3" column="3">
-     <widget class="QComboBox" name="comboBox_gender">
+    <item row="9" column="1">
+     <widget class="QLabel" name="label_6">
+      <property name="styleSheet">
+       <string notr="true">font: 13pt &quot;Hei&quot;;</string>
+      </property>
+      <property name="text">
+       <string>是否有输血史</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="1">
+     <widget class="QComboBox" name="comboBox_infect">
       <item>
        <property name="text">
-        <string>女</string>
+        <string>是</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>男</string>
+        <string>否</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>其他</string>
+        <string>未知</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="12" column="3">
+     <widget class="QComboBox" name="comboBox_al">
+      <item>
+       <property name="text">
+        <string>是</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>否</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>未知</string>
        </property>
       </item>
      </widget>

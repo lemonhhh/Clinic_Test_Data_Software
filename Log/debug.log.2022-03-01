@@ -1,0 +1,6 @@
+2022-03-01 13:49:00,421 - DEBUG - MainThread - 96 - 语句错误，错误原因为(1054, "Unknown column 't_sample.name' in 'where clause'")
+2022-03-01 13:49:33,828 - DEBUG - MainThread - 96 - 语句错误，错误原因为(1054, "Unknown column 't_sample.name' in 'where clause'")
+2022-03-01 13:49:33,828 - DEBUG - MainThread - 96 - 语句错误，错误原因为(1054, "Unknown column 't_sample.name' in 'where clause'")
+2022-03-01 13:54:06,735 - DEBUG - MainThread - 96 - 语句错误，错误原因为(1054, "Unknown column 't_sample.name' in 'where clause'")
+2022-03-01 13:54:06,735 - DEBUG - MainThread - 96 - 语句错误，错误原因为(1054, "Unknown column 't_sample.name' in 'where clause'")
+2022-03-01 13:54:06,735 - DEBUG - MainThread - 96 - 语句错误，错误原因为(1054, "Unknown column 't_sample.name' in 'where clause'")

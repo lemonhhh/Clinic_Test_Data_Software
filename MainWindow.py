@@ -21,6 +21,7 @@ from UseRatio import UseRatio #分析容器使用率
 from InsertResult import InsertExam #插入检查结果
 from SampleCalendar import SampleCalendar #按天入库样本数
 #～～～病人管理～～～
+from PatientStatis import PatientStatis
 from DiseaseTree import DiseaseTree #疾病树
 from ExamSta import ExamStatis #检验结果统计
 from AddPatient import AddPatient#添加病人
@@ -79,6 +80,7 @@ class MainWindow(QMainWindow):
 
             self.setGeometry(0, 0, self.width, self.height)
             # 设置右侧tab的宽度
+
             self.set_tableview(
                 self.__UI.tableView_show,
                 horsize=130,
@@ -89,10 +91,17 @@ class MainWindow(QMainWindow):
                 horsize=130,
                 versize=50)
 
+            self.set_tableview_exam(
+                self.__UI.tableView_result,
+                horsize=130,
+                versize=50)
+
+
             self.set_tableview_result(
                 self.__UI.tableView_result,
                 horsize=130,
                 versize=50)
+
 
             # 设置model
             self.data_model = self.get_model()
@@ -100,6 +109,9 @@ class MainWindow(QMainWindow):
             # 病人信息
             self.data_model_patient = self.get_model_patient()
             self.set_model_patient()
+            #检验
+            self.data_model_exam = self.get_model_exam()
+            self.set_model_exam()
             #诊断结果
             self.data_model_diagnosis = self.get_model_diagnosis()
             self.set_model_diagnosis()
@@ -122,6 +134,7 @@ class MainWindow(QMainWindow):
             self.btn.deleteLater()
             self.cb.deleteLater()
             self.frame.deleteLater()
+
         # 其他科室的
         else:
             print("还没做呢")
@@ -150,7 +163,6 @@ class MainWindow(QMainWindow):
     def on_add_sample_clicked(self):
         creation_dialog = CreateSample(self, self.location)
         creation_dialog.setAttribute(Qt.WA_DeleteOnClose)
-        # 连接槽函数
         creation_dialog.data_update_signal.connect(self.do_receive_data)
         creation_dialog.show()
 
@@ -203,6 +215,15 @@ class MainWindow(QMainWindow):
 
 
 #～～～病人管理～～～～
+    #点击统计
+    @pyqtSlot()
+    def on_patient_sta_clicked(self):
+        print("对病人统计分析")
+        patient_widget = PatientStatis(self)
+        patient_widget.setAttribute(Qt.WA_DeleteOnClose)
+        patient_widget.show()
+
+
     #点击【添加病人】
     @pyqtSlot()
     def on_add_patient_clicked(self):
@@ -230,12 +251,6 @@ class MainWindow(QMainWindow):
         self.on_delete_patient_triggered()
 
 
-    #点击【添加病史】
-    @pyqtSlot()
-    def on_add_history_clicked(self):
-        history_dialog = AddHistory(self, self.patient_id_fromP)
-        history_dialog.setAttribute(Qt.WA_DeleteOnClose)
-        history_dialog.show()
 
     #点击【疾病预测】
     @pyqtSlot()
@@ -262,7 +277,8 @@ class MainWindow(QMainWindow):
 
     # 检验数据统计
     @pyqtSlot()
-    def on_exam_sta_clicked(self):
+    def on_exam_statis_clicked(self):
+        print("检验数据统计")
         exam_sta_widget = ExamStatis(self)
         exam_sta_widget.setAttribute(Qt.WA_DeleteOnClose)
         exam_sta_widget.show()
@@ -272,8 +288,8 @@ class MainWindow(QMainWindow):
     def on_auto_diag_clicked(self):
         print("自动诊断")
         try:   # 执行sql语句
-            sql1 = """UPDATE diagnosis INNER JOIN exam_result ON diagnosis.patient_ID=exam_result.patient_ID SET diagnosis.auto_result = '出血病' WHERE (exam_result.pt >= 17 OR exam_result.aptt >= 38) """
-            sql2 = """UPDATE diagnosis INNER JOIN exam_result ON diagnosis.patient_ID=exam_result.patient_ID SET diagnosis.auto_result = '血栓病' WHERE (exam_result.pt <= 8 OR exam_result.aptt <= 15) """
+            sql1 = """UPDATE Diagnosis_table INNER JOIN Exam_table ON Diagnosis_table.patient_ID=Exam_table.patient_ID SET Diagnosis_table.auto_result = '出血病' WHERE (Exam_table.APTT >= 38) """
+            sql2 = """UPDATE Diagnosis_table INNER JOIN Exam_table ON Diagnosis_table.patient_ID=Exam_table.patient_ID SET Diagnosis_table.auto_result = '血栓病' WHERE (Exam_table.APTT <= 15) """
 
             connection_auto = get_sql_connection()
             cursor_auto = connection_auto.cursor()
@@ -293,21 +309,21 @@ class MainWindow(QMainWindow):
     def talbe_choose(self):
         print("触发table_choose")
         row = (self.__UI.tableView_show.currentIndex().row())
+        col = (self.__UI.tableView_show.currentIndex().column())
+        print("col is ",col)
         id_data = (self.data_model.itemData(self.data_model.index(row, 0)))
         p_data = (self.data_model.itemData(self.data_model.index(row, 1)))
         self.sample_id = (id_data[0])
         self.patient_id = (p_data[0])
 
-    #todo:
     def table_patient_choose(self):
         row = (self.__UI.tableView_patient.currentIndex().row())
         p_data = (self.data_model_patient.itemData(self.data_model_patient.index(row, 0)))
-
         self.patient_id_fromP = (p_data[0])
 
 
 ##  ============================== 点击不同的层级 ==============================#
-
+# ～～～～～【样本管理】～～～～～～
     @pyqtSlot(QTreeWidgetItem, QTreeWidgetItem)
     # 目录树节点变化
     def on_treeWidget_show_currentItemChanged(
@@ -348,6 +364,8 @@ class MainWindow(QMainWindow):
         else:
             sql = """select * from t_sample where t_sample.sample_belong like '""" + \
                 first_name + """%'"""
+
+
         # 执行查询结果
         cursor.execute(sql)
 
@@ -361,7 +379,7 @@ class MainWindow(QMainWindow):
         # 传入的参数
         self.location = first_name
 
-
+# ～～～～～【病人管理】～～～～～～
     @pyqtSlot(QTreeWidgetItem, QTreeWidgetItem)
     # 目录树节点变化
     def on_treeWidget_patient_currentItemChanged(
@@ -385,14 +403,19 @@ class MainWindow(QMainWindow):
                 '病人编号',
                 '病人姓名',
                 '年龄',
-                '联系方式',
                 '性别',
-                '诊断结果',
-                '添加日期'],
-            colCount=7)
+                '联系方式',
+                '是否有诊断结果',
+                '是否吸烟',
+                '是否饮酒',
+                '是否有输血史',
+                '是否有手术史',
+                '是否有传染疾病史',
+                '是否过敏史',
+            ],
+            colCount=12)
         # 连接到数据库
         connection = get_sql_connection()
-        # 创建游标
         cursor = connection.cursor()
         # 已经到最后一级
 
@@ -400,21 +423,22 @@ class MainWindow(QMainWindow):
             types = first_name[0]
             if types == '女性':
                 target = '女'
-                sql = """select * from patients where gender = '%s' """ % target
+                sql = """select * from Patient_table where gender = '%s' """ % target
             if types == '男性':
                 target = '男'
-                sql = """select * from patients where gender = '%s' """ % target
+                sql = """select * from Patient_table where gender = '%s' """ % target
             if types == '18以下':
                 target = 18
-                sql = """select * from patients where age < 18 """
+                sql = """select * from Patient_table where Age < 18 """
             if types == '18-35':
-                sql = """select * from patients where age >= 18 and age <= 35 """
+                sql = """select * from Patient_table where Age >= 18 and Age <= 35 """
             if types == '36-60':
-                sql = """select * from patients where age >= 36 and age <= 60 """
+                sql = """select * from Patient_table where Age >= 36 and Age <= 60 """
             if types == '60以上':
-                sql = """select * from patients where age >60"""
+                sql = """select * from Patient_table where Age >60"""
         else:
-            sql = """select * from patients"""
+            sql = """select * from Patient_table"""
+
         # 执行查询结果
         cursor.execute(sql)
 
@@ -428,6 +452,74 @@ class MainWindow(QMainWindow):
 
 
 
+#～～～～～【检验管理】～～～～～
+    @pyqtSlot(QTreeWidgetItem, QTreeWidgetItem)
+    # 目录树节点变化
+    def on_treeWidget_exam_currentItemChanged(
+            self, current: QTreeWidgetItem, previous: QTreeWidgetItem):
+        flg = False
+        # 表示已经到最后一级了
+        if current.childCount() == 0:
+            flg = True
+
+        # 是当前选中的widget
+        first_name = []
+        first_name.append(current.text(0))
+        # 递归地找到路径
+        while current.parent() is not None:
+            current = current.parent()
+            first_name.append(current.text(0))
+
+        self.data_model_exam = self.get_raw_model(
+            labels=[
+                '检验编号',
+                '样本编号',
+                '病人编号',
+                '突变类型',
+                '核酸改变',
+                '氨基酸改变',
+                'Domain',
+                '基因型',
+                'APTT',
+                'Ag',
+                '全血凝固时间',
+                '血浆蛋白',
+                '凝血因子活性',
+                '结合胆红素',
+                'PP',
+                '血型',
+                '血糖',
+            ],
+            colCount=17)
+
+        print("first name",first_name)
+        connection = get_sql_connection()
+        cursor = connection.cursor()
+        types = first_name[0]
+
+
+        if types == 'A':
+            sql = """select * from Exam_table where Blood_type = 'A' """
+        if types == 'B':
+            sql = """select * from Exam_table where Blood_type = 'B' """
+        if types == 'O':
+            sql = """select * from Exam_table where Blood_type = 'O' """
+        if types == 'AB':
+            sql = """select * from Exam_table where Blood_type = 'AB' """
+        else:
+            sql = """select * from Exam_table"""
+
+        # 执行查询结果
+        cursor.execute(sql)
+        if self.__UI.tableView_exam.model() is not None:
+            self.__UI.tableView_exam.model().clear()
+
+        if cursor.rowcount != 0:
+            self.data_model_exam = self.add_model_data(
+                self.data_model_exam, list(cursor.fetchall()))
+            self.set_model_exam()
+
+#～～～～～【诊断管理】～～～～～～
     @pyqtSlot(QTreeWidgetItem, QTreeWidgetItem)
     # 目录树节点变化
     def on_treeWidget_result_currentItemChanged(
@@ -440,35 +532,49 @@ class MainWindow(QMainWindow):
         # 是当前选中的widget
         first_name = []
         first_name.append(current.text(0))
-
         # 递归地找到路径
         while current.parent() is not None:
             current = current.parent()
             first_name.append(current.text(0))
 
-        self.data_model_patient = self.get_raw_model(
+        self.data_model_diagnosis = self.get_raw_model(
             labels=[
                 '病人编号',
-                '诊断日期',
                 '自动诊断结果',
-                '人工诊断结果',
-                '疾病类型'
-                '详细描述'],
-            colCount=6)
-        # 连接到数据库f
+                '结果',
+                '疾病类型',
+                'VWD类型',
+                '描述',
+                '诊断日期'],
+            colCount=7)
+
+        # 连接到数据库
         connection = get_sql_connection()
         # 创建游标
         cursor = connection.cursor()
         # 已经到最后一级
 
-        if flg:
-            types = first_name[0]
-            if types == '出血病':
-                target = '出血病'
-                sql = """select * from diagnosis where ill_type = '%s' """ % target
-            if types == '血栓病':
-                target = '血栓病'
-                sql = """select * from diagnosis where ill_type = '%s' """ % target
+        types = first_name[0]
+        print("types",types)
+
+        if types == '出血病':
+            sql = """select * from Diagnosis_table where binary_type = '%s' """ % ("出血病")
+        if types == '血栓病':
+            sql = """select * from Diagnosis_table where binary_type = '%s'""" % ("血栓病")
+        if types == '血管性血友病':
+            sql = """select * from Diagnosis_table where result = '%s'""" % ("血管性血友病")
+        if types == '1':
+            sql = """select * from Diagnosis_table where vwd_type='%s'"""%('1')
+        if types == '3':
+            sql = """select * from Diagnosis_table where vwd_type='%s'"""%('3')
+        if types == '2A':
+            sql = """select * from Diagnosis_table where vwd_type='%s'"""%('2A')
+        if types == '2B':
+            sql = """select * from Diagnosis_table where vwd_type='%s'"""%('2B')
+        if types == '2M':
+            sql = """select * from Diagnosis_table where vwd_type='%s'"""%('2M')
+        if types == '2N':
+            sql = """select * from Diagnosis_table where vwd_type='%s'"""%('2N')
 
         # 执行查询结果
         cursor.execute(sql)
@@ -540,7 +646,7 @@ class MainWindow(QMainWindow):
 
 
             # 删除
-            sql = """delete from patients where patient_ID='%s' """ % (patient_id)
+            sql = """delete from Patient_table where patient_ID='%s' """ % (patient_id)
             connection_delete = get_sql_connection()
             cursor_delete = connection_delete.cursor()
             cursor_delete.execute(sql)
@@ -559,7 +665,7 @@ class MainWindow(QMainWindow):
     def do_receive_data(self, data_list: list):
         self.data_model = self.add_model_data(self.data_model, data_list)
 
-##  =================【数据模型】==========================================================#
+##  ===============================【数据模型】==========================================================#
 
     # 获取数据模型
     def get_model(self):
@@ -589,13 +695,47 @@ class MainWindow(QMainWindow):
                 '病人编号',
                 '病人姓名',
                 '年龄',
-                '联系方式',
                 '性别',
-                '诊断结果',
-                '添加日期'],
-            colCount=7)
+                '联系方式',
+                '是否有诊断结果',
+                '是否吸烟',
+                '是否饮酒',
+                '是否有输血史',
+                '是否有手术史',
+                '是否有传染疾病史',
+                '是否过敏史',
+            ],
+            colCount=12)
         # 从数据库中得到所有的数据
         data_list = self.read_sql_data_patient()
+
+        if len(data_list) > 0:
+            return self.add_model_data(raw_model, data_list)
+
+    def get_model_exam(self):
+        raw_model = self.get_raw_model(
+            labels=[
+                '检验编号',
+                '样本编号',
+                '病人编号',
+                '突变类型',
+                '核酸改变',
+                '氨基酸改变',
+                'Domain',
+                '基因型',
+                'APTT',
+                'Ag',
+                '全血凝固时间',
+                '血浆蛋白',
+                '凝血因子活性',
+                '结合胆红素',
+                'PP',
+                '血型',
+                '血糖',
+            ],
+            colCount=17)
+        # 从数据库中得到所有的数据
+        data_list = self.read_sql_data_exam()
 
         if len(data_list) > 0:
             return self.add_model_data(raw_model, data_list)
@@ -605,17 +745,18 @@ class MainWindow(QMainWindow):
         raw_model = self.get_raw_model(
             labels=[
                 '病人编号',
-                '诊断日期',
                 '自动诊断结果',
-                '人工诊断结果',
-                '疾病类型','详细描述'],
-            colCount=6)
+                '结果',
+                '疾病类型',
+                'VWD类型',
+                '描述',
+                '诊断日期'],
+            colCount=7)
         # 从数据库中得到所有的数据
         data_list = self.read_sql_data_diagnosis()
 
         if len(data_list) > 0:
             return self.add_model_data(raw_model, data_list)
-
 
 
 #------------------------------------------
@@ -652,8 +793,15 @@ class MainWindow(QMainWindow):
         # 建立游标
         cursor = connection.cursor()
         # 执行sql语句
-        cursor.execute('select * from patients;')
+        cursor.execute('select * from Patient_table;')
         # 返回全部内容
+        return cursor.fetchall()
+
+        # 读疾病数据库
+    def read_sql_data_exam(self) -> list:
+        connection = get_sql_connection()
+        cursor = connection.cursor()
+        cursor.execute('select * from Exam_table;')
         return cursor.fetchall()
 
 
@@ -664,7 +812,7 @@ class MainWindow(QMainWindow):
         # 建立游标
         cursor = connection.cursor()
         # 执行sql语句
-        cursor.execute('select * from diagnosis;')
+        cursor.execute('select * from Diagnosis_table;')
         # 返回全部内容
         return cursor.fetchall()
 
@@ -723,6 +871,7 @@ class MainWindow(QMainWindow):
             data = str(data)
         return data
 
+#----------------------------设置table_view------------
     # 初始化table_view函数
     def set_tableview(
             self,
@@ -738,6 +887,19 @@ class MainWindow(QMainWindow):
         widget.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
     def set_tableview_patient(
+            self,
+            widget: QTableView,
+            horsize: int,
+            versize: int,
+            is_altercolor=True) -> None:
+        widget.setAlternatingRowColors(is_altercolor)
+        widget.setSelectionBehavior(QAbstractItemView.SelectItems)
+        widget.setSelectionMode(QAbstractItemView.SingleSelection)
+        widget.horizontalHeader().setDefaultSectionSize(horsize)
+        widget.verticalHeader().setDefaultSectionSize(versize)
+        widget.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
+    def set_tableview_exam(
             self,
             widget: QTableView,
             horsize: int,
@@ -777,7 +939,13 @@ class MainWindow(QMainWindow):
             return
         self.__UI.tableView_patient.setModel(self.data_model_patient)
 
-        # 设置【病人信息】数据模型
+    #设置【检验信息】数据模型
+    def set_model_exam(self):
+        if self.data_model_exam is None:
+            return
+        self.__UI.tableView_exam.setModel(self.data_model_exam)
+
+    # 设置【诊断信息】数据模型
     def set_model_diagnosis(self):
         if self.data_model_diagnosis is None:
             return

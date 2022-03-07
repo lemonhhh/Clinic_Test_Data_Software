@@ -50,7 +50,6 @@ class AddPatient(QDialog):
 
 
 
-
     # 设置cursor和connection
     def set_connection_cursor(self) -> None:
         self.connection = get_sql_connection()
@@ -77,8 +76,13 @@ class AddPatient(QDialog):
         phone = self.__UI.lineEdit_phone.text()
         #是否有诊断结果
         result_flag = self.__UI.comboBox_result.currentText()
-        # 创建日期
-        creation_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        smoke = self.__UI.comboBox_smoke.currentText()
+        drink = self.__UI.comboBox_drink.currentText()
+        trans = self.__UI.comboBox_trans.currentText()
+        sur = self.__UI.comboBox_sur.currentText()
+        infect = self.__UI.comboBox_infect.currentText()
+        aler = self.__UI.comboBox_al.currentText()
 
 
         data_list.append(pID)
@@ -87,12 +91,17 @@ class AddPatient(QDialog):
         data_list.append(gender)
         data_list.append(phone)
         data_list.append(result_flag)
-        data_list.append(creation_date)
+        data_list.append(smoke)
+        data_list.append(drink)
+        data_list.append(trans)
+        data_list.append(sur)
+        data_list.append(infect)
+        data_list.append(aler)
 
-        sql = """insert into patients(patient_ID, patient_name, age, gender,phone, result, create_date) 
-            values('%s','%s','%d','%s','%s','%s','%s')""" % (pID,pname,age,gender,phone, result_flag,creation_date)
+        sql = """INSERT INTO Patient_table(patient_ID, name, Age, gender, phone, result, smoke, drink, transfusion,operation, infectious, allergy)
+        VALUES('%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')""" % (pID,pname,age,gender,phone,result_flag,smoke,drink,trans,sur,infect,aler)
 
-        print(sql)
+
         return sql, data_list
 
     # 记录debug信息

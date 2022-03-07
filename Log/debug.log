@@ -1,6 +1,7 @@
-2022-03-01 13:49:00,421 - DEBUG - MainThread - 96 - 语句错误，错误原因为(1054, "Unknown column 't_sample.name' in 'where clause'")
-2022-03-01 13:49:33,828 - DEBUG - MainThread - 96 - 语句错误，错误原因为(1054, "Unknown column 't_sample.name' in 'where clause'")
-2022-03-01 13:49:33,828 - DEBUG - MainThread - 96 - 语句错误，错误原因为(1054, "Unknown column 't_sample.name' in 'where clause'")
-2022-03-01 13:54:06,735 - DEBUG - MainThread - 96 - 语句错误，错误原因为(1054, "Unknown column 't_sample.name' in 'where clause'")
-2022-03-01 13:54:06,735 - DEBUG - MainThread - 96 - 语句错误，错误原因为(1054, "Unknown column 't_sample.name' in 'where clause'")
-2022-03-01 13:54:06,735 - DEBUG - MainThread - 96 - 语句错误，错误原因为(1054, "Unknown column 't_sample.name' in 'where clause'")
+2022-03-06 16:19:04,525 - DEBUG - MainThread - 107 - 语句错误，错误原因为(1054, "Unknown column 'patient_name' in 'where clause'")
+2022-03-06 16:24:11,268 - DEBUG - MainThread - 121 - 语句错误，错误原因为show_search_data() takes 1 positional argument but 2 were given
+2022-03-06 16:24:55,556 - DEBUG - MainThread - 122 - 语句错误，错误原因为show_search_data() takes 1 positional argument but 2 were given
+2022-03-06 16:27:37,803 - DEBUG - MainThread - 124 - 语句错误，错误原因为show_search_data() takes 1 positional argument but 2 were given
+2022-03-06 16:31:20,518 - DEBUG - MainThread - 124 - 语句错误，错误原因为create_show_dialog() takes 1 positional argument but 2 were given
+2022-03-06 16:33:07,639 - DEBUG - MainThread - 125 - 语句错误，错误原因为create_show_dialog() takes 1 positional argument but 2 were given
+2022-03-06 16:33:49,431 - DEBUG - MainThread - 126 - 语句错误，错误原因为create_show_dialog() takes 1 positional argument but 2 were given
