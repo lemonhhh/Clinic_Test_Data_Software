@@ -30,7 +30,7 @@ from PredictDisease import PredictDisease#疾病预测
 from AddHistory import AddHistory
 from ManDiagnosis import ManDiag
 #～～～结果管理～～～
-
+from DiseaseClass import DiseaseClass
 # 相关配置
 from Util.Common import get_sql_connection, get_logger, show_error_message, show_successful_message
 # 其他必须
@@ -259,13 +259,23 @@ class MainWindow(QMainWindow):
         predict_dialog = PredictDisease(self,self.patient_id_fromP)
         predict_dialog.setAttribute(Qt.WA_DeleteOnClose)
         predict_dialog.show()
-
+#～～～～～～～～～【诊断管理】～～～～～～～～～～～～
     # 点击【疾病介绍】
     @pyqtSlot()
     def on_disease_tree_clicked(self):
         disease_widget = DiseaseTree(self)
         # sample_class_widget.setAttribute(Qt.WA_DeleteOnClose)
         disease_widget.show()
+
+
+    #点击【疾病类型】
+    @pyqtSlot()
+    def on_diag_class_clicked(self):
+        print("疾病类型")
+        disease_class_diag = DiseaseClass(self)
+        disease_class_diag.setAttribute(Qt.WA_DeleteOnClose)
+        disease_class_diag.show()
+
 
     #点击【人工诊断】
     @pyqtSlot()
@@ -543,10 +553,11 @@ class MainWindow(QMainWindow):
                 '自动诊断结果',
                 '结果',
                 '疾病类型',
-                'VWD类型',
+                '血友病类型',
                 '描述',
-                '诊断日期'],
-            colCount=7)
+                '诊断日期',
+             'VWD类型'],
+            colCount=8)
 
         # 连接到数据库
         connection = get_sql_connection()
@@ -748,16 +759,17 @@ class MainWindow(QMainWindow):
                 '自动诊断结果',
                 '结果',
                 '疾病类型',
-                'VWD类型',
+                '血友病类型',
                 '描述',
-                '诊断日期'],
-            colCount=7)
+                '诊断日期',
+                'VWD类型',
+            ],
+            colCount=8)
         # 从数据库中得到所有的数据
         data_list = self.read_sql_data_diagnosis()
 
         if len(data_list) > 0:
             return self.add_model_data(raw_model, data_list)
-
 
 #------------------------------------------
     # 获取无数据的数据模型

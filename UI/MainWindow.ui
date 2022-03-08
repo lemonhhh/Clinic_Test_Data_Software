@@ -2467,12 +2467,12 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="diag_sta">
+        <widget class="QToolButton" name="diag_class">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>
          <property name="text">
-          <string>诊断统计</string>
+          <string>疾病分类</string>
          </property>
          <property name="icon">
           <iconset resource="icon.qrc">
@@ -2501,6 +2501,23 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
         </widget>
        </item>
        <item>
+        <widget class="QToolButton" name="suifang_find_7">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>按检验统计</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/blue-document-table.png</normaloff>:/newPrefix/pictures/blue-document-table.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QToolButton" name="delete_sample_7">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
@@ -2511,23 +2528,6 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
          <property name="icon">
           <iconset resource="icon.qrc">
            <normaloff>:/newPrefix/pictures/application-icon-large.png</normaloff>:/newPrefix/pictures/application-icon-large.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="trash_7">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>按日期统计</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/xfn-friend.png</normaloff>:/newPrefix/pictures/xfn-friend.png</iconset>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -2631,6 +2631,26 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
            <property name="text">
             <string>血栓病</string>
            </property>
+           <item>
+            <property name="text">
+             <string>白色血栓</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>红色血栓</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>混合血栓</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>透明血栓</string>
+            </property>
+           </item>
           </item>
          </widget>
         </item>
