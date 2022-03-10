@@ -40,18 +40,18 @@
         }
     </style>
     <div class="tab">
-            <button class="tablinks" onclick="showChart(event, '17d0f70dca8c406c96588fd169dd4a22')">出血/血栓</button>
-            <button class="tablinks" onclick="showChart(event, '7ac13fd32f5d4dc687235e74c4e17b24')">血栓分类</button>
-            <button class="tablinks" onclick="showChart(event, '9a951aae9ca54cac8a92c4daa4615e6f')">血友病</button>
-            <button class="tablinks" onclick="showChart(event, 'ab4a71e09e544052ba8b6f7d034b4499')">VWD</button>
+            <button class="tablinks" onclick="showChart(event, 'beea1e962734421789ad540e55ba5834')">出血/血栓</button>
+            <button class="tablinks" onclick="showChart(event, '58a9e2a18c924b78b4162173d37cf701')">血栓分类</button>
+            <button class="tablinks" onclick="showChart(event, '59f08c2900544f9b9be575dcbc54df4e')">血友病</button>
+            <button class="tablinks" onclick="showChart(event, 'c07c131c6a78418b818da2fb89e5627e')">VWD</button>
     </div>
 
     <div class="box">
-                <div id="17d0f70dca8c406c96588fd169dd4a22" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="beea1e962734421789ad540e55ba5834" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_17d0f70dca8c406c96588fd169dd4a22 = echarts.init(
-            document.getElementById('17d0f70dca8c406c96588fd169dd4a22'), 'white', {renderer: 'canvas'});
-        var option_17d0f70dca8c406c96588fd169dd4a22 = {
+        var chart_beea1e962734421789ad540e55ba5834 = echarts.init(
+            document.getElementById('beea1e962734421789ad540e55ba5834'), 'white', {renderer: 'canvas'});
+        var option_beea1e962734421789ad540e55ba5834 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -192,19 +192,19 @@
     },
     "title": [
         {
-            "text": "\u6837\u672c\u7c7b\u522b",
+            "text": "\u51fa\u8840/\u8840\u6813",
             "padding": 5,
             "itemGap": 10
         }
     ]
 };
-        chart_17d0f70dca8c406c96588fd169dd4a22.setOption(option_17d0f70dca8c406c96588fd169dd4a22);
+        chart_beea1e962734421789ad540e55ba5834.setOption(option_beea1e962734421789ad540e55ba5834);
     </script>
-                <div id="7ac13fd32f5d4dc687235e74c4e17b24" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="58a9e2a18c924b78b4162173d37cf701" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_7ac13fd32f5d4dc687235e74c4e17b24 = echarts.init(
-            document.getElementById('7ac13fd32f5d4dc687235e74c4e17b24'), 'white', {renderer: 'canvas'});
-        var option_7ac13fd32f5d4dc687235e74c4e17b24 = {
+        var chart_58a9e2a18c924b78b4162173d37cf701 = echarts.init(
+            document.getElementById('58a9e2a18c924b78b4162173d37cf701'), 'white', {renderer: 'canvas'});
+        var option_58a9e2a18c924b78b4162173d37cf701 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -263,8 +263,8 @@
                 }
             ],
             "radius": [
-                "0%",
-                "75%"
+                "40%",
+                "55%"
             ],
             "center": [
                 "50%",
@@ -272,15 +272,51 @@
             ],
             "label": {
                 "show": true,
-                "position": "top",
+                "position": "outside",
                 "margin": 8,
-                "formatter": "{b}: {c}"
-            },
-            "rippleEffect": {
-                "show": true,
-                "brushType": "stroke",
-                "scale": 2.5,
-                "period": 4
+                "formatter": "{a|{a}}{abg|}\n{hr|}\n {b|{b}: }{c}  {per|{d}%}  ",
+                "backgroundColor": "#eee",
+                "borderColor": "#aaa",
+                "borderWidth": 1,
+                "borderRadius": 4,
+                "rich": {
+                    "a": {
+                        "color": "#999",
+                        "lineHeight": 22,
+                        "align": "center"
+                    },
+                    "abg": {
+                        "backgroundColor": "#e3e3e3",
+                        "width": "100%",
+                        "align": "right",
+                        "height": 22,
+                        "borderRadius": [
+                            4,
+                            4,
+                            0,
+                            0
+                        ]
+                    },
+                    "hr": {
+                        "borderColor": "#aaa",
+                        "width": "100%",
+                        "borderWidth": 0.5,
+                        "height": 0
+                    },
+                    "b": {
+                        "fontSize": 16,
+                        "lineHeight": 33
+                    },
+                    "per": {
+                        "color": "#eee",
+                        "backgroundColor": "#334455",
+                        "padding": [
+                            2,
+                            4
+                        ],
+                        "borderRadius": 2
+                    }
+                }
             }
         }
     ],
@@ -325,13 +361,13 @@
         }
     ]
 };
-        chart_7ac13fd32f5d4dc687235e74c4e17b24.setOption(option_7ac13fd32f5d4dc687235e74c4e17b24);
+        chart_58a9e2a18c924b78b4162173d37cf701.setOption(option_58a9e2a18c924b78b4162173d37cf701);
     </script>
-                <div id="9a951aae9ca54cac8a92c4daa4615e6f" class="chart-container" style="width:800px; height:500px;"></div>
+                <div id="59f08c2900544f9b9be575dcbc54df4e" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_9a951aae9ca54cac8a92c4daa4615e6f = echarts.init(
-            document.getElementById('9a951aae9ca54cac8a92c4daa4615e6f'), 'white', {renderer: 'canvas'});
-        var option_9a951aae9ca54cac8a92c4daa4615e6f = {
+        var chart_59f08c2900544f9b9be575dcbc54df4e = echarts.init(
+            document.getElementById('59f08c2900544f9b9be575dcbc54df4e'), 'white', {renderer: 'canvas'});
+        var option_59f08c2900544f9b9be575dcbc54df4e = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -369,7 +405,7 @@
     "series": [
         {
             "type": "pie",
-            "name": "\u8840\u53cb\u75c5",
+            "name": "\u7c7b\u522b",
             "clockwise": true,
             "data": [
                 {
@@ -386,41 +422,60 @@
                 }
             ],
             "radius": [
-                "50%",
-                "70%"
+                "40%",
+                "55%"
             ],
             "center": [
                 "50%",
                 "50%"
             ],
             "label": {
-                "show": false,
-                "position": "center",
-                "margin": 8
-            },
-            "tooltip": {
                 "show": true,
-                "trigger": "item",
-                "triggerOn": "mousemove|click",
-                "axisPointer": {
-                    "type": "line"
-                },
-                "showContent": true,
-                "alwaysShowContent": false,
-                "showDelay": 0,
-                "hideDelay": 100,
-                "formatter": "{a} <br/>{b}: {c} ({d}%)",
-                "textStyle": {
-                    "fontSize": 14
-                },
-                "borderWidth": 0,
-                "padding": 5
-            },
-            "rippleEffect": {
-                "show": true,
-                "brushType": "stroke",
-                "scale": 2.5,
-                "period": 4
+                "position": "outside",
+                "margin": 8,
+                "formatter": "{a|{a}}{abg|}\n{hr|}\n {b|{b}: }{c}  {per|{d}%}  ",
+                "backgroundColor": "#eee",
+                "borderColor": "#aaa",
+                "borderWidth": 1,
+                "borderRadius": 4,
+                "rich": {
+                    "a": {
+                        "color": "#999",
+                        "lineHeight": 22,
+                        "align": "center"
+                    },
+                    "abg": {
+                        "backgroundColor": "#e3e3e3",
+                        "width": "100%",
+                        "align": "right",
+                        "height": 22,
+                        "borderRadius": [
+                            4,
+                            4,
+                            0,
+                            0
+                        ]
+                    },
+                    "hr": {
+                        "borderColor": "#aaa",
+                        "width": "100%",
+                        "borderWidth": 0.5,
+                        "height": 0
+                    },
+                    "b": {
+                        "fontSize": 16,
+                        "lineHeight": 33
+                    },
+                    "per": {
+                        "color": "#eee",
+                        "backgroundColor": "#334455",
+                        "padding": [
+                            2,
+                            4
+                        ],
+                        "borderRadius": 2
+                    }
+                }
             }
         }
     ],
@@ -433,8 +488,6 @@
             ],
             "selected": {},
             "show": true,
-            "left": "legft",
-            "orient": "vertical",
             "padding": 5,
             "itemGap": 10,
             "itemWidth": 25,
@@ -460,18 +513,19 @@
     },
     "title": [
         {
+            "text": "\u8840\u53cb\u75c5",
             "padding": 5,
             "itemGap": 10
         }
     ]
 };
-        chart_9a951aae9ca54cac8a92c4daa4615e6f.setOption(option_9a951aae9ca54cac8a92c4daa4615e6f);
+        chart_59f08c2900544f9b9be575dcbc54df4e.setOption(option_59f08c2900544f9b9be575dcbc54df4e);
     </script>
-                <div id="ab4a71e09e544052ba8b6f7d034b4499" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="c07c131c6a78418b818da2fb89e5627e" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_ab4a71e09e544052ba8b6f7d034b4499 = echarts.init(
-            document.getElementById('ab4a71e09e544052ba8b6f7d034b4499'), 'white', {renderer: 'canvas'});
-        var option_ab4a71e09e544052ba8b6f7d034b4499 = {
+        var chart_c07c131c6a78418b818da2fb89e5627e = echarts.init(
+            document.getElementById('c07c131c6a78418b818da2fb89e5627e'), 'white', {renderer: 'canvas'});
+        var option_c07c131c6a78418b818da2fb89e5627e = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -509,7 +563,7 @@
     "series": [
         {
             "type": "pie",
-            "name": "VWD\u7c7b\u578b",
+            "name": "\u7c7b\u522b",
             "clockwise": true,
             "data": [
                 {
@@ -538,25 +592,60 @@
                 }
             ],
             "radius": [
-                "30%",
-                "75%"
+                "40%",
+                "55%"
             ],
             "center": [
-                "25%",
+                "50%",
                 "50%"
             ],
-            "roseType": "radius",
             "label": {
                 "show": true,
-                "position": "top",
+                "position": "outside",
                 "margin": 8,
-                "formatter": "{b}: {c}"
-            },
-            "rippleEffect": {
-                "show": true,
-                "brushType": "stroke",
-                "scale": 2.5,
-                "period": 4
+                "formatter": "{a|{a}}{abg|}\n{hr|}\n {b|{b}: }{c}  {per|{d}%}  ",
+                "backgroundColor": "#eee",
+                "borderColor": "#aaa",
+                "borderWidth": 1,
+                "borderRadius": 4,
+                "rich": {
+                    "a": {
+                        "color": "#999",
+                        "lineHeight": 22,
+                        "align": "center"
+                    },
+                    "abg": {
+                        "backgroundColor": "#e3e3e3",
+                        "width": "100%",
+                        "align": "right",
+                        "height": 22,
+                        "borderRadius": [
+                            4,
+                            4,
+                            0,
+                            0
+                        ]
+                    },
+                    "hr": {
+                        "borderColor": "#aaa",
+                        "width": "100%",
+                        "borderWidth": 0.5,
+                        "height": 0
+                    },
+                    "b": {
+                        "fontSize": 16,
+                        "lineHeight": 33
+                    },
+                    "per": {
+                        "color": "#eee",
+                        "backgroundColor": "#334455",
+                        "padding": [
+                            2,
+                            4
+                        ],
+                        "borderRadius": 2
+                    }
+                }
             }
         }
     ],
@@ -572,8 +661,6 @@
             ],
             "selected": {},
             "show": true,
-            "left": "legft",
-            "orient": "vertical",
             "padding": 5,
             "itemGap": 10,
             "itemWidth": 25,
@@ -599,12 +686,13 @@
     },
     "title": [
         {
+            "text": "VWD",
             "padding": 5,
             "itemGap": 10
         }
     ]
 };
-        chart_ab4a71e09e544052ba8b6f7d034b4499.setOption(option_ab4a71e09e544052ba8b6f7d034b4499);
+        chart_c07c131c6a78418b818da2fb89e5627e.setOption(option_c07c131c6a78418b818da2fb89e5627e);
     </script>
     </div>
 

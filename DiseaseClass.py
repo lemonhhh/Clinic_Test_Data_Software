@@ -147,12 +147,58 @@ class DiseaseClass(QDialog):
 
     def generate_chart(self):
         tab = Tab()
-        tab.add(self.binary_pie(), "出血/血栓")
-        tab.add(self.thrombosis_pie(), "血栓分类")
-        tab.add(self.haemophilia_pie(), "血友病")
-        tab.add(self.vwd_pie(), "VWD")
+        tab.add(self.generate_pie([['出血病', self.chuxue_num], ['血栓病', self.xueshuan_num]],"出血/血栓"), "出血/血栓")
+        tab.add(self.generate_pie([['红色血栓', self.red_num], ['透明血栓', self.trans_num],['白色血栓',self.white_num],['混合血栓',self.mix_num]],"血栓分类"), "血栓分类")
+        tab.add(self.generate_pie([['血友病A', self.a_num], ['血友病B', self.b_num],['血管性血友病',self.xueguan_num]],"血友病"), "血友病")
+        tab.add(self.generate_pie([['1', self.t1_num], ['3', self.t3_num], ['2A', self.t2a_num], ['2B', self.t2b_num], ['2M', self.t2m_num], ['2N', self.t2n_num]],"VWD"), "VWD")
+
+
+
         tab.render("disease_pie.html")
 
+    def generate_pie(self,data,title):
+
+        c = (
+            Pie()
+                .add(
+                "类别",
+                data,
+                radius=["40%", "55%"],
+                label_opts=opts.LabelOpts(
+                    position="outside",
+                    formatter="{a|{a}}{abg|}\n{hr|}\n {b|{b}: }{c}  {per|{d}%}  ",
+                    background_color="#eee",
+                    border_color="#aaa",
+                    border_width=1,
+                    border_radius=4,
+                    rich={
+                        "a": {"color": "#999", "lineHeight": 22, "align": "center"},
+                        "abg": {
+                            "backgroundColor": "#e3e3e3",
+                            "width": "100%",
+                            "align": "right",
+                            "height": 22,
+                            "borderRadius": [4, 4, 0, 0],
+                        },
+                        "hr": {
+                            "borderColor": "#aaa",
+                            "width": "100%",
+                            "borderWidth": 0.5,
+                            "height": 0,
+                        },
+                        "b": {"fontSize": 16, "lineHeight": 33},
+                        "per": {
+                            "color": "#eee",
+                            "backgroundColor": "#334455",
+                            "padding": [2, 4],
+                            "borderRadius": 2,
+                        },
+                    },
+                ),
+            )
+                .set_global_opts(title_opts=opts.TitleOpts(title=title))
+        )
+        return c
     def binary_pie(self):
         data = [['出血病', self.chuxue_num], ['血栓病', self.xueshuan_num]]
 

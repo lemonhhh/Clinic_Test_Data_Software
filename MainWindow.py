@@ -22,7 +22,6 @@ from InsertResult import InsertExam #插入检查结果
 from SampleCalendar import SampleCalendar #按天入库样本数
 #～～～病人管理～～～
 from PatientStatis import PatientStatis
-from DiseaseTree import DiseaseTree #疾病树
 from ExamSta import ExamStatis #检验结果统计
 from AddPatient import AddPatient#添加病人
 from PatientSearch import PatientSearch#查询病人信息
@@ -30,7 +29,9 @@ from PredictDisease import PredictDisease#疾病预测
 from AddHistory import AddHistory
 from ManDiagnosis import ManDiag
 #～～～结果管理～～～
+from DiseaseTree import DiseaseTree #疾病树
 from DiseaseClass import DiseaseClass
+from DiagPatient import DiagPatient
 # 相关配置
 from Util.Common import get_sql_connection, get_logger, show_error_message, show_successful_message
 # 其他必须
@@ -275,6 +276,13 @@ class MainWindow(QMainWindow):
         disease_class_diag = DiseaseClass(self)
         disease_class_diag.setAttribute(Qt.WA_DeleteOnClose)
         disease_class_diag.show()
+
+    #点击按病人统计
+    # @pyqtSlot()
+    def on_analysis_patient_clicked(self):
+        diat_patient_dialog = DiagPatient(self)
+        diat_patient_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        diat_patient_dialog.show()
 
 
     #点击【人工诊断】
@@ -566,7 +574,7 @@ class MainWindow(QMainWindow):
         # 已经到最后一级
 
         types = first_name[0]
-        print("types",types)
+
 
         if types == '出血病':
             sql = """select * from Diagnosis_table where binary_type = '%s' """ % ("出血病")
