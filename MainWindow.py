@@ -32,6 +32,7 @@ from ManDiagnosis import ManDiag
 from DiseaseTree import DiseaseTree #疾病树
 from DiseaseClass import DiseaseClass
 from DiagPatient import DiagPatient
+from DiagExam import DiagExam
 # 相关配置
 from Util.Common import get_sql_connection, get_logger, show_error_message, show_successful_message
 # 其他必须
@@ -228,8 +229,6 @@ class MainWindow(QMainWindow):
     #点击【添加病人】
     @pyqtSlot()
     def on_add_patient_clicked(self):
-        print("添加病人")
-        # 示例化样本
         add_patient_dialog = AddPatient(self)
         add_patient_dialog.setAttribute(Qt.WA_DeleteOnClose)
         # 连接槽函数
@@ -260,29 +259,6 @@ class MainWindow(QMainWindow):
         predict_dialog = PredictDisease(self,self.patient_id_fromP)
         predict_dialog.setAttribute(Qt.WA_DeleteOnClose)
         predict_dialog.show()
-#～～～～～～～～～【诊断管理】～～～～～～～～～～～～
-    # 点击【疾病介绍】
-    @pyqtSlot()
-    def on_disease_tree_clicked(self):
-        disease_widget = DiseaseTree(self)
-        # sample_class_widget.setAttribute(Qt.WA_DeleteOnClose)
-        disease_widget.show()
-
-
-    #点击【疾病类型】
-    @pyqtSlot()
-    def on_diag_class_clicked(self):
-        print("疾病类型")
-        disease_class_diag = DiseaseClass(self)
-        disease_class_diag.setAttribute(Qt.WA_DeleteOnClose)
-        disease_class_diag.show()
-
-    #点击按病人统计
-    # @pyqtSlot()
-    def on_analysis_patient_clicked(self):
-        diat_patient_dialog = DiagPatient(self)
-        diat_patient_dialog.setAttribute(Qt.WA_DeleteOnClose)
-        diat_patient_dialog.show()
 
 
     #点击【人工诊断】
@@ -319,6 +295,36 @@ class MainWindow(QMainWindow):
         except Exception as e:
             print(e)
             show_error_message(self, "错误，请检查")
+#～～～～～～～～～【诊断管理】～～～～～～～～～～～～
+    # 点击【疾病介绍】
+    @pyqtSlot()
+    def on_disease_tree_clicked(self):
+        disease_widget = DiseaseTree(self)
+        disease_widget.setAttribute(Qt.WA_DeleteOnClose)
+        disease_widget.show()
+
+
+    #点击【疾病类型】
+    @pyqtSlot()
+    def on_diag_class_clicked(self):
+        disease_class_diag = DiseaseClass(self)
+        disease_class_diag.setAttribute(Qt.WA_DeleteOnClose)
+        disease_class_diag.show()
+
+    #点击按病人统计
+    # @pyqtSlot()
+    def on_analysis_patient_clicked(self):
+        diat_patient_dialog = DiagPatient(self)
+        diat_patient_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        diat_patient_dialog.show()
+
+        # 点击按病人统计
+        # @pyqtSlot()
+    def on_analysis_exam_clicked(self):
+        diag_exam_dialog = DiagExam(self)
+        diag_exam_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        diag_exam_dialog.show()
+
 
 ##  ============================== 槽函数区 ==============================#
 

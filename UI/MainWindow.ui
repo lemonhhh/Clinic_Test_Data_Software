@@ -2472,7 +2472,7 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
           <string notr="true">border:none;</string>
          </property>
          <property name="text">
-          <string>疾病分类</string>
+          <string>疾病分类统计</string>
          </property>
          <property name="icon">
           <iconset resource="icon.qrc">
@@ -2501,16 +2501,16 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="suifang_find_7">
+        <widget class="QToolButton" name="analysis_exam">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>
          <property name="text">
-          <string>按检验统计</string>
+          <string>按检验数据分析</string>
          </property>
          <property name="icon">
           <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/blue-document-table.png</normaloff>:/newPrefix/pictures/blue-document-table.png</iconset>
+           <normaloff>:/newPrefix/pictures/system-monitor.png</normaloff>:/newPrefix/pictures/system-monitor.png</iconset>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
