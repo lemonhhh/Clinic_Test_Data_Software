@@ -12,7 +12,7 @@ from PyQt5.QtWidgets import QDialog, QApplication, QAbstractItemView, QTableView
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtCore import Qt, pyqtSlot, pyqtSignal, QUrl
 import pyecharts.options as opts
-from pyecharts.charts import Liquid
+from pyecharts.charts import Gauge
 from pyecharts.commons.utils import JsCode
 
 
@@ -54,7 +54,7 @@ class PredictResult(QDialog):
         # 网页嵌入PyQt5
         self.myHtml = QWebEngineView()  ##浏览器引擎控件
 
-        file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "predict_result.html"))
+        file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "predict_gauge.html"))
         local_url = QUrl.fromLocalFile(file_path)
         self.myHtml.load(local_url)
 
@@ -62,18 +62,23 @@ class PredictResult(QDialog):
         self.setLayout(self.mainhboxLayout)
 
     def generate_chart(self,result):
-        show_text= str(np.floor(result * 10000) / 100) + '%'
-        print(show_text)
-        #第二个参数为何不能传参
-        deep_blue = np.round(result,4)
-        print(deep_blue)
-        c = (
-            Liquid()
-                .add(show_text, [result,0.6])
-                .set_global_opts(title_opts=opts.TitleOpts(title=self.title))
-                .render("predict_result.html")
+        result = np.round(result * 100,2)
+        (
+            Gauge(init_opts=opts.InitOpts(width="800", height="400px"))
+                .add(series_name="新冠预测", data_pair=[["", result]])
+                .set_global_opts(
+                legend_opts=opts.LegendOpts(is_show=False),
+                tooltip_opts=opts.TooltipOpts(is_show=True, formatter="{a} <br/>{b} : {c}%"),
+            )
+                .set_series_opts(
+                axisline_opts=opts.AxisLineOpts(
+                    linestyle_opts=opts.LineStyleOpts(
+                        color=[[0.3, "#67e0e3"], [0.7, "#37a2da"], [1, "#fd666d"]], width=30
+                    )
+                )
+            )
+                .render("predict_gauge.html")
         )
-
 
 
 

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>747</width>
+    <width>885</width>
     <height>806</height>
    </rect>
   </property>
@@ -1989,7 +1989,7 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="predict_disease_2">
+        <widget class="QToolButton" name="predict_disease">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>
@@ -2132,6 +2132,21 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
             </property>
            </item>
           </item>
+          <item>
+           <property name="text">
+            <string>是否有诊断结果</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>有</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>无</string>
+            </property>
+           </item>
+          </item>
          </widget>
         </item>
         <item>
@@ -2196,7 +2211,7 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
         <height>56</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_patient_6" stretch="0,0,0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_patient_6" stretch="0,0,0">
        <property name="spacing">
         <number>8</number>
        </property>
@@ -2237,40 +2252,6 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
          <property name="icon">
           <iconset resource="icon.qrc">
            <normaloff>:/newPrefix/pictures/xfn-friend.png</normaloff>:/newPrefix/pictures/xfn-friend.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="auto_diag_2">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>批量诊断</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/microformats.png</normaloff>:/newPrefix/pictures/microformats.png</iconset>
-         </property>
-         <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="man_diag_2">
-         <property name="styleSheet">
-          <string notr="true">border:none;</string>
-         </property>
-         <property name="text">
-          <string>人工诊断</string>
-         </property>
-         <property name="icon">
-          <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/user-medical.png</normaloff>:/newPrefix/pictures/user-medical.png</iconset>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
@@ -2369,6 +2350,26 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
            <item>
             <property name="text">
              <string>AB</string>
+            </property>
+           </item>
+          </item>
+          <item>
+           <property name="text">
+            <string>基因型</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>连锁</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Het</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Homologous</string>
             </property>
            </item>
           </item>
@@ -2518,12 +2519,12 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="delete_sample_7">
+        <widget class="QToolButton" name="diag_test">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>
          <property name="text">
-          <string>按容器统计</string>
+          <string>显著性分析</string>
          </property>
          <property name="icon">
           <iconset resource="icon.qrc">

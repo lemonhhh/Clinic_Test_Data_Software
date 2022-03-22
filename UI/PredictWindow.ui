@@ -29,7 +29,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>450</y>
+     <y>470</y>
      <width>113</width>
      <height>32</height>
     </rect>
@@ -40,70 +40,84 @@
    <property name="text">
     <string>确定</string>
    </property>
+   <property name="icon">
+    <iconset resource="creat.qrc">
+     <normaloff>:/newPrefix/pictures/navigation-000-button-white.png</normaloff>:/newPrefix/pictures/navigation-000-button-white.png</iconset>
+   </property>
   </widget>
-  <widget class="QWidget" name="verticalLayoutWidget_3">
+  <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>50</y>
+     <y>70</y>
      <width>160</width>
-     <height>112</height>
+     <height>118</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_3">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>输入病人编号</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_pID"/>
+    </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>50</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>预测疾病种类</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="comboBox_type">
       <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>输入病人编号</string>
-        </property>
-       </widget>
+       <property name="text">
+        <string>VWD类型</string>
+       </property>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_pID"/>
+       <property name="text">
+        <string>新冠</string>
+       </property>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>预测疾病种类</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="comboBox_type">
-          <item>
-           <property name="text">
-            <string>新冠</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>血友病</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>血小板减少症</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>急性白血病</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>血栓</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-       </layout>
+       <property name="text">
+        <string>血友病</string>
+       </property>
       </item>
-     </layout>
+      <item>
+       <property name="text">
+        <string>血小板减少症</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>急性白血病</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>血栓</string>
+       </property>
+      </item>
+     </widget>
     </item>
    </layout>
   </widget>

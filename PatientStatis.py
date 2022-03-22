@@ -41,17 +41,33 @@ class PatientStatis(QDialog):
         self.setMinimumSize(1200, 800)
         btn1 = QPushButton("性别")
         btn2 = QPushButton("年龄")
+        btn3 = QPushButton("是否有诊断结果")
+        btn4 = QPushButton("是否吸烟")
+        btn5 = QPushButton("是否饮酒")
+        btn6 = QPushButton("是否有输血史")
+        btn7 = QPushButton("是否有传染你病史")
+        btn8 = QPushButton("是否有过敏史")
+
 
         hlayout = QHBoxLayout()
 
         hlayout.addWidget(btn1)
         hlayout.addWidget(btn2)
+        hlayout.addWidget(btn3)
+        hlayout.addWidget(btn4)
+        hlayout.addWidget(btn5)
+        hlayout.addWidget(btn6)
+        hlayout.addWidget(btn7)
+        hlayout.addWidget(btn8)
 
         hwidget = QWidget(self)
         hwidget.setLayout(hlayout)
 
         btn1.clicked.connect(self.sta_gender)
         btn2.clicked.connect(self.sta_age)
+        btn3.clicked.connect(self.sta_result)
+        btn4.clicked.connect(self.sta_smoke)
+
 
         self.myHtml = QWebEngineView(self)  # 浏览器引擎控件
         self.myHtml.move(10, 50)
@@ -59,15 +75,12 @@ class PatientStatis(QDialog):
         self.myHtml.setVisible(False)
 
     def load_url(self,file_name):
-
         file_path = os.path.abspath(
             os.path.join(
                 os.path.dirname(__file__),
                 file_name))
         local_url = QUrl.fromLocalFile(file_path)
         self.myHtml.load(local_url)
-
-
 
 
     def sta_gender(self):
@@ -165,6 +178,125 @@ class PatientStatis(QDialog):
         )
 
         self.load_url("patient_age.html")
+
+    def sta_result(self):
+        self.myHtml.setVisible(True)
+        # 有多少女
+        sql_yes = """SELECT COUNT(*) FROM Patient_table WHERE result='有'"""
+        self.cursor.execute(sql_yes)
+        num_yes = self.cursor.fetchone()[0]
+
+        sql_no = """SELECT COUNT(*) FROM Patient_table WHERE result='无'"""
+        self.cursor.execute(sql_no)
+        num_no = self.cursor.fetchone()[0]
+
+        x_data = ["有", "无"]
+        y_data = [num_yes, num_no]
+
+        c = (
+            Pie()
+                .add(
+                "",
+                [list(z) for z in zip(x_data, y_data)],
+                radius=["40%", "55%"],
+                label_opts=opts.LabelOpts(
+                    position="outside",
+                    formatter="{a|{a}}{abg|}\n{hr|}\n {b|{b}: }{c}  {per|{d}%}  ",
+                    background_color="#eee",
+                    border_color="#aaa",
+                    border_width=1,
+                    border_radius=4,
+                    rich={
+                        "a": {"color": "#999", "lineHeight": 22, "align": "center"},
+                        "abg": {
+                            "backgroundColor": "#e3e3e3",
+                            "width": "100%",
+                            "align": "right",
+                            "height": 22,
+                            "borderRadius": [4, 4, 0, 0],
+                        },
+                        "hr": {
+                            "borderColor": "#aaa",
+                            "width": "100%",
+                            "borderWidth": 0.5,
+                            "height": 0,
+                        },
+                        "b": {"fontSize": 16, "lineHeight": 33},
+                        "per": {
+                            "color": "#eee",
+                            "backgroundColor": "#334455",
+                            "padding": [2, 4],
+                            "borderRadius": 2,
+                        },
+                    },
+                ),
+            )
+                .set_global_opts(title_opts=opts.TitleOpts(title="是否有诊断结果"))
+                .render("result_sta_pie.html")
+        )
+        self.load_url("result_sta_pie.html")
+
+    def sta_smoke(self):
+        self.myHtml.setVisible(True)
+        # 有多少女
+        sql_yes = """SELECT COUNT(*) FROM Patient_table WHERE smoke='有'"""
+        self.cursor.execute(sql_yes)
+        num_yes = self.cursor.fetchone()[0]
+
+        sql_no = """SELECT COUNT(*) FROM Patient_table WHERE smoke='否'"""
+        self.cursor.execute(sql_no)
+        num_no = self.cursor.fetchone()[0]
+
+        sql_null = """SELECT COUNT(*) FROM Patient_table WHERE smoke='未知'"""
+        self.cursor.execute(sql_null)
+        num_null = self.cursor.fetchone()[0]
+
+        x_data = ["是", "否","未知"]
+        y_data = [num_yes, num_no,num_null]
+
+        c = (
+            Pie()
+                .add(
+                "",
+                [list(z) for z in zip(x_data, y_data)],
+                radius=["40%", "55%"],
+                label_opts=opts.LabelOpts(
+                    position="outside",
+                    formatter="{a|{a}}{abg|}\n{hr|}\n {b|{b}: }{c}  {per|{d}%}  ",
+                    background_color="#eee",
+                    border_color="#aaa",
+                    border_width=1,
+                    border_radius=4,
+                    rich={
+                        "a": {"color": "#999", "lineHeight": 22, "align": "center"},
+                        "abg": {
+                            "backgroundColor": "#e3e3e3",
+                            "width": "100%",
+                            "align": "right",
+                            "height": 22,
+                            "borderRadius": [4, 4, 0, 0],
+                        },
+                        "hr": {
+                            "borderColor": "#aaa",
+                            "width": "100%",
+                            "borderWidth": 0.5,
+                            "height": 0,
+                        },
+                        "b": {"fontSize": 16, "lineHeight": 33},
+                        "per": {
+                            "color": "#eee",
+                            "backgroundColor": "#334455",
+                            "padding": [2, 4],
+                            "borderRadius": 2,
+                        },
+                    },
+                ),
+            )
+                .set_global_opts(title_opts=opts.TitleOpts(title="是否有吸烟史"))
+                .render("result_sta_pie.html")
+        )
+        self.load_url("result_sta_pie.html")
+
 
 
 

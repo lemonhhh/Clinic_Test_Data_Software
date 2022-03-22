@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="newPrefix">
     <file>pictures/report-share.png</file>
+    <file>pictures/navigation-000-button-white.png</file>
   </qresource>
 </RCC>

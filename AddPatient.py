@@ -15,7 +15,11 @@ import datetime
 # 添加新样品类
 class AddPatient(QDialog):
     #发出信号(类型是list)
+    #todo:
+    #其实不大明白这个信号的意义
     data_update_signal = pyqtSignal(list)
+
+
     #把当前位置location串进来了
     def __init__(self, parent=None,location=None):
         super(AddPatient, self).__init__(parent)
@@ -33,20 +37,27 @@ class AddPatient(QDialog):
     # 单击【提交】按钮槽函数
     @pyqtSlot()
     def on_btn_commit_clicked(self):
-        sql,data_list = self.get_insert_sql_data()
-        if sql is not None:
-            try:
-                # 执行sql语句
-                self.cursor.execute(sql)
-                self.connection.commit()
-                show_successful_message(self, "插入成功")
+        sql_find,sql,data_list = self.get_insert_sql_data()
 
+        try:
+            self.cursor.execute(sql_find)
+            num = self.cursor.fetchone()[0]
+
+            if num > 0:
+                show_error_message(self, "已存在该编号的病人！")
+
+            else:
+                self.cursor.execute(sql)
+                self.connection.commit()#需要提交
+                show_successful_message(self, "插入成功")
                 #手动发射信号
                 self.data_update_signal.emit(data_list)
-            except Exception as e:
-                show_error_message(self, "插入错误，请检查")
-                self.record_debug(e)
-            self.close()
+
+        except Exception as e:
+            show_error_message(self, "插入错误，请检查！")
+            self.record_debug(e)
+
+        self.close()
 
 
 
@@ -98,11 +109,14 @@ class AddPatient(QDialog):
         data_list.append(infect)
         data_list.append(aler)
 
+        sql_find = """select count(*) from Patient_table where patient_ID='%s'"""%(pID)
+
+
         sql = """INSERT INTO Patient_table(patient_ID, name, Age, gender, phone, result, smoke, drink, transfusion,operation, infectious, allergy)
         VALUES('%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')""" % (pID,pname,age,gender,phone,result_flag,smoke,drink,trans,sur,infect,aler)
 
 
-        return sql, data_list
+        return sql_find,sql, data_list
 
     # 记录debug信息
     def record_debug(self, debug_message: str) -> None:

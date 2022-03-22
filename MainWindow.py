@@ -33,6 +33,7 @@ from DiseaseTree import DiseaseTree #疾病树
 from DiseaseClass import DiseaseClass
 from DiagPatient import DiagPatient
 from DiagExam import DiagExam
+from TestData import TestExam
 # 相关配置
 from Util.Common import get_sql_connection, get_logger, show_error_message, show_successful_message
 # 其他必须
@@ -220,7 +221,6 @@ class MainWindow(QMainWindow):
     #点击统计
     @pyqtSlot()
     def on_patient_sta_clicked(self):
-        print("对病人统计分析")
         patient_widget = PatientStatis(self)
         patient_widget.setAttribute(Qt.WA_DeleteOnClose)
         patient_widget.show()
@@ -232,14 +232,13 @@ class MainWindow(QMainWindow):
         add_patient_dialog = AddPatient(self)
         add_patient_dialog.setAttribute(Qt.WA_DeleteOnClose)
         # 连接槽函数
-        add_patient_dialog.data_update_signal.connect(self.do_receive_data)
+        # add_patient_dialog.data_update_signal.connect(self.do_receive_data)
         add_patient_dialog.show()
 
 
     # 点击【病人信息】
     @pyqtSlot()
     def on_patient_info_clicked(self):
-        print("病人信息查询")
         psearch_dialog = PatientSearch(self)
         psearch_dialog.setAttribute(Qt.WA_DeleteOnClose)
         psearch_dialog.show()
@@ -247,15 +246,38 @@ class MainWindow(QMainWindow):
         # 点击【删除样本】
     @pyqtSlot()
     def on_delete_patient_clicked(self):
-        print("删除病人")
         self.on_delete_patient_triggered()
+
+        # 点击【自动诊断】
+    @pyqtSlot()
+    def on_auto_diag_clicked(self):
+        print("自动诊断")
+        try:  # 执行sql语句
+            sql1 = """UPDATE Diagnosis_table INNER JOIN Exam_table ON Diagnosis_table.patient_ID=Exam_table.patient_ID SET Diagnosis_table.auto_result = '出血病' WHERE (Exam_table.APTT >= 38) """
+            sql2 = """UPDATE Diagnosis_table INNER JOIN Exam_table ON Diagnosis_table.patient_ID=Exam_table.patient_ID SET Diagnosis_table.auto_result = '血栓病' WHERE (Exam_table.APTT <= 15) """
+            #是否有诊断结果
+            sql3 = """ UPDATE Patient_table INNER JOIN Diagnosis_table Diagnosis_table.patient_ID=Patient_table.patient_ID 
+                        SET Patient_table.result = '有' WHERE Diagnosis_table.result IS NOT NULL"""
+
+            sql = """UPDATE t_sample INNER JOIN Exam_table ON t_sample.ID=Exam_table.sample_ID 
+                        SET t_sample.result = '有检验结果' WHERE Exam_table.exam_ID IS NOT NULL"""
+
+            connection_auto = get_sql_connection()
+            cursor_auto = connection_auto.cursor()
+            cursor_auto.execute(sql1)
+            cursor_auto.execute(sql2)
+            connection_auto.commit()#需要提交
+            show_successful_message(self, "自动标注成功")
+
+        except Exception as e:
+            print(e)
+            show_error_message(self, "错误，请检查")
 
 
 
     #点击【疾病预测】
     @pyqtSlot()
     def on_predict_disease_clicked(self):
-        print("疾病预测")
         predict_dialog = PredictDisease(self,self.patient_id_fromP)
         predict_dialog.setAttribute(Qt.WA_DeleteOnClose)
         predict_dialog.show()
@@ -264,7 +286,6 @@ class MainWindow(QMainWindow):
     #点击【人工诊断】
     @pyqtSlot()
     def on_man_diag_clicked(self):
-        print("人工诊断")
         man_dialog = ManDiag(self,self.patient_id_fromP)
         man_dialog.setAttribute(Qt.WA_DeleteOnClose)
         man_dialog.show()
@@ -277,24 +298,7 @@ class MainWindow(QMainWindow):
         exam_sta_widget.setAttribute(Qt.WA_DeleteOnClose)
         exam_sta_widget.show()
 
-    # 点击【自动诊断】
-    @pyqtSlot()
-    def on_auto_diag_clicked(self):
-        print("自动诊断")
-        try:   # 执行sql语句
-            sql1 = """UPDATE Diagnosis_table INNER JOIN Exam_table ON Diagnosis_table.patient_ID=Exam_table.patient_ID SET Diagnosis_table.auto_result = '出血病' WHERE (Exam_table.APTT >= 38) """
-            sql2 = """UPDATE Diagnosis_table INNER JOIN Exam_table ON Diagnosis_table.patient_ID=Exam_table.patient_ID SET Diagnosis_table.auto_result = '血栓病' WHERE (Exam_table.APTT <= 15) """
 
-            connection_auto = get_sql_connection()
-            cursor_auto = connection_auto.cursor()
-            cursor_auto.execute(sql1)
-            cursor_auto.execute(sql2)
-            connection_auto.commit()
-            show_successful_message(self, "自动标注成功")
-
-        except Exception as e:
-            print(e)
-            show_error_message(self, "错误，请检查")
 #～～～～～～～～～【诊断管理】～～～～～～～～～～～～
     # 点击【疾病介绍】
     @pyqtSlot()
@@ -312,19 +316,24 @@ class MainWindow(QMainWindow):
         disease_class_diag.show()
 
     #点击按病人统计
-    # @pyqtSlot()
+    @pyqtSlot()
     def on_analysis_patient_clicked(self):
         diat_patient_dialog = DiagPatient(self)
         diat_patient_dialog.setAttribute(Qt.WA_DeleteOnClose)
         diat_patient_dialog.show()
 
-        # 点击按病人统计
-        # @pyqtSlot()
+    # 点击按病人统计
+    @pyqtSlot()
     def on_analysis_exam_clicked(self):
         diag_exam_dialog = DiagExam(self)
         diag_exam_dialog.setAttribute(Qt.WA_DeleteOnClose)
         diag_exam_dialog.show()
 
+    #显著性分析
+    def on_diag_test_clicked(self):
+        test_dialog = TestExam(self)
+        test_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        test_dialog.show()
 
 ##  ============================== 槽函数区 ==============================#
 
@@ -460,6 +469,10 @@ class MainWindow(QMainWindow):
                 sql = """select * from Patient_table where Age >= 36 and Age <= 60 """
             if types == '60以上':
                 sql = """select * from Patient_table where Age >60"""
+            if types == '有':
+                sql = """select * from Patient_table where result='有'"""
+            if types == '无':
+                sql = """select * from Patient_table where result='无'"""
         else:
             sql = """select * from Patient_table"""
 
@@ -521,18 +534,25 @@ class MainWindow(QMainWindow):
         cursor = connection.cursor()
         types = first_name[0]
 
-
         if types == 'A':
             sql = """select * from Exam_table where Blood_type = 'A' """
-        if types == 'B':
+        elif types == 'B':
             sql = """select * from Exam_table where Blood_type = 'B' """
-        if types == 'O':
+        elif types == 'O':
             sql = """select * from Exam_table where Blood_type = 'O' """
-        if types == 'AB':
+        elif types == 'AB':
             sql = """select * from Exam_table where Blood_type = 'AB' """
+        elif types == '连锁':
+            sql = """select * from Exam_table where genotype LIKE '%连锁%' """
+        elif types == 'Het':
+            sql = """select * from Exam_table where genotype LIKE '%Het%' """
+        elif types == 'Homologous':
+            sql = """select * from Exam_table where genotype LIKE '%Homologous%' """
         else:
-            sql = """select * from Exam_table"""
+            sql = """select * from Exam_table """
 
+        print("types",types)
+        print(sql)
         # 执行查询结果
         cursor.execute(sql)
         if self.__UI.tableView_exam.model() is not None:
@@ -600,6 +620,14 @@ class MainWindow(QMainWindow):
             sql = """select * from Diagnosis_table where vwd_type='%s'"""%('2M')
         if types == '2N':
             sql = """select * from Diagnosis_table where vwd_type='%s'"""%('2N')
+        if types == '白色血栓':
+            sql = """select * from Diagnosis_table where result LIKE '%白色%'"""
+        if types == '红色血栓':
+            sql = """select * from Diagnosis_table where result LIKE '%红色%'"""
+        if types == '混合血栓':
+            sql = """select * from Diagnosis_table where result LIKE '%混合%'"""
+        if types == '透明血栓':
+            sql = """select * from Diagnosis_table where result LIKE '%透明%'"""
 
         # 执行查询结果
         cursor.execute(sql)
@@ -614,7 +642,6 @@ class MainWindow(QMainWindow):
 
 
 ##  ============================== 槽函数区 ==============================#
-
 
     # 点击【删除】槽函数
     def on_act_delete_triggered(self):

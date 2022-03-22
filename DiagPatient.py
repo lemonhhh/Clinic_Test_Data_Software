@@ -83,27 +83,42 @@ class DiagPatient(QDialog):
     def cao(self):
         self.myHtml.setVisible(True)
         if self.cb.currentText() == '按照VWD亚型分析':
-            self.vwd_chart()
-        else:
-            pass
+            x_data = ['1','2A','2B','2M','2N','3']
+            column = 'vwd_type'
+        elif self.cb.currentText() == '按照血友病分析':
+            x_data = ['A','B','VWD']
+            column = 'haemophilia_type'
+        elif self.cb.currentText() == '按照出血/血栓分析':
+            x_data = ['出血病','血栓病']
+            column = 'binary_type'
+        self.type_chart(x_data,column)
 
-    def vwd_chart(self):
+
+    def type_chart(self,x_data,column):
         tab = Tab()
-        tab.add(self.vwd_gender_bar("性别分析"), "性别")
-        tab.add(self.vwd_age_boxplot("年龄分析"), "年龄")
-        tab.render("vwd_tab.html")
-        self.load_url("vwd_tab.html")
+        tab.add(self.type_gender_bar(x_data,column,"性别分析"), "性别")
+        tab.add(self.type_age_boxplot(x_data,column,"年龄分析"), "年龄")
 
-    def vwd_gender_bar(self,title):
-        x_data = ['1','2A','2B','2M','2N','3']
+        tab.add(self.type_history_bar(x_data,column,"smoke","吸烟史分析"), "吸烟史")
+        tab.add(self.type_history_bar(x_data,column,"drink","饮酒史分析"), "饮酒史")
+        tab.add(self.type_history_bar(x_data,column,"transfusion","输血史分析"), "输血史")
+        tab.add(self.type_history_bar(x_data,column,"operation","手术史分析"), "手术史")
+        tab.add(self.type_history_bar(x_data,column,"infectious","传染史分析"), "传染史")
+        tab.add(self.type_history_bar(x_data,column,"allergy","过敏史分析"), "过敏史")
+
+        tab.render("patien_diag_tab.html")
+        self.load_url("patien_diag_tab.html")
+
+    def type_gender_bar(self,x_data,column,title):
+
         female = []
         male = []
         for x in x_data:
             sql_f = """SELECT COUNT(*) FROM Diagnosis_table INNER JOIN Patient_table ON Diagnosis_table.patient_ID = Patient_table.patient_ID
-                WHERE Patient_table.gender='女' AND Diagnosis_table.vwd_type='%s'""" % (x)
+                WHERE Patient_table.gender='女' AND Diagnosis_table.%s='%s'""" % (column,x)
 
             sql_m = """SELECT COUNT(*) FROM Diagnosis_table INNER JOIN Patient_table ON Diagnosis_table.patient_ID = Patient_table.patient_ID
-                            WHERE Patient_table.gender='男' AND Diagnosis_table.vwd_type='%s'""" % (x)
+                            WHERE Patient_table.gender='男' AND Diagnosis_table.%s='%s'""" % (column,x)
 
             self.cursor.execute(sql_f)
             f_num = self.cursor.fetchone()[0]
@@ -127,13 +142,13 @@ class DiagPatient(QDialog):
         )
         return c
 
-    def vwd_age_boxplot(self,title):
+    def type_age_boxplot(self,x_data,column,title):
 
         vwd_type = ['1', '2A', '2B', '2M', '2N', '3']
         age_list = []
         for x in vwd_type:
             sql = """SELECT Patient_table.Age FROM Diagnosis_table INNER JOIN Patient_table ON Diagnosis_table.patient_ID = Patient_table.patient_ID
-                        WHERE Diagnosis_table.vwd_type='%s' AND Patient_table.Age is not null""" %(x)
+                        WHERE Diagnosis_table.%s='%s' AND Patient_table.Age is not null""" %(column,x)
 
             self.cursor.execute(sql)
             age = [i[0] for i in self.cursor.fetchall()]
@@ -141,15 +156,54 @@ class DiagPatient(QDialog):
 
         c = Boxplot()
         c.add_xaxis([title])
-        print(age_list[0])
-        c.add_yaxis("1型", c.prepare_data([age_list[0]]))
-        c.add_yaxis("2A", c.prepare_data([age_list[1]]))
-        c.add_yaxis("2B", c.prepare_data([age_list[2]]))
-        c.add_yaxis("2M", c.prepare_data([age_list[3]]))
-        c.add_yaxis("2N", c.prepare_data([age_list[4]]))
-        c.add_yaxis("3型", c.prepare_data([age_list[5]]))
+
+        for i in range(len(x_data)):
+            c.add_yaxis(x_data[i],c.prepare_data([age_list[i]]))
+
 
         c.set_global_opts(title_opts=opts.TitleOpts(title="年龄统计"))
+        return c
+
+
+    def type_history_bar(self,x_data,column,history,title):
+
+        ys = []
+        ns = []
+        us = []
+        for x in x_data:
+            sql_y = """SELECT COUNT(*) FROM Diagnosis_table INNER JOIN Patient_table ON Diagnosis_table.patient_ID = Patient_table.patient_ID
+                WHERE Patient_table.%s='是' AND Diagnosis_table.vwd_type='%s'""" % (history,x)
+
+            sql_n = """SELECT COUNT(*) FROM Diagnosis_table INNER JOIN Patient_table ON Diagnosis_table.patient_ID = Patient_table.patient_ID
+                            WHERE Patient_table.%s='否' AND Diagnosis_table.vwd_type='%s'""" % (history,x)
+
+            sql_u = """SELECT COUNT(*) FROM Diagnosis_table INNER JOIN Patient_table ON Diagnosis_table.patient_ID = Patient_table.patient_ID
+                                        WHERE Patient_table.%s='未知' AND Diagnosis_table.vwd_type='%s'""" % (history,x)
+
+            self.cursor.execute(sql_y)
+            y_num = self.cursor.fetchone()[0]
+            self.cursor.execute(sql_n)
+            n_num = self.cursor.fetchone()[0]
+            self.cursor.execute(sql_u)
+            u_num = self.cursor.fetchone()[0]
+
+            y_ration = y_num / (y_num + n_num+u_num)
+            n_ration = n_num / (y_num + n_num+u_num)
+            u_ration = u_num / (y_num + n_num+u_num)
+
+            ys.append(y_ration)
+            ns.append(n_ration)
+            us.append(u_ration)
+
+        c = (
+            Bar()
+                .add_xaxis(x_data)
+                .add_yaxis("是", ys, stack="stack1")
+                .add_yaxis("否", ns, stack="stack1")
+                .add_yaxis("未知", us, stack="stack1")
+                .set_series_opts(label_opts=opts.LabelOpts(is_show=False))
+                .set_global_opts(title_opts=opts.TitleOpts(title=title))
+        )
         return c
 
     def new_label_opts(self):
@@ -163,7 +217,6 @@ class DiagPatient(QDialog):
         return opts.LabelOpts(formatter=JsCode(fn), position="center")
 
 
-
     def load_url(self,file_name):
         file_path = os.path.abspath(
             os.path.join(
@@ -175,12 +228,9 @@ class DiagPatient(QDialog):
 
 
 
-
-
 ##  ============================== 功能函数区 ==============================#
 
     # 设置cursor和connection
-
     def set_connection_cursor(self) -> None:
         self.connection = get_sql_connection()
         self.cursor = self.connection.cursor()
