@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>pictures/zone-label.png</file>
+    <file>pictures/user-green.png</file>
     <file>pictures/system-monitor.png</file>
     <file>pictures/toilet.png</file>
     <file>pictures/blue-document-smiley.png</file>

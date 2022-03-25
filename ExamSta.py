@@ -34,6 +34,7 @@ class ExamStatis(QDialog):
         # 为查询进行配置
         self.db_name = ["APTT", "Ag", "Act", "RIPA", "FV3C", "CB", "pp", "BS"]
         self.dict = {"APTT":0,"Ag":1,"全血凝固时间":2,"血浆蛋白":3,"凝血因子活性":4,"结合胆红素":5,"PP":6,"血糖":7}
+
         self.age_list = []
         self.gender_list = []
 
@@ -95,7 +96,6 @@ class ExamStatis(QDialog):
         bs_list = [i[0] for i in bs_tuple]
 
         self.db_list = [aptt_list, ag_list, act_list, ripa_list, fv3c_list, cb_list, pp_list, bs_list]
-
 
 
         #按性别
@@ -240,55 +240,14 @@ WHERE Patient_table.gender='女' and Exam_table.APTT is not null"""
         self.myHtml.load(local_url)
 
     def ShowExamSta(self,project):
-        tab = Tab()
-        tab.add(self.show_all_boxplot(project), "总体")
-        tab.add(self.show_age_boxplot(project), "按年龄")
-        tab.add(self.show_gender_boxplot(project), "按性别")
-
-        tab.render("boxplot.html")
+        v1 = [self.db_list[self.dict[project]]]
+        c = Boxplot()
+        c.add_xaxis([project])
+        c.add_yaxis(project, c.prepare_data(v1))
+        c.set_global_opts(title_opts=opts.TitleOpts(title="所有数据"))
+        c.render("boxplot.html")
         self.load_url("boxplot.html")
 
-
-    def show_all_boxplot(self,project)->Boxplot:
-
-        v1 = [self.db_list[self.dict[project]]]
-        print("all v1",v1)
-
-        c = Boxplot()
-        c.add_xaxis([project])
-        c.add_yaxis(project,c.prepare_data(v1))
-        c.set_global_opts(title_opts=opts.TitleOpts(title="所有数据"))
-        return c
-
-    def show_gender_boxplot(self,project)->Boxplot:
-
-        v1 = [self.gender_list[self.dict[project]]['女']]
-        v2 = [self.gender_list[self.dict[project]]['男']]
-
-        c = Boxplot()
-        c.add_xaxis([project])
-
-        c.add_yaxis("女", c.prepare_data(v1))
-        c.add_yaxis("男", c.prepare_data(v2))
-        c.set_global_opts(title_opts=opts.TitleOpts(title="按性别"))
-        return c
-
-    def show_age_boxplot(self,project)->Boxplot:
-        v1 = [self.age_list[self.dict[project]]['18以下']]
-        v2 = [self.age_list[self.dict[project]]['18-35']]
-        v3 = [self.age_list[self.dict[project]]['35-60']]
-        v4 = [self.age_list[self.dict[project]]['60以上']]
-
-        c = Boxplot()
-        c.add_xaxis([project])
-
-        c.add_yaxis("18以下", c.prepare_data(v1))
-        c.add_yaxis("18-35", c.prepare_data(v2))
-        c.add_yaxis("35-60", c.prepare_data(v3))
-        c.add_yaxis("60以上", c.prepare_data(v4))
-
-        c.set_global_opts(title_opts=opts.TitleOpts(title="按年龄"))
-        return c
 
 
 ##  ============================== 功能函数区 ==============================#

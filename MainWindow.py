@@ -28,6 +28,9 @@ from PatientSearch import PatientSearch#查询病人信息
 from PredictDisease import PredictDisease#疾病预测
 from AddHistory import AddHistory
 from ManDiagnosis import ManDiag
+#~~~~~检验管理～～～
+from ExamPatient import ExamPatient
+from ExamDiagnosis import ExamDiagnosis
 #～～～结果管理～～～
 from DiseaseTree import DiseaseTree #疾病树
 from DiseaseClass import DiseaseClass
@@ -148,7 +151,6 @@ class MainWindow(QMainWindow):
     #点击【数据库】
     @pyqtSlot()
     def on_db_show_clicked(self):
-        print("数据库嘿嘿")
         db_dialog = ShowDatabase(self)
         db_dialog.setAttribute(Qt.WA_DeleteOnClose)
         db_dialog.show()
@@ -290,13 +292,25 @@ class MainWindow(QMainWindow):
         man_dialog.setAttribute(Qt.WA_DeleteOnClose)
         man_dialog.show()
 
+ # ～～～～～～～～～【检验管理】～～～～～～～～～～～～
     # 检验数据统计
     @pyqtSlot()
     def on_exam_statis_clicked(self):
-        print("检验数据统计")
         exam_sta_widget = ExamStatis(self)
         exam_sta_widget.setAttribute(Qt.WA_DeleteOnClose)
         exam_sta_widget.show()
+
+    @pyqtSlot()
+    def on_exam_patient_clicked(self):
+        examp_widget = ExamPatient(self)
+        examp_widget.setAttribute(Qt.WA_DeleteOnClose)
+        examp_widget.show()
+
+    @pyqtSlot()
+    def on_exam_diagnosis_clicked(self):
+        examd_widget = ExamDiagnosis(self)
+        examd_widget.setAttribute(Qt.WA_DeleteOnClose)
+        examd_widget.show()
 
 
 #～～～～～～～～～【诊断管理】～～～～～～～～～～～～

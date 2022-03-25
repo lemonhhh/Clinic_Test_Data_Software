@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>3</number>
     </property>
     <property name="documentMode">
      <bool>true</bool>
@@ -2211,7 +2211,7 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
         <height>56</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_patient_6" stretch="0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_patient_6" stretch="0,0,0,0">
        <property name="spacing">
         <number>8</number>
        </property>
@@ -2230,7 +2230,7 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
           <string notr="true">border:none;</string>
          </property>
          <property name="text">
-          <string>检验数据统计</string>
+          <string>整体统计</string>
          </property>
          <property name="icon">
           <iconset resource="icon.qrc">
@@ -2242,16 +2242,33 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="trash_8">
+        <widget class="QToolButton" name="exam_patient">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>
          <property name="text">
-          <string>按日期统计</string>
+          <string>按患者分析</string>
          </property>
          <property name="icon">
           <iconset resource="icon.qrc">
-           <normaloff>:/newPrefix/pictures/xfn-friend.png</normaloff>:/newPrefix/pictures/xfn-friend.png</iconset>
+           <normaloff>:/newPrefix/pictures/user-green.png</normaloff>:/newPrefix/pictures/user-green.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="exam_diagnosis">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>按诊断结果分析</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/zone-label.png</normaloff>:/newPrefix/pictures/zone-label.png</iconset>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>

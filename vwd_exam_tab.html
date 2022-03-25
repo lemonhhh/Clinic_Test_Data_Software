@@ -40,20 +40,20 @@
         }
     </style>
     <div class="tab">
-            <button class="tablinks" onclick="showChart(event, '1f6a3cf5ad3f4952bd1969fec8991cf4')">血型</button>
-            <button class="tablinks" onclick="showChart(event, 'e9c2e6420ec34ab3a3bbb59ab39a8aec')">APTT</button>
-            <button class="tablinks" onclick="showChart(event, '5256d5edb5084a74894a2d90db9e3d16')">Ag</button>
-            <button class="tablinks" onclick="showChart(event, '730df3b65eac4f8987fc55fe7a5d2856')">Act</button>
-            <button class="tablinks" onclick="showChart(event, '4b1f7410e3004c878b473202c6b8250d')">RIPA</button>
-            <button class="tablinks" onclick="showChart(event, '1d9127b1ef974351a143b0f203119c3e')">FV3C</button>
+            <button class="tablinks" onclick="showChart(event, '148cb5eb2673444eb3b29bd2ed7346c6')">血型</button>
+            <button class="tablinks" onclick="showChart(event, 'd2a6ea357f2a45e8a3568701addf7b09')">APTT</button>
+            <button class="tablinks" onclick="showChart(event, '1f55eef317744f808f57cf6ef52a552a')">Ag</button>
+            <button class="tablinks" onclick="showChart(event, '99518b8db6214d2a974f3d8b0fc46906')">Act</button>
+            <button class="tablinks" onclick="showChart(event, '09163f3730704aa5bad71a936e8acc48')">RIPA</button>
+            <button class="tablinks" onclick="showChart(event, 'cb2e4aa1b1d049988111aa7ab8051ea6')">FV3C</button>
     </div>
 
     <div class="box">
-                <div id="1f6a3cf5ad3f4952bd1969fec8991cf4" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="148cb5eb2673444eb3b29bd2ed7346c6" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_1f6a3cf5ad3f4952bd1969fec8991cf4 = echarts.init(
-            document.getElementById('1f6a3cf5ad3f4952bd1969fec8991cf4'), 'white', {renderer: 'canvas'});
-        var option_1f6a3cf5ad3f4952bd1969fec8991cf4 = {
+        var chart_148cb5eb2673444eb3b29bd2ed7346c6 = echarts.init(
+            document.getElementById('148cb5eb2673444eb3b29bd2ed7346c6'), 'white', {renderer: 'canvas'});
+        var option_148cb5eb2673444eb3b29bd2ed7346c6 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -94,8 +94,12 @@
             "name": "A",
             "legendHoverLink": true,
             "data": [
-                0.27485380116959063,
-                0
+                0.24528301886792453,
+                0.2727272727272727,
+                0.5833333333333334,
+                0.17391304347826086,
+                0.0,
+                0.3269230769230769
             ],
             "showBackground": false,
             "stack": "stack1",
@@ -126,8 +130,12 @@
             "name": "B",
             "legendHoverLink": true,
             "data": [
-                0.1695906432748538,
-                0
+                0.07547169811320754,
+                0.13636363636363635,
+                0.0,
+                0.2608695652173913,
+                0.6666666666666666,
+                0.19230769230769232
             ],
             "showBackground": false,
             "stack": "stack1",
@@ -158,8 +166,12 @@
             "name": "O",
             "legendHoverLink": true,
             "data": [
-                0.4678362573099415,
-                0
+                0.660377358490566,
+                0.45454545454545453,
+                0.08333333333333333,
+                0.34782608695652173,
+                0.3333333333333333,
+                0.4423076923076923
             ],
             "showBackground": false,
             "stack": "stack1",
@@ -190,8 +202,12 @@
             "name": "AB",
             "legendHoverLink": true,
             "data": [
-                0.08771929824561403,
-                0
+                0.018867924528301886,
+                0.13636363636363635,
+                0.3333333333333333,
+                0.21739130434782608,
+                0.0,
+                0.038461538461538464
             ],
             "showBackground": false,
             "stack": "stack1",
@@ -278,8 +294,12 @@
                 }
             },
             "data": [
-                "\u51fa\u8840\u75c5",
-                "\u8840\u6813\u75c5"
+                "1",
+                "2A",
+                "2B",
+                "2M",
+                "2N",
+                "3"
             ]
         }
     ],
@@ -314,13 +334,13 @@
         }
     ]
 };
-        chart_1f6a3cf5ad3f4952bd1969fec8991cf4.setOption(option_1f6a3cf5ad3f4952bd1969fec8991cf4);
+        chart_148cb5eb2673444eb3b29bd2ed7346c6.setOption(option_148cb5eb2673444eb3b29bd2ed7346c6);
     </script>
-                <div id="e9c2e6420ec34ab3a3bbb59ab39a8aec" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="d2a6ea357f2a45e8a3568701addf7b09" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_e9c2e6420ec34ab3a3bbb59ab39a8aec = echarts.init(
-            document.getElementById('e9c2e6420ec34ab3a3bbb59ab39a8aec'), 'white', {renderer: 'canvas'});
-        var option_e9c2e6420ec34ab3a3bbb59ab39a8aec = {
+        var chart_d2a6ea357f2a45e8a3568701addf7b09 = echarts.init(
+            document.getElementById('d2a6ea357f2a45e8a3568701addf7b09'), 'white', {renderer: 'canvas'});
+        var option_d2a6ea357f2a45e8a3568701addf7b09 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -358,13 +378,153 @@
     "series": [
         {
             "type": "boxplot",
-            "name": "\u51fa\u8840\u75c5",
+            "name": "1",
             "data": [
                 [
                     28.1,
-                    37.4,
-                    45.650000000000006,
-                    58.2,
+                    35.5,
+                    41.0,
+                    47.6,
+                    102.5
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2A",
+            "data": [
+                [
+                    31.7,
+                    41.1,
+                    43.0,
+                    48.0,
+                    51.5
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2B",
+            "data": [
+                [
+                    37.2,
+                    37.2,
+                    43.2,
+                    45.4,
+                    53.0
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2M",
+            "data": [
+                [
+                    31.5,
+                    35.824999999999996,
+                    37.5,
+                    42.525000000000006,
+                    55.0
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2N",
+            "data": [
+                [
+                    60.2,
+                    61.0,
+                    62.9,
+                    86.6,
                     110.0
                 ]
             ],
@@ -393,8 +553,16 @@
         },
         {
             "type": "boxplot",
-            "name": "\u8840\u6813\u75c5",
-            "data": [],
+            "name": "3",
+            "data": [
+                [
+                    45.3,
+                    56.400000000000006,
+                    62.0,
+                    68.375,
+                    82.8
+                ]
+            ],
             "label": {
                 "show": true,
                 "position": "top",
@@ -422,12 +590,20 @@
     "legend": [
         {
             "data": [
-                "\u51fa\u8840\u75c5",
-                "\u8840\u6813\u75c5"
+                "1",
+                "2A",
+                "2B",
+                "2M",
+                "2N",
+                "3"
             ],
             "selected": {
-                "\u51fa\u8840\u75c5": true,
-                "\u8840\u6813\u75c5": true
+                "1": true,
+                "2A": true,
+                "2B": true,
+                "2M": true,
+                "2N": true,
+                "3": true
             },
             "show": true,
             "padding": 5,
@@ -510,13 +686,13 @@
         }
     ]
 };
-        chart_e9c2e6420ec34ab3a3bbb59ab39a8aec.setOption(option_e9c2e6420ec34ab3a3bbb59ab39a8aec);
+        chart_d2a6ea357f2a45e8a3568701addf7b09.setOption(option_d2a6ea357f2a45e8a3568701addf7b09);
     </script>
-                <div id="5256d5edb5084a74894a2d90db9e3d16" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="1f55eef317744f808f57cf6ef52a552a" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_5256d5edb5084a74894a2d90db9e3d16 = echarts.init(
-            document.getElementById('5256d5edb5084a74894a2d90db9e3d16'), 'white', {renderer: 'canvas'});
-        var option_5256d5edb5084a74894a2d90db9e3d16 = {
+        var chart_1f55eef317744f808f57cf6ef52a552a = echarts.init(
+            document.getElementById('1f55eef317744f808f57cf6ef52a552a'), 'white', {renderer: 'canvas'});
+        var option_1f55eef317744f808f57cf6ef52a552a = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -554,12 +730,47 @@
     "series": [
         {
             "type": "boxplot",
-            "name": "\u51fa\u8840\u75c5",
+            "name": "1",
             "data": [
                 [
-                    0.0,
-                    3.0,
-                    16.3,
+                    2.8,
+                    5.324999999999999,
+                    40.9,
+                    55.875,
+                    77.3
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2A",
+            "data": [
+                [
+                    11.3,
+                    15.8,
+                    25.0,
                     35.2,
                     180.3
                 ]
@@ -589,8 +800,121 @@
         },
         {
             "type": "boxplot",
-            "name": "\u8840\u6813\u75c5",
-            "data": [],
+            "name": "2B",
+            "data": [
+                [
+                    9.2,
+                    12.0,
+                    20.2,
+                    32.25,
+                    33.4
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2M",
+            "data": [
+                [
+                    7.3,
+                    15.6,
+                    18.2,
+                    24.799999999999997,
+                    31.0
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2N",
+            "data": [
+                [
+                    9.5,
+                    10.25,
+                    48.8,
+                    55.2,
+                    125.8
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "3",
+            "data": [
+                [
+                    0.0,
+                    0.7750000000000001,
+                    1.4,
+                    2.025,
+                    4.7
+                ]
+            ],
             "label": {
                 "show": true,
                 "position": "top",
@@ -618,12 +942,20 @@
     "legend": [
         {
             "data": [
-                "\u51fa\u8840\u75c5",
-                "\u8840\u6813\u75c5"
+                "1",
+                "2A",
+                "2B",
+                "2M",
+                "2N",
+                "3"
             ],
             "selected": {
-                "\u51fa\u8840\u75c5": true,
-                "\u8840\u6813\u75c5": true
+                "1": true,
+                "2A": true,
+                "2B": true,
+                "2M": true,
+                "2N": true,
+                "3": true
             },
             "show": true,
             "padding": 5,
@@ -706,13 +1038,13 @@
         }
     ]
 };
-        chart_5256d5edb5084a74894a2d90db9e3d16.setOption(option_5256d5edb5084a74894a2d90db9e3d16);
+        chart_1f55eef317744f808f57cf6ef52a552a.setOption(option_1f55eef317744f808f57cf6ef52a552a);
     </script>
-                <div id="730df3b65eac4f8987fc55fe7a5d2856" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="99518b8db6214d2a974f3d8b0fc46906" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_730df3b65eac4f8987fc55fe7a5d2856 = echarts.init(
-            document.getElementById('730df3b65eac4f8987fc55fe7a5d2856'), 'white', {renderer: 'canvas'});
-        var option_730df3b65eac4f8987fc55fe7a5d2856 = {
+        var chart_99518b8db6214d2a974f3d8b0fc46906 = echarts.init(
+            document.getElementById('99518b8db6214d2a974f3d8b0fc46906'), 'white', {renderer: 'canvas'});
+        var option_99518b8db6214d2a974f3d8b0fc46906 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -750,13 +1082,153 @@
     "series": [
         {
             "type": "boxplot",
-            "name": "\u51fa\u8840\u75c5",
+            "name": "1",
+            "data": [
+                [
+                    1.0,
+                    5.3,
+                    36.6,
+                    52.3,
+                    69.0
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2A",
+            "data": [
+                [
+                    1.3,
+                    5.0,
+                    6.5,
+                    14.5,
+                    30.7
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2B",
+            "data": [
+                [
+                    0.1,
+                    1.0,
+                    3.2,
+                    6.9,
+                    10.5
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2M",
             "data": [
                 [
                     0.0,
-                    1.3,
-                    4.95,
-                    28.725,
+                    2.7,
+                    5.0,
+                    7.699999999999999,
+                    19.3
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2N",
+            "data": [
+                [
+                    8.9,
+                    9.9,
+                    49.9,
+                    51.4,
                     119.6
                 ]
             ],
@@ -785,8 +1257,16 @@
         },
         {
             "type": "boxplot",
-            "name": "\u8840\u6813\u75c5",
-            "data": [],
+            "name": "3",
+            "data": [
+                [
+                    0.0,
+                    0.5,
+                    1.0,
+                    1.6,
+                    3.2
+                ]
+            ],
             "label": {
                 "show": true,
                 "position": "top",
@@ -814,12 +1294,20 @@
     "legend": [
         {
             "data": [
-                "\u51fa\u8840\u75c5",
-                "\u8840\u6813\u75c5"
+                "1",
+                "2A",
+                "2B",
+                "2M",
+                "2N",
+                "3"
             ],
             "selected": {
-                "\u51fa\u8840\u75c5": true,
-                "\u8840\u6813\u75c5": true
+                "1": true,
+                "2A": true,
+                "2B": true,
+                "2M": true,
+                "2N": true,
+                "3": true
             },
             "show": true,
             "padding": 5,
@@ -902,13 +1390,13 @@
         }
     ]
 };
-        chart_730df3b65eac4f8987fc55fe7a5d2856.setOption(option_730df3b65eac4f8987fc55fe7a5d2856);
+        chart_99518b8db6214d2a974f3d8b0fc46906.setOption(option_99518b8db6214d2a974f3d8b0fc46906);
     </script>
-                <div id="4b1f7410e3004c878b473202c6b8250d" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="09163f3730704aa5bad71a936e8acc48" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_4b1f7410e3004c878b473202c6b8250d = echarts.init(
-            document.getElementById('4b1f7410e3004c878b473202c6b8250d'), 'white', {renderer: 'canvas'});
-        var option_4b1f7410e3004c878b473202c6b8250d = {
+        var chart_09163f3730704aa5bad71a936e8acc48 = echarts.init(
+            document.getElementById('09163f3730704aa5bad71a936e8acc48'), 'white', {renderer: 'canvas'});
+        var option_09163f3730704aa5bad71a936e8acc48 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -946,13 +1434,48 @@
     "series": [
         {
             "type": "boxplot",
-            "name": "\u51fa\u8840\u75c5",
+            "name": "1",
             "data": [
                 [
-                    0.0,
-                    4.1,
-                    10.0,
-                    64.19999999999999,
+                    2.4,
+                    18.75,
+                    60.0,
+                    85.45,
+                    93.4
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2A",
+            "data": [
+                [
+                    3.6,
+                    7.9,
+                    25.0,
+                    50.0,
                     97.3
                 ]
             ],
@@ -981,8 +1504,121 @@
         },
         {
             "type": "boxplot",
-            "name": "\u8840\u6813\u75c5",
-            "data": [],
+            "name": "2B",
+            "data": [
+                [
+                    0.5,
+                    7.1,
+                    18.2,
+                    38.8,
+                    65.1
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2M",
+            "data": [
+                [
+                    0.0,
+                    4.65,
+                    15.7,
+                    78.7,
+                    87.5
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2N",
+            "data": [
+                [
+                    87.1,
+                    87.1,
+                    87.1,
+                    90.5,
+                    90.5
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "3",
+            "data": [
+                [
+                    0.4,
+                    3.0,
+                    4.1,
+                    5.775,
+                    10.7
+                ]
+            ],
             "label": {
                 "show": true,
                 "position": "top",
@@ -1010,12 +1646,20 @@
     "legend": [
         {
             "data": [
-                "\u51fa\u8840\u75c5",
-                "\u8840\u6813\u75c5"
+                "1",
+                "2A",
+                "2B",
+                "2M",
+                "2N",
+                "3"
             ],
             "selected": {
-                "\u51fa\u8840\u75c5": true,
-                "\u8840\u6813\u75c5": true
+                "1": true,
+                "2A": true,
+                "2B": true,
+                "2M": true,
+                "2N": true,
+                "3": true
             },
             "show": true,
             "padding": 5,
@@ -1098,13 +1742,13 @@
         }
     ]
 };
-        chart_4b1f7410e3004c878b473202c6b8250d.setOption(option_4b1f7410e3004c878b473202c6b8250d);
+        chart_09163f3730704aa5bad71a936e8acc48.setOption(option_09163f3730704aa5bad71a936e8acc48);
     </script>
-                <div id="1d9127b1ef974351a143b0f203119c3e" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="cb2e4aa1b1d049988111aa7ab8051ea6" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_1d9127b1ef974351a143b0f203119c3e = echarts.init(
-            document.getElementById('1d9127b1ef974351a143b0f203119c3e'), 'white', {renderer: 'canvas'});
-        var option_1d9127b1ef974351a143b0f203119c3e = {
+        var chart_cb2e4aa1b1d049988111aa7ab8051ea6 = echarts.init(
+            document.getElementById('cb2e4aa1b1d049988111aa7ab8051ea6'), 'white', {renderer: 'canvas'});
+        var option_cb2e4aa1b1d049988111aa7ab8051ea6 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -1142,13 +1786,13 @@
     "series": [
         {
             "type": "boxplot",
-            "name": "\u51fa\u8840\u75c5",
+            "name": "1",
             "data": [
                 [
                     0.0,
-                    6.124999999999999,
-                    29.3,
-                    50.8,
+                    16.4,
+                    52.9,
+                    71.3,
                     138.7
                 ]
             ],
@@ -1177,8 +1821,156 @@
         },
         {
             "type": "boxplot",
-            "name": "\u8840\u6813\u75c5",
-            "data": [],
+            "name": "2A",
+            "data": [
+                [
+                    10.7,
+                    38.7,
+                    42.3,
+                    50.8,
+                    85.9
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2B",
+            "data": [
+                [
+                    16.9,
+                    22.7,
+                    41.1,
+                    47.85,
+                    49.2
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2M",
+            "data": [
+                [
+                    7.9,
+                    30.875,
+                    40.75,
+                    50.8,
+                    74.1
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "2N",
+            "data": [
+                [
+                    1.3,
+                    3.85,
+                    6.5,
+                    6.5,
+                    9.8
+                ]
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8
+            },
+            "markPoint": {
+                "label": {
+                    "show": true,
+                    "position": "inside",
+                    "color": "#fff",
+                    "margin": 8
+                }
+            },
+            "markLine": {
+                "silent": false,
+                "precision": 2,
+                "label": {
+                    "show": true,
+                    "position": "top",
+                    "margin": 8
+                }
+            }
+        },
+        {
+            "type": "boxplot",
+            "name": "3",
+            "data": [
+                [
+                    2.0,
+                    3.975,
+                    4.75,
+                    5.75,
+                    8.6
+                ]
+            ],
             "label": {
                 "show": true,
                 "position": "top",
@@ -1206,12 +1998,20 @@
     "legend": [
         {
             "data": [
-                "\u51fa\u8840\u75c5",
-                "\u8840\u6813\u75c5"
+                "1",
+                "2A",
+                "2B",
+                "2M",
+                "2N",
+                "3"
             ],
             "selected": {
-                "\u51fa\u8840\u75c5": true,
-                "\u8840\u6813\u75c5": true
+                "1": true,
+                "2A": true,
+                "2B": true,
+                "2M": true,
+                "2N": true,
+                "3": true
             },
             "show": true,
             "padding": 5,
@@ -1294,7 +2094,7 @@
         }
     ]
 };
-        chart_1d9127b1ef974351a143b0f203119c3e.setOption(option_1d9127b1ef974351a143b0f203119c3e);
+        chart_cb2e4aa1b1d049988111aa7ab8051ea6.setOption(option_cb2e4aa1b1d049988111aa7ab8051ea6);
     </script>
     </div>
 
