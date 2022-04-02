@@ -7,12 +7,12 @@ import json
 import numpy as np
 
 from PyQt5.QtWebEngineWidgets import QWebEngineView
-from PyQt5.QtWidgets import QDialog, QApplication, QAbstractItemView, QTableView, QWidget, QComboBox,QHBoxLayout, QFrame, \
+from PyQt5.QtWidgets import QDialog, QApplication, QAbstractItemView, QTableView, QWidget, QComboBox, QHBoxLayout, QFrame, \
     QVBoxLayout, QPushButton
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtCore import Qt, pyqtSlot, pyqtSignal, QUrl
 
-#作图相关
+# 作图相关
 import pyecharts.options as opts
 from pyecharts.options import ComponentTitleOpts
 from pyecharts.charts import Boxplot
@@ -37,13 +37,17 @@ class ExamDiagnosis(QDialog):
         self.haemophilia_list = []
         self.binary_list = []
 
-
         self.db_name = ["APTT", "Ag", "Act", "RIPA", "FV3C", "CB", "pp", "BS"]
 
-
-        self.dict = {"APTT":0,"Ag":1,"全血凝固时间":2,"血浆蛋白":3,"凝血因子活性":4,"结合胆红素":5,"PP":6,"血糖":7}
-
-
+        self.dict = {
+            "APTT": 0,
+            "Ag": 1,
+            "全血凝固时间": 2,
+            "血浆蛋白": 3,
+            "凝血因子活性": 4,
+            "结合胆红素": 5,
+            "PP": 6,
+            "血糖": 7}
 
         self.logger = None
         self.connection = None
@@ -56,22 +60,22 @@ class ExamDiagnosis(QDialog):
         self.initUI()
 
     def generate_data(self):
-        #总体情况
+        # 总体情况
         for item in self.db_name:
-            sql = """select %s from Exam_table where %s is not null""" % (item,item)
+            sql = """select %s from Exam_table where %s is not null""" % (
+                item, item)
             self.cursor.execute(sql)
             tuple_data = list(self.cursor.fetchall())
             list_data = [i[0] for i in tuple_data]
             self.db_list.append(list_data)
 
-
-        #按vwd
+        # 按vwd
         for item in self.db_name:
             x_type = ['1', '2A', '2B', '2M', '2N', '3']
             item_vwd = {}
             for x in x_type:
-                sql = """SELECT Exam_table.%s FROM Exam_table INNER JOIN Diagnosis_table ON Exam_table.patient_ID=Diagnosis_table.patient_ID  
-    WHERE Diagnosis_table.vwd_type='%s' and Exam_table.%s is not null""" % (item,x,item)
+                sql = """SELECT Exam_table.%s FROM Exam_table INNER JOIN Diagnosis_table ON Exam_table.patient_ID=Diagnosis_table.patient_ID
+    WHERE Diagnosis_table.vwd_type='%s' and Exam_table.%s is not null""" % (item, x, item)
                 self.cursor.execute(sql)
                 tuple_data = list(self.cursor.fetchall())
                 list_data = [i[0] for i in tuple_data]
@@ -79,13 +83,12 @@ class ExamDiagnosis(QDialog):
 
             self.vwd_list.append(item_vwd)
 
-
-        #按血友病类型
+        # 按血友病类型
         for item in self.db_name:
             x_type = ['A', 'B', 'VWD']
             item_hae = {}
             for x in x_type:
-                sql = """SELECT Exam_table.%s FROM Exam_table INNER JOIN Diagnosis_table ON Exam_table.patient_ID=Diagnosis_table.patient_ID  
+                sql = """SELECT Exam_table.%s FROM Exam_table INNER JOIN Diagnosis_table ON Exam_table.patient_ID=Diagnosis_table.patient_ID
     WHERE Diagnosis_table.haemophilia_type='%s' and Exam_table.%s is not null""" % (item, x, item)
                 self.cursor.execute(sql)
                 tuple_data = list(self.cursor.fetchall())
@@ -96,10 +99,10 @@ class ExamDiagnosis(QDialog):
 
         # 按出血/血栓
         for item in self.db_name:
-            x_type = ['出血病','血栓病']
+            x_type = ['出血病', '血栓病']
             item_binary = {}
             for x in x_type:
-                sql = """SELECT Exam_table.%s FROM Exam_table INNER JOIN Diagnosis_table ON Exam_table.patient_ID=Diagnosis_table.patient_ID  
+                sql = """SELECT Exam_table.%s FROM Exam_table INNER JOIN Diagnosis_table ON Exam_table.patient_ID=Diagnosis_table.patient_ID
     WHERE Diagnosis_table.binary_type='%s' and Exam_table.%s is not null""" % (item, x, item)
                 self.cursor.execute(sql)
                 tuple_data = list(self.cursor.fetchall())
@@ -113,7 +116,8 @@ class ExamDiagnosis(QDialog):
         self.setMinimumSize(1200, 800)
 
         self.cb = QComboBox()
-        self.cb.addItems(["血型","APTT", "Ag", "全血凝固时间","血浆蛋白","凝血因子活性","结合胆红素","PP","血糖"])
+        self.cb.addItems(["血型", "APTT", "Ag", "全血凝固时间",
+                          "血浆蛋白", "凝血因子活性", "结合胆红素", "PP", "血糖"])
 
         self.btn = QPushButton("确定", self)  # 确定按钮
         self.btn.clicked.connect(self.cao)  # 绑定槽函数，确定后，显示后续所有ui
@@ -129,8 +133,6 @@ class ExamDiagnosis(QDialog):
         self.myHtml.move(10, 50)
         self.myHtml.resize(1000, 600)
 
-
-
     def cao(self):
 
         if self.cb.currentText() == '血型':
@@ -138,8 +140,7 @@ class ExamDiagnosis(QDialog):
         else:
             self.ShowExamDiagosis(self.cb.currentText())
 
-
-    def load_url(self,file_name):
+    def load_url(self, file_name):
         file_path = os.path.abspath(
             os.path.join(
                 os.path.dirname(__file__),
@@ -147,27 +148,25 @@ class ExamDiagnosis(QDialog):
         local_url = QUrl.fromLocalFile(file_path)
         self.myHtml.load(local_url)
 
-    def ShowExamDiagosis(self,project):
+    def ShowExamDiagosis(self, project):
         tab = Tab()
         tab.add(self.show_all_boxplot(project), "总体")
         tab.add(self.show_vwd_boxplot(project), "按VWD类型")
         tab.add(self.show_haemophilia_boxplot(project), "按血友病类型")
         tab.add(self.show_binary_boxplot(project), "按出血/血栓")
 
-
         tab.render("exam_diagnosis_boxplot.html")
         self.load_url("exam_diagnosis_boxplot.html")
 
-
-    def show_all_boxplot(self,project)->Boxplot:
+    def show_all_boxplot(self, project) -> Boxplot:
         v1 = [self.db_list[self.dict[project]]]
         c = Boxplot()
         c.add_xaxis([project])
-        c.add_yaxis(project,c.prepare_data(v1))
+        c.add_yaxis(project, c.prepare_data(v1))
         c.set_global_opts(title_opts=opts.TitleOpts(title="所有数据"))
         return c
 
-    def show_vwd_boxplot(self,project)->Boxplot:
+    def show_vwd_boxplot(self, project) -> Boxplot:
         i = self.dict[project]
 
         v1 = [self.vwd_list[i]['1']]
@@ -176,7 +175,6 @@ class ExamDiagnosis(QDialog):
         v4 = [self.vwd_list[i]['2M']]
         v5 = [self.vwd_list[i]['2N']]
         v6 = [self.vwd_list[i]['3']]
-
 
         c = Boxplot()
         c.add_xaxis([project])
@@ -191,11 +189,10 @@ class ExamDiagnosis(QDialog):
         c.set_global_opts(title_opts=opts.TitleOpts(title="按vwd类型"))
         return c
 
-    def show_haemophilia_boxplot(self,project)->Boxplot:
+    def show_haemophilia_boxplot(self, project) -> Boxplot:
         v1 = [self.haemophilia_list[self.dict[project]]['A']]
         v2 = [self.haemophilia_list[self.dict[project]]['B']]
         v3 = [self.haemophilia_list[self.dict[project]]['VWD']]
-
 
         c = Boxplot()
         c.add_xaxis([project])
@@ -206,19 +203,17 @@ class ExamDiagnosis(QDialog):
         c.set_global_opts(title_opts=opts.TitleOpts(title="按血友病类型"))
         return c
 
-    def show_binary_boxplot(self,project)->Boxplot:
+    def show_binary_boxplot(self, project) -> Boxplot:
         i = self.dict[project]
 
         v1 = [self.binary_list[i]['出血病']]
         v2 = [self.binary_list[i]['血栓病']]
-
 
         c = Boxplot()
         c.add_xaxis([project])
 
         c.add_yaxis("出血病", c.prepare_data(v1))
         c.add_yaxis("血栓病", c.prepare_data(v2))
-
 
         c.set_global_opts(title_opts=opts.TitleOpts(title="出血/血栓"))
         return c
@@ -227,6 +222,7 @@ class ExamDiagnosis(QDialog):
 ##  ============================== 功能函数区 ==============================#
 
     # 设置cursor和connection
+
 
     def set_connection_cursor(self) -> None:
         self.connection = get_sql_connection()

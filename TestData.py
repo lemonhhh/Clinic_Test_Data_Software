@@ -19,15 +19,14 @@ import scipy.stats as stats
 from Util.Common import get_sql_connection, get_logger, show_error_message
 
 
+
+
 class TestExam(QDialog):
     def __init__(self, parent=None):
         # 继承所有dialog的方法
         super(TestExam, self).__init__(parent)
         self.p_value = None
         self.data_list = []
-
-
-
 
         self.connection = None
         self.cursor = None
@@ -37,6 +36,14 @@ class TestExam(QDialog):
 
         self.__UI = Ui_Dialog()
         self.__UI.setupUi(self)
+
+    @pyqtSlot()
+    def on_btn_help_clicked(self):
+        dialog = QDialog(self)
+
+        dialog.move(100,50)
+        dialog.resize(600, 400)
+        dialog.show()
 
 
 
@@ -77,15 +84,7 @@ class TestExam(QDialog):
             self.data_list = test_data
 
             if method == 'ANOVA':
-                print(len(self.data_list))
-                print(self.data_list[0])
-                print(self.data_list[1])
-                print(self.data_list[2])
-
                 f,self.p_value = stats.f_oneway(self.data_list[0],self.data_list[1],self.data_list[2],self.data_list[3],self.data_list[4],self.data_list[5])
-
-
-
                 print(f,self.p_value)
             elif method == 'Kruskal-Wallis':
                 s,self.p_value = stats.kruskal(self.data_list[0],self.data_list[1],self.data_list[2],self.data_list[3],self.data_list[4],self.data_list[5])
@@ -139,7 +138,6 @@ class TestExam(QDialog):
                 s, self.p_value = stats.kendalltau(self.data_list[0], self.data_list[1])
             else:
                 show_error_message(self, "请选择正确的方法")
-
 
         elif group == '血型':
             x_group = ['A','B','AB','O']

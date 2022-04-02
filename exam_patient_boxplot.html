@@ -40,17 +40,17 @@
         }
     </style>
     <div class="tab">
-            <button class="tablinks" onclick="showChart(event, 'e94c6c59d3174af1ac92dad7329fb512')">总体</button>
-            <button class="tablinks" onclick="showChart(event, '001ed93ec6f240beb7aeab327a24366f')">按性别</button>
-            <button class="tablinks" onclick="showChart(event, '48a1d3d956e54797be350ddacf197f20')">按年龄</button>
+            <button class="tablinks" onclick="showChart(event, 'dd39532f3565457eb9b000c7040f347f')">总体</button>
+            <button class="tablinks" onclick="showChart(event, '008b05b85e044c3494057932c677f653')">按性别</button>
+            <button class="tablinks" onclick="showChart(event, '6759b26ff6cb4ecfb10d2e684a496e87')">按年龄</button>
     </div>
 
     <div class="box">
-                <div id="e94c6c59d3174af1ac92dad7329fb512" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="dd39532f3565457eb9b000c7040f347f" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_e94c6c59d3174af1ac92dad7329fb512 = echarts.init(
-            document.getElementById('e94c6c59d3174af1ac92dad7329fb512'), 'white', {renderer: 'canvas'});
-        var option_e94c6c59d3174af1ac92dad7329fb512 = {
+        var chart_dd39532f3565457eb9b000c7040f347f = echarts.init(
+            document.getElementById('dd39532f3565457eb9b000c7040f347f'), 'white', {renderer: 'canvas'});
+        var option_dd39532f3565457eb9b000c7040f347f = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -88,14 +88,14 @@
     "series": [
         {
             "type": "boxplot",
-            "name": "\u7ed3\u5408\u80c6\u7ea2\u7d20",
+            "name": "APTT",
             "data": [
                 [
-                    0.0,
-                    1.5,
-                    6.5,
-                    25.299999999999997,
-                    127.8
+                    28.1,
+                    37.4,
+                    45.650000000000006,
+                    58.2,
+                    110.0
                 ]
             ],
             "label": {
@@ -125,10 +125,10 @@
     "legend": [
         {
             "data": [
-                "\u7ed3\u5408\u80c6\u7ea2\u7d20"
+                "APTT"
             ],
             "selected": {
-                "\u7ed3\u5408\u80c6\u7ea2\u7d20": true
+                "APTT": true
             },
             "show": true,
             "padding": 5,
@@ -176,7 +176,7 @@
                 }
             },
             "data": [
-                "\u7ed3\u5408\u80c6\u7ea2\u7d20"
+                "APTT"
             ]
         }
     ],
@@ -211,13 +211,13 @@
         }
     ]
 };
-        chart_e94c6c59d3174af1ac92dad7329fb512.setOption(option_e94c6c59d3174af1ac92dad7329fb512);
+        chart_dd39532f3565457eb9b000c7040f347f.setOption(option_dd39532f3565457eb9b000c7040f347f);
     </script>
-                <div id="001ed93ec6f240beb7aeab327a24366f" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="008b05b85e044c3494057932c677f653" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_001ed93ec6f240beb7aeab327a24366f = echarts.init(
-            document.getElementById('001ed93ec6f240beb7aeab327a24366f'), 'white', {renderer: 'canvas'});
-        var option_001ed93ec6f240beb7aeab327a24366f = {
+        var chart_008b05b85e044c3494057932c677f653 = echarts.init(
+            document.getElementById('008b05b85e044c3494057932c677f653'), 'white', {renderer: 'canvas'});
+        var option_008b05b85e044c3494057932c677f653 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -293,11 +293,11 @@
             "name": "\u7537",
             "data": [
                 [
-                    0.0,
-                    1.9,
-                    4.8,
-                    19.8,
-                    70.9
+                    29.3,
+                    37.2,
+                    45.4,
+                    62.0,
+                    102.5
                 ]
             ],
             "label": {
@@ -380,7 +380,7 @@
                 }
             },
             "data": [
-                "\u7ed3\u5408\u80c6\u7ea2\u7d20"
+                "APTT"
             ]
         }
     ],
@@ -415,13 +415,13 @@
         }
     ]
 };
-        chart_001ed93ec6f240beb7aeab327a24366f.setOption(option_001ed93ec6f240beb7aeab327a24366f);
+        chart_008b05b85e044c3494057932c677f653.setOption(option_008b05b85e044c3494057932c677f653);
     </script>
-                <div id="48a1d3d956e54797be350ddacf197f20" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="6759b26ff6cb4ecfb10d2e684a496e87" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_48a1d3d956e54797be350ddacf197f20 = echarts.init(
-            document.getElementById('48a1d3d956e54797be350ddacf197f20'), 'white', {renderer: 'canvas'});
-        var option_48a1d3d956e54797be350ddacf197f20 = {
+        var chart_6759b26ff6cb4ecfb10d2e684a496e87 = echarts.init(
+            document.getElementById('6759b26ff6cb4ecfb10d2e684a496e87'), 'white', {renderer: 'canvas'});
+        var option_6759b26ff6cb4ecfb10d2e684a496e87 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -650,7 +650,7 @@
                 }
             },
             "data": [
-                "\u7ed3\u5408\u80c6\u7ea2\u7d20"
+                "APTT"
             ]
         }
     ],
@@ -685,7 +685,7 @@
         }
     ]
 };
-        chart_48a1d3d956e54797be350ddacf197f20.setOption(option_48a1d3d956e54797be350ddacf197f20);
+        chart_6759b26ff6cb4ecfb10d2e684a496e87.setOption(option_6759b26ff6cb4ecfb10d2e684a496e87);
     </script>
     </div>
 
