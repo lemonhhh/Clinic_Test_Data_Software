@@ -2,23 +2,30 @@
 # -*- coding: UTF-8 -*-
 import sys
 import os
-import datetime
-import json
 import numpy as np
 
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtWidgets import QDialog, QApplication, QAbstractItemView, QTableView, QWidget, QComboBox,QHBoxLayout, QFrame, \
     QVBoxLayout, QPushButton
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
+
 from PyQt5.QtCore import Qt, pyqtSlot, pyqtSignal, QUrl
 
 from UI.Ui_TestWindow import Ui_Dialog
+from  UI.Ui_pvalueWindow import Ui_p_diag
 
 import scipy.stats as stats
 # 模块
 from Util.Common import get_sql_connection, get_logger, show_error_message
 
 
+class PDialog(QDialog):
+    def __init__(self, parent=None):
+        #继承所有dialog的方法
+        super(PDialog, self).__init__(parent)
+        #设置ui
+        self.__UI = Ui_p_diag()
+        self.__UI.setupUi(self)
 
 
 class TestExam(QDialog):
@@ -39,11 +46,11 @@ class TestExam(QDialog):
 
     @pyqtSlot()
     def on_btn_help_clicked(self):
-        dialog = QDialog(self)
-
-        dialog.move(100,50)
-        dialog.resize(600, 400)
+        dialog = PDialog(self)
+        dialog.setAttribute(Qt.WA_DeleteOnClose)
         dialog.show()
+
+
 
 
 

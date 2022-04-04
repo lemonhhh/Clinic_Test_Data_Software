@@ -40,18 +40,18 @@
         }
     </style>
     <div class="tab">
-            <button class="tablinks" onclick="showChart(event, '848fc376578e458fbd164ea3f9ddd2c8')">总体</button>
-            <button class="tablinks" onclick="showChart(event, '1404e6d26c4d44f8ae06d3c90788aa55')">按VWD类型</button>
-            <button class="tablinks" onclick="showChart(event, 'c8ed28c48c1f49fa82343f776ff2f131')">按血友病类型</button>
-            <button class="tablinks" onclick="showChart(event, '656e6e705a6541788c2b86a08715e104')">按出血/血栓</button>
+            <button class="tablinks" onclick="showChart(event, '1ea4be28fbe041acaaeecd7a06bbc68d')">总体</button>
+            <button class="tablinks" onclick="showChart(event, '6381aca6b204412fadd5a19fa3b7cceb')">按VWD类型</button>
+            <button class="tablinks" onclick="showChart(event, 'c0cef1af8b674c88a2d307b24742e14d')">按血友病类型</button>
+            <button class="tablinks" onclick="showChart(event, 'ccd00be990214999b9a236568da2030e')">按出血/血栓</button>
     </div>
 
     <div class="box">
-                <div id="848fc376578e458fbd164ea3f9ddd2c8" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="1ea4be28fbe041acaaeecd7a06bbc68d" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_848fc376578e458fbd164ea3f9ddd2c8 = echarts.init(
-            document.getElementById('848fc376578e458fbd164ea3f9ddd2c8'), 'white', {renderer: 'canvas'});
-        var option_848fc376578e458fbd164ea3f9ddd2c8 = {
+        var chart_1ea4be28fbe041acaaeecd7a06bbc68d = echarts.init(
+            document.getElementById('1ea4be28fbe041acaaeecd7a06bbc68d'), 'white', {renderer: 'canvas'});
+        var option_1ea4be28fbe041acaaeecd7a06bbc68d = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -89,14 +89,14 @@
     "series": [
         {
             "type": "boxplot",
-            "name": "APTT",
+            "name": "Ag",
             "data": [
                 [
-                    28.1,
-                    37.4,
-                    45.650000000000006,
-                    58.2,
-                    110.0
+                    0.0,
+                    3.0,
+                    16.3,
+                    35.2,
+                    180.3
                 ]
             ],
             "label": {
@@ -126,10 +126,10 @@
     "legend": [
         {
             "data": [
-                "APTT"
+                "Ag"
             ],
             "selected": {
-                "APTT": true
+                "Ag": true
             },
             "show": true,
             "padding": 5,
@@ -177,7 +177,7 @@
                 }
             },
             "data": [
-                "APTT"
+                "Ag"
             ]
         }
     ],
@@ -212,13 +212,13 @@
         }
     ]
 };
-        chart_848fc376578e458fbd164ea3f9ddd2c8.setOption(option_848fc376578e458fbd164ea3f9ddd2c8);
+        chart_1ea4be28fbe041acaaeecd7a06bbc68d.setOption(option_1ea4be28fbe041acaaeecd7a06bbc68d);
     </script>
-                <div id="1404e6d26c4d44f8ae06d3c90788aa55" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="6381aca6b204412fadd5a19fa3b7cceb" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_1404e6d26c4d44f8ae06d3c90788aa55 = echarts.init(
-            document.getElementById('1404e6d26c4d44f8ae06d3c90788aa55'), 'white', {renderer: 'canvas'});
-        var option_1404e6d26c4d44f8ae06d3c90788aa55 = {
+        var chart_6381aca6b204412fadd5a19fa3b7cceb = echarts.init(
+            document.getElementById('6381aca6b204412fadd5a19fa3b7cceb'), 'white', {renderer: 'canvas'});
+        var option_6381aca6b204412fadd5a19fa3b7cceb = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -259,11 +259,11 @@
             "name": "1",
             "data": [
                 [
-                    28.1,
-                    35.5,
-                    41.0,
-                    47.6,
-                    102.5
+                    2.8,
+                    5.324999999999999,
+                    40.9,
+                    55.875,
+                    77.3
                 ]
             ],
             "label": {
@@ -294,11 +294,11 @@
             "name": "2A",
             "data": [
                 [
-                    31.7,
-                    41.1,
-                    43.0,
-                    48.0,
-                    51.5
+                    11.3,
+                    15.8,
+                    25.0,
+                    35.2,
+                    180.3
                 ]
             ],
             "label": {
@@ -329,11 +329,11 @@
             "name": "2B",
             "data": [
                 [
-                    37.2,
-                    37.2,
-                    43.2,
-                    45.4,
-                    53.0
+                    9.2,
+                    12.0,
+                    20.2,
+                    32.25,
+                    33.4
                 ]
             ],
             "label": {
@@ -364,11 +364,11 @@
             "name": "2M",
             "data": [
                 [
-                    31.5,
-                    35.824999999999996,
-                    37.5,
-                    42.525000000000006,
-                    55.0
+                    7.3,
+                    15.6,
+                    18.2,
+                    24.799999999999997,
+                    31.0
                 ]
             ],
             "label": {
@@ -399,11 +399,11 @@
             "name": "2N",
             "data": [
                 [
-                    60.2,
-                    61.0,
-                    62.9,
-                    86.6,
-                    110.0
+                    9.5,
+                    10.25,
+                    48.8,
+                    55.2,
+                    125.8
                 ]
             ],
             "label": {
@@ -434,11 +434,11 @@
             "name": "3",
             "data": [
                 [
-                    45.3,
-                    56.400000000000006,
-                    62.0,
-                    68.375,
-                    82.8
+                    0.0,
+                    0.7750000000000001,
+                    1.4,
+                    2.025,
+                    4.7
                 ]
             ],
             "label": {
@@ -529,7 +529,7 @@
                 }
             },
             "data": [
-                "APTT"
+                "Ag"
             ]
         }
     ],
@@ -564,13 +564,13 @@
         }
     ]
 };
-        chart_1404e6d26c4d44f8ae06d3c90788aa55.setOption(option_1404e6d26c4d44f8ae06d3c90788aa55);
+        chart_6381aca6b204412fadd5a19fa3b7cceb.setOption(option_6381aca6b204412fadd5a19fa3b7cceb);
     </script>
-                <div id="c8ed28c48c1f49fa82343f776ff2f131" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="c0cef1af8b674c88a2d307b24742e14d" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_c8ed28c48c1f49fa82343f776ff2f131 = echarts.init(
-            document.getElementById('c8ed28c48c1f49fa82343f776ff2f131'), 'white', {renderer: 'canvas'});
-        var option_c8ed28c48c1f49fa82343f776ff2f131 = {
+        var chart_c0cef1af8b674c88a2d307b24742e14d = echarts.init(
+            document.getElementById('c0cef1af8b674c88a2d307b24742e14d'), 'white', {renderer: 'canvas'});
+        var option_c0cef1af8b674c88a2d307b24742e14d = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -665,11 +665,11 @@
             "name": "VWD",
             "data": [
                 [
-                    28.1,
-                    37.4,
-                    45.650000000000006,
-                    58.2,
-                    110.0
+                    0.0,
+                    3.0,
+                    16.3,
+                    35.2,
+                    180.3
                 ]
             ],
             "label": {
@@ -754,7 +754,7 @@
                 }
             },
             "data": [
-                "APTT"
+                "Ag"
             ]
         }
     ],
@@ -789,13 +789,13 @@
         }
     ]
 };
-        chart_c8ed28c48c1f49fa82343f776ff2f131.setOption(option_c8ed28c48c1f49fa82343f776ff2f131);
+        chart_c0cef1af8b674c88a2d307b24742e14d.setOption(option_c0cef1af8b674c88a2d307b24742e14d);
     </script>
-                <div id="656e6e705a6541788c2b86a08715e104" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="ccd00be990214999b9a236568da2030e" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_656e6e705a6541788c2b86a08715e104 = echarts.init(
-            document.getElementById('656e6e705a6541788c2b86a08715e104'), 'white', {renderer: 'canvas'});
-        var option_656e6e705a6541788c2b86a08715e104 = {
+        var chart_ccd00be990214999b9a236568da2030e = echarts.init(
+            document.getElementById('ccd00be990214999b9a236568da2030e'), 'white', {renderer: 'canvas'});
+        var option_ccd00be990214999b9a236568da2030e = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -836,11 +836,11 @@
             "name": "\u51fa\u8840\u75c5",
             "data": [
                 [
-                    28.1,
-                    37.4,
-                    45.650000000000006,
-                    58.2,
-                    110.0
+                    0.0,
+                    3.0,
+                    16.3,
+                    35.2,
+                    180.3
                 ]
             ],
             "label": {
@@ -950,7 +950,7 @@
                 }
             },
             "data": [
-                "APTT"
+                "Ag"
             ]
         }
     ],
@@ -985,7 +985,7 @@
         }
     ]
 };
-        chart_656e6e705a6541788c2b86a08715e104.setOption(option_656e6e705a6541788c2b86a08715e104);
+        chart_ccd00be990214999b9a236568da2030e.setOption(option_ccd00be990214999b9a236568da2030e);
     </script>
     </div>
 

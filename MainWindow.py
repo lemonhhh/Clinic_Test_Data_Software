@@ -31,6 +31,7 @@ from ManDiagnosis import ManDiag
 #~~~~~检验管理～～～
 from ExamPatient import ExamPatient
 from ExamDiagnosis import ExamDiagnosis
+from DataChange import DataChange
 #～～～结果管理～～～
 from DiseaseTree import DiseaseTree #疾病树
 from DiseaseClass import DiseaseClass
@@ -312,6 +313,11 @@ class MainWindow(QMainWindow):
         examd_widget.setAttribute(Qt.WA_DeleteOnClose)
         examd_widget.show()
 
+    @pyqtSlot()
+    def on_data_change_clicked(self):
+        change_widget = DataChange(self)
+        change_widget.setAttribute(Qt.WA_DeleteOnClose)
+        change_widget.show()
 
 #～～～～～～～～～【诊断管理】～～～～～～～～～～～～
     # 点击【疾病介绍】
@@ -354,10 +360,8 @@ class MainWindow(QMainWindow):
     # 槽函数(为了删除样本)
     #槽函数选择是在Qt Designer中定义的
     def talbe_choose(self):
-        print("触发table_choose")
         row = (self.__UI.tableView_show.currentIndex().row())
         col = (self.__UI.tableView_show.currentIndex().column())
-        print("col is ",col)
         id_data = (self.data_model.itemData(self.data_model.index(row, 0)))
         p_data = (self.data_model.itemData(self.data_model.index(row, 1)))
         self.sample_id = (id_data[0])
@@ -543,7 +547,7 @@ class MainWindow(QMainWindow):
             ],
             colCount=17)
 
-        print("first name",first_name)
+
         connection = get_sql_connection()
         cursor = connection.cursor()
         types = first_name[0]
@@ -565,8 +569,6 @@ class MainWindow(QMainWindow):
         else:
             sql = """select * from Exam_table """
 
-        print("types",types)
-        print(sql)
         # 执行查询结果
         cursor.execute(sql)
         if self.__UI.tableView_exam.model() is not None:

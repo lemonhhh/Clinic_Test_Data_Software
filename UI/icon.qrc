@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>pictures/calendar--arrow.png</file>
+    <file>pictures/switch--pencil.png</file>
+    <file>pictures/p.png</file>
     <file>pictures/zone-label.png</file>
     <file>pictures/user-green.png</file>
     <file>pictures/system-monitor.png</file>

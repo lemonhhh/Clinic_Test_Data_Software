@@ -1862,7 +1862,7 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
     </widget>
     <widget class="QWidget" name="PatientManagement">
      <attribute name="title">
-      <string>病人管理</string>
+      <string>患者管理</string>
      </attribute>
      <widget class="QWidget" name="layoutWidget_3">
       <property name="geometry">
@@ -1926,7 +1926,7 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
           <string notr="true">border:none;</string>
          </property>
          <property name="text">
-          <string>删除病人</string>
+          <string>删除患者</string>
          </property>
          <property name="icon">
           <iconset resource="icon.qrc">
@@ -2211,7 +2211,7 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
         <height>56</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_patient_6" stretch="0,0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_patient_6" stretch="0,0,0,0,0,0">
        <property name="spacing">
         <number>8</number>
        </property>
@@ -2269,6 +2269,40 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
          <property name="icon">
           <iconset resource="icon.qrc">
            <normaloff>:/newPrefix/pictures/zone-label.png</normaloff>:/newPrefix/pictures/zone-label.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="data_change">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>变化分析</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/calendar--arrow.png</normaloff>:/newPrefix/pictures/calendar--arrow.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="cor_analysis">
+         <property name="styleSheet">
+          <string notr="true">border:none;</string>
+         </property>
+         <property name="text">
+          <string>相关性分析</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icon.qrc">
+           <normaloff>:/newPrefix/pictures/switch--pencil.png</normaloff>:/newPrefix/pictures/switch--pencil.png</iconset>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextUnderIcon</enum>
