@@ -28,25 +28,33 @@ class PatientStatis(QDialog):
         # 继承所有dialog的方法
         super(PatientStatis, self).__init__(parent)
         # 初始化ui
-        self.initUI()
-        # 为查询进行配置
         self.logger = None
         self.connection = None
         self.cursor = None
         self.set_connection_cursor()  # 建立连接
         self.set_logger()
 
+        self.initUI()
+        # 为查询进行配置
+
     def initUI(self):
         self.setWindowTitle("检验结果分析统计")
         self.setMinimumSize(1200, 800)
+
+        self.myHtml = QWebEngineView(self)  # 浏览器引擎控件
+        self.myHtml.move(10, 50)
+        self.myHtml.resize(1000, 600)
+        self.myHtml.setVisible(False)
+
         btn1 = QPushButton("性别")
         btn2 = QPushButton("年龄")
         btn3 = QPushButton("是否有诊断结果")
         btn4 = QPushButton("是否吸烟")
         btn5 = QPushButton("是否饮酒")
         btn6 = QPushButton("是否有输血史")
-        btn7 = QPushButton("是否有传染你病史")
-        btn8 = QPushButton("是否有过敏史")
+        btn7 = QPushButton("是否有手术史")
+        btn8 = QPushButton("是否有传染病史")
+        btn9 = QPushButton("是否有过敏史")
 
 
         hlayout = QHBoxLayout()
@@ -66,13 +74,14 @@ class PatientStatis(QDialog):
         btn1.clicked.connect(self.sta_gender)
         btn2.clicked.connect(self.sta_age)
         btn3.clicked.connect(self.sta_result)
-        btn4.clicked.connect(self.sta_smoke)
 
+        btn4.clicked.connect(lambda:self.sta_history("smoke"))
+        btn5.clicked.connect(lambda: self.sta_history("drink"))
+        btn6.clicked.connect(lambda:self.sta_history("transfusion"))
+        btn7.clicked.connect(lambda:self.sta_history("operation"))
+        btn8.clicked.connect(lambda:self.sta_history("infectious"))
+        btn9.clicked.connect(lambda:self.sta_history("allergy"))
 
-        self.myHtml = QWebEngineView(self)  # 浏览器引擎控件
-        self.myHtml.move(10, 50)
-        self.myHtml.resize(1000, 600)
-        self.myHtml.setVisible(False)
 
     def load_url(self,file_name):
         file_path = os.path.abspath(
@@ -85,7 +94,6 @@ class PatientStatis(QDialog):
 
     def sta_gender(self):
         self.myHtml.setVisible(True)
-
         #有多少女
         sql_f = """SELECT COUNT(*) FROM Patient_table WHERE gender='女'"""
         self.cursor.execute(sql_f)
@@ -116,7 +124,6 @@ class PatientStatis(QDialog):
                 .render("gender_sta.html")
         )
         self.load_url("gender_sta.html")
-
 
     def sta_age(self):
         self.myHtml.setVisible(True)
@@ -196,7 +203,7 @@ class PatientStatis(QDialog):
         c = (
             Pie()
                 .add(
-                "",
+                "比例",
                 [list(z) for z in zip(x_data, y_data)],
                 radius=["40%", "55%"],
                 label_opts=opts.LabelOpts(
@@ -236,23 +243,26 @@ class PatientStatis(QDialog):
         )
         self.load_url("result_sta_pie.html")
 
-    def sta_smoke(self):
-        self.myHtml.setVisible(True)
-        # 有多少女
-        sql_yes = """SELECT COUNT(*) FROM Patient_table WHERE smoke='有'"""
+    def sta_history(self,project):
+
+        sql_yes = """SELECT COUNT(*) FROM Patient_table WHERE %s='有'""" % (project)
+        print("sql")
+        print(sql_yes)
+
         self.cursor.execute(sql_yes)
         num_yes = self.cursor.fetchone()[0]
 
-        sql_no = """SELECT COUNT(*) FROM Patient_table WHERE smoke='否'"""
+        sql_no = """SELECT COUNT(*) FROM Patient_table WHERE %s='否'""" % (project)
         self.cursor.execute(sql_no)
         num_no = self.cursor.fetchone()[0]
 
-        sql_null = """SELECT COUNT(*) FROM Patient_table WHERE smoke='未知'"""
+        sql_null = """SELECT COUNT(*) FROM Patient_table WHERE %s='未知'""" %(project)
         self.cursor.execute(sql_null)
         num_null = self.cursor.fetchone()[0]
 
         x_data = ["是", "否","未知"]
         y_data = [num_yes, num_no,num_null]
+
 
         c = (
             Pie()
@@ -292,11 +302,10 @@ class PatientStatis(QDialog):
                     },
                 ),
             )
-                .set_global_opts(title_opts=opts.TitleOpts(title="是否有吸烟史"))
+                .set_global_opts(title_opts=opts.TitleOpts(title="是否有病史"))
                 .render("result_sta_pie.html")
         )
         self.load_url("result_sta_pie.html")
-
 
 
 

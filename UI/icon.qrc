@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>pictures/calendar-select-days-span.png</file>
     <file>pictures/calendar--arrow.png</file>
     <file>pictures/switch--pencil.png</file>
     <file>pictures/p.png</file>
