@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>4</number>
     </property>
     <property name="documentMode">
      <bool>true</bool>
@@ -2628,37 +2628,52 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
            </property>
            <item>
             <property name="text">
-             <string>血管性血友病</string>
+             <string>血友病</string>
             </property>
             <item>
              <property name="text">
-              <string>1</string>
+              <string>血友病A</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>3</string>
+              <string>血友病B </string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>2A</string>
+              <string>血管性血友病</string>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>2B</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>2M</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>2N</string>
-             </property>
+             <item>
+              <property name="text">
+               <string>1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>3</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>2A</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>2B</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>2M</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>2N</string>
+              </property>
+             </item>
             </item>
            </item>
           </item>

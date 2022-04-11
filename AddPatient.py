@@ -44,8 +44,7 @@ class AddPatient(QDialog):
             num = self.cursor.fetchone()[0]
 
             if num > 0:
-                show_error_message(self, "已存在该编号的病人！")
-
+                show_error_message(self, "已存在该编号的病人！")#可以可以有报错的！
             else:
                 self.cursor.execute(sql)
                 self.connection.commit()#需要提交
@@ -121,4 +120,3 @@ class AddPatient(QDialog):
     # 记录debug信息
     def record_debug(self, debug_message: str) -> None:
         self.logger.debug("语句错误，错误原因为{}".format(debug_message))
-
