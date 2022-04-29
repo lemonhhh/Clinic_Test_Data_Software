@@ -18,8 +18,8 @@ from pyecharts.options import ComponentTitleOpts
 from pyecharts.charts import Boxplot
 from pyecharts.components import Table
 from pyecharts.charts import Bar
-from pyecharts.charts import Tab
-from pyecharts.faker import Faker
+from pyecharts.charts import Tab,Pie
+
 
 
 # 模块
@@ -138,9 +138,9 @@ WHERE Patient_table.gender='女' and Exam_table.%s is not null""" % (item,item)
     def cao(self):
 
         if self.cb.currentText() == '血型':
-            pass
+            self.ShowBloodPatient()
         else:
-            self.ShowExamPatiemt(self.cb.currentText())
+            self.ShowExamPatient(self.cb.currentText())
 
 
     def load_url(self,file_name):
@@ -151,7 +151,104 @@ WHERE Patient_table.gender='女' and Exam_table.%s is not null""" % (item,item)
         local_url = QUrl.fromLocalFile(file_path)
         self.myHtml.load(local_url)
 
-    def ShowExamPatiemt(self,project):
+    def ShowBloodPatient(self):
+        tab = Tab()
+        tab.add(self.show_all_pie(),"总体")
+        tab.add(self.show_gender_pie(),"按性别")
+        # tab.add(self.show_age_pie("按年龄"))
+        tab.render("blood_patient_pie.html")
+        self.load_url("blood_patient_pie.html")
+
+
+    def show_all_pie(self) -> Pie:
+        blood_type = ['A','B','O','AB']
+        blood_num = []
+        for bt in blood_type:
+            sql = """select count(1) from Exam_table where blood_type='%s'""" % (bt)
+            self.cursor.execute(sql)
+            blood_num.append(self.cursor.fetchone()[0])
+        c = (
+            Pie()
+                .add(
+                "比例",
+                [list(z) for z in zip(blood_type, blood_num)],
+                radius=["40%", "55%"],
+                label_opts=opts.LabelOpts(
+                    position="outside",
+                    formatter="{a|{a}}{abg|}\n{hr|}\n {b|{b}: }{c}  {per|{d}%}  ",
+                    background_color="#eee",
+                    border_color="#aaa",
+                    border_width=1,
+                    border_radius=4,
+                    rich={
+                        "a": {"color": "#999", "lineHeight": 22, "align": "center"},
+                        "abg": {
+                            "backgroundColor": "#e3e3e3",
+                            "width": "100%",
+                            "align": "right",
+                            "height": 22,
+                            "borderRadius": [4, 4, 0, 0],
+                        },
+                        "hr": {
+                            "borderColor": "#aaa",
+                            "width": "100%",
+                            "borderWidth": 0.5,
+                            "height": 0,
+                        },
+                        "b": {"fontSize": 16, "lineHeight": 33},
+                        "per": {
+                            "color": "#eee",
+                            "backgroundColor": "#334455",
+                            "padding": [2, 4],
+                            "borderRadius": 2,
+                        },
+                    },
+                ),
+            )
+                .set_global_opts(title_opts=opts.TitleOpts(title="血型"),toolbox_opts=opts.ToolboxOpts(),)
+        )
+        return c
+
+    def show_gender_pie(self) -> Pie:
+        blood_type = ['A', 'B', 'O', 'AB']
+        mblood_num = []
+        fblood_num = []
+        for bt in blood_type:
+            sql_f = """SELECT count(1) FROM Exam_table INNER JOIN Patient_table ON Exam_table.patient_ID=Patient_table.patient_ID  
+            WHERE Patient_table.gender='女' and Exam_table.blood_type='%s' """ % (bt)
+            self.cursor.execute(sql_f)
+            fblood_num.append(self.cursor.fetchone()[0])
+            sql_m = """SELECT count(1) FROM Exam_table INNER JOIN Patient_table ON Exam_table.patient_ID=Patient_table.patient_ID  
+                       WHERE Patient_table.gender='男' and Exam_table.blood_type='%s' """ % (bt)
+            self.cursor.execute(sql_m)
+            mblood_num.append(self.cursor.fetchone()[0])
+
+        c = (
+            Pie()
+                .add(
+                "",
+                [list(z) for z in zip(blood_type, mblood_num)],
+                center=["20%", "30%"],
+                radius=[60, 80],
+                # label_opts=new_label_opts(),
+            )
+                .add(
+                "",
+                [list(z) for z in zip(blood_type, fblood_num)],
+                center=["55%", "30%"],
+                radius=[60, 80],
+                # label_opts=new_label_opts(),
+            )
+                .set_global_opts(
+                title_opts=opts.TitleOpts(title="血型"),
+                legend_opts=opts.LegendOpts(
+                    type_="scroll", pos_top="20%", pos_left="80%", orient="vertical"
+                ),
+            )
+        )
+        return c
+
+    def ShowExamPatient(self,project):
         tab = Tab()
         tab.add(self.show_all_boxplot(project), "总体")
         tab.add(self.show_gender_boxplot(project), "按性别")
@@ -167,7 +264,7 @@ WHERE Patient_table.gender='女' and Exam_table.%s is not null""" % (item,item)
         c = Boxplot()
         c.add_xaxis([project])
         c.add_yaxis(project,c.prepare_data(v1))
-        c.set_global_opts(title_opts=opts.TitleOpts(title="所有数据"))
+        c.set_global_opts(title_opts=opts.TitleOpts(title="所有数据"),toolbox_opts=opts.ToolboxOpts())
         return c
 
     def show_gender_boxplot(self,project)->Boxplot:
@@ -181,7 +278,7 @@ WHERE Patient_table.gender='女' and Exam_table.%s is not null""" % (item,item)
 
         c.add_yaxis("女", c.prepare_data(v1))
         c.add_yaxis("男", c.prepare_data(v2))
-        c.set_global_opts(title_opts=opts.TitleOpts(title="按性别"))
+        c.set_global_opts(title_opts=opts.TitleOpts(title="按性别"),toolbox_opts=opts.ToolboxOpts(),)
         return c
 
     def show_age_boxplot(self,project)->Boxplot:
@@ -198,7 +295,7 @@ WHERE Patient_table.gender='女' and Exam_table.%s is not null""" % (item,item)
         c.add_yaxis("35-60", c.prepare_data(v3))
         c.add_yaxis("60以上", c.prepare_data(v4))
 
-        c.set_global_opts(title_opts=opts.TitleOpts(title="按年龄"))
+        c.set_global_opts(title_opts=opts.TitleOpts(title="按年龄"),toolbox_opts=opts.ToolboxOpts(),)
         return c
 
 

@@ -32,12 +32,14 @@ from ManDiagnosis import ManDiag
 from ExamPatient import ExamPatient
 from ExamDiagnosis import ExamDiagnosis
 from DataChange import DataChange
+from CorAnalysis import CorExam
 #～～～结果管理～～～
 from DiseaseTree import DiseaseTree #疾病树
 from DiseaseClass import DiseaseClass
 from DiagPatient import DiagPatient
 from DiagExam import DiagExam
 from TestData import TestExam
+from Diagnosis_timeline import DiagTime
 # 相关配置
 from Util.Common import get_sql_connection, get_logger, show_error_message, show_successful_message
 # 其他必须
@@ -155,7 +157,6 @@ class MainWindow(QMainWindow):
         db_dialog = ShowDatabase(self)
         db_dialog.setAttribute(Qt.WA_DeleteOnClose)
         db_dialog.show()
-
 
     # 点击【查询样本】
     @pyqtSlot()
@@ -319,6 +320,13 @@ class MainWindow(QMainWindow):
         change_widget.setAttribute(Qt.WA_DeleteOnClose)
         change_widget.show()
 
+    @pyqtSlot()
+    def on_cor_analysis_clicked(self):
+        print("点了呢")
+        cor_widget = CorExam(self)
+        cor_widget.setAttribute(Qt.WA_DeleteOnClose)
+        cor_widget.show()
+
 #～～～～～～～～～【诊断管理】～～～～～～～～～～～～
     # 点击【疾病介绍】
     @pyqtSlot()
@@ -354,6 +362,11 @@ class MainWindow(QMainWindow):
         test_dialog = TestExam(self)
         test_dialog.setAttribute(Qt.WA_DeleteOnClose)
         test_dialog.show()
+
+    def on_diag_timeline_clicked(self):
+        change_widget = DiagTime(self)
+        change_widget.setAttribute(Qt.WA_DeleteOnClose)
+        change_widget.show()
 
 ##  ============================== 槽函数区 ==============================#
 
@@ -544,8 +557,20 @@ class MainWindow(QMainWindow):
                 'PP',
                 '血型',
                 '血糖',
+                '乳酸',
+                '中性粒细胞',
+                '血红蛋白',
+                '尿素',
+                '二聚体',
+                '血红素',
+                '呼吸频率',
+                '舒张压',
+                '收缩压',
+                '血氧饱和度',
+                '血小板',
+                '添加日期'
             ],
-            colCount=17)
+            colCount=29)
 
 
         connection = get_sql_connection()
@@ -616,14 +641,24 @@ class MainWindow(QMainWindow):
         # 已经到最后一级
 
         types = first_name[0]
+        print(types)
 
 
         if types == '出血病':
             sql = """select * from Diagnosis_table where binary_type = '%s' """ % ("出血病")
         if types == '血栓病':
             sql = """select * from Diagnosis_table where binary_type = '%s'""" % ("血栓病")
+        if types == '血友病':
+            sql = """SELECT * FROM Diagnosis_table WHERE result LIKE '%血友%'"""
+        #todo:
+        #这里会崩掉有点奇怪
+        if types == '血友病B':
+            sql = """SELECT * FROM Diagnosis_table WHERE result LIKE '%血友病B%'"""
+        if types == '血友病A':
+            sql = """SELECT * FROM Diagnosis_table WHERE result LIKE '%血友病A%'"""
         if types == '血管性血友病':
             sql = """select * from Diagnosis_table where result = '%s'""" % ("血管性血友病")
+
         if types == '1':
             sql = """select * from Diagnosis_table where vwd_type='%s'"""%('1')
         if types == '3':
@@ -800,8 +835,20 @@ class MainWindow(QMainWindow):
                 'PP',
                 '血型',
                 '血糖',
+                '乳酸',
+                '中性粒细胞',
+                '血红蛋白',
+                '尿素',
+                '二聚体',
+                '血红素',
+                '呼吸频率',
+                '舒张压',
+                '收缩压',
+                '血氧饱和度',
+                '血小板',
+                '添加日期'
             ],
-            colCount=17)
+            colCount=29)
         # 从数据库中得到所有的数据
         data_list = self.read_sql_data_exam()
 

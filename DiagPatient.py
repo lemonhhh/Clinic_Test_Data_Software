@@ -42,6 +42,7 @@ class DiagPatient(QDialog):
             "结合胆红素": 5,
             "PP": 6,
             "血糖": 7}
+
         self.age_list = []
         self.gender_list = []
 
@@ -87,6 +88,7 @@ class DiagPatient(QDialog):
         elif self.cb.currentText() == '按照出血/血栓分析':
             x_data = ['出血病', '血栓病']
             column = 'binary_type'
+
         self.type_chart(x_data, column)
 
     def type_chart(self, x_data, column):
@@ -96,35 +98,10 @@ class DiagPatient(QDialog):
 
         tab.add(self.type_history_bar(x_data, column, "smoke", "吸烟史分析"), "吸烟史")
         tab.add(self.type_history_bar(x_data, column, "drink", "饮酒史分析"), "饮酒史")
-        tab.add(
-            self.type_history_bar(
-                x_data,
-                column,
-                "transfusion",
-                "输血史分析"),
-            "输血史")
-        tab.add(
-            self.type_history_bar(
-                x_data,
-                column,
-                "operation",
-                "手术史分析"),
-            "手术史")
-        tab.add(
-            self.type_history_bar(
-                x_data,
-                column,
-                "infectious",
-                "传染史分析"),
-            "传染史")
-        tab.add(
-            self.type_history_bar(
-                x_data,
-                column,
-                "allergy",
-                "过敏史分析"),
-            "过敏史")
-
+        tab.add(self.type_history_bar(x_data,column,"transfusion","输血史分析"),"输血史")
+        tab.add(self.type_history_bar(x_data,column,"operation","手术史分析"),"手术史")
+        tab.add(self.type_history_bar(x_data,column,"infectious","传染史分析"),"传染史")
+        tab.add(self.type_history_bar(x_data,column,"allergy","过敏史分析"),"过敏史")
         tab.render("patien_diag_tab.html")
 
         self.load_url("patien_diag_tab.html")
@@ -186,7 +163,6 @@ class DiagPatient(QDialog):
     # 做图
 
     def type_history_bar(self, x_data, column, history, title):
-
         ys = []
         ns = []
         us = []
@@ -214,7 +190,6 @@ class DiagPatient(QDialog):
             ys.append(y_ration)
             ns.append(n_ration)
             us.append(u_ration)
-
         # todo:
         # 需要修改一下
         c = (
@@ -231,6 +206,7 @@ class DiagPatient(QDialog):
                 title_opts=opts.TitleOpts(title=title)))
         return c
 
+
     def load_url(self, file_name):
         file_path = os.path.abspath(
             os.path.join(
@@ -238,7 +214,6 @@ class DiagPatient(QDialog):
                 file_name))
         local_url = QUrl.fromLocalFile(file_path)
         self.myHtml.load(local_url)
-
 
 ##  ============================== 功能函数区 ==============================#
 

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>600</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>相关性分析</string>
+  </property>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>70</y>
+     <width>366</width>
+     <height>199</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="5" column="0">
+     <widget class="QPushButton" name="btn_confirm">
+      <property name="styleSheet">
+       <string notr="true">font: 13pt &quot;Heiti SC&quot;;</string>
+      </property>
+      <property name="text">
+       <string>确定</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QComboBox" name="cb2">
+      <property name="styleSheet">
+       <string notr="true">font: 13pt &quot;Heiti SC&quot;;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>年龄</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>APTT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Ag</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Act</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>RIPA</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CB</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>血糖</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>乳酸</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>中性粒细胞</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>血红蛋白</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>尿素</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>二聚体</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>血红素</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>舒张压</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>收缩压</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>血氧饱和度</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>血小板</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="styleSheet">
+       <string notr="true">font: 13pt &quot;Heiti SC&quot;;</string>
+      </property>
+      <property name="text">
+       <string>选择方法</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QComboBox" name="cb1">
+      <property name="styleSheet">
+       <string notr="true">font: 13pt &quot;Heiti SC&quot;;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>年龄</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>APTT</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Ag</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Act</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>RIPA</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CB</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>血糖</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>乳酸</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>中性粒细胞</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>血红蛋白</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>尿素</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>二聚体</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>血红素</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>舒张压</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>收缩压</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>血氧饱和度</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>血小板</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label">
+      <property name="styleSheet">
+       <string notr="true">font: 13pt &quot;Heiti SC&quot;;</string>
+      </property>
+      <property name="text">
+       <string>选择要观察的指标</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QPushButton" name="btn_help">
+      <property name="styleSheet">
+       <string notr="true">font: 13pt &quot;Heiti SC&quot;;</string>
+      </property>
+      <property name="text">
+       <string>查看提示</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QComboBox" name="cb_method">
+      <property name="styleSheet">
+       <string notr="true">font: 13pt &quot;Heiti SC&quot;;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Pearson</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Spearman</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Kendall</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="styleSheet">
+       <string notr="true">font: 13pt &quot;Heiti SC&quot;;</string>
+      </property>
+      <property name="text">
+       <string>相关系数</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLabel" name="lable_value">
+      <property name="styleSheet">
+       <string notr="true">font: 13pt &quot;Heiti SC&quot;;
+font: 13pt &quot;.AppleSystemUIFont&quot;;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="creat.qrc"/>
+ </resources>
+ <connections/>
+</ui>

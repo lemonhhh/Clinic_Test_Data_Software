@@ -40,18 +40,18 @@
         }
     </style>
     <div class="tab">
-            <button class="tablinks" onclick="showChart(event, '1ea4be28fbe041acaaeecd7a06bbc68d')">总体</button>
-            <button class="tablinks" onclick="showChart(event, '6381aca6b204412fadd5a19fa3b7cceb')">按VWD类型</button>
-            <button class="tablinks" onclick="showChart(event, 'c0cef1af8b674c88a2d307b24742e14d')">按血友病类型</button>
-            <button class="tablinks" onclick="showChart(event, 'ccd00be990214999b9a236568da2030e')">按出血/血栓</button>
+            <button class="tablinks" onclick="showChart(event, 'bf5a05a4fb124eb6b7de25ea3fa531d5')">总体</button>
+            <button class="tablinks" onclick="showChart(event, '5223f08a506744ad860174d424237a85')">按VWD类型</button>
+            <button class="tablinks" onclick="showChart(event, 'b015d63a3c2f4c7aa8aaaf311c3fad91')">按血友病类型</button>
+            <button class="tablinks" onclick="showChart(event, '0ba14664c5744be9a4cf9d1617603b6c')">按出血/血栓</button>
     </div>
 
     <div class="box">
-                <div id="1ea4be28fbe041acaaeecd7a06bbc68d" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="bf5a05a4fb124eb6b7de25ea3fa531d5" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_1ea4be28fbe041acaaeecd7a06bbc68d = echarts.init(
-            document.getElementById('1ea4be28fbe041acaaeecd7a06bbc68d'), 'white', {renderer: 'canvas'});
-        var option_1ea4be28fbe041acaaeecd7a06bbc68d = {
+        var chart_bf5a05a4fb124eb6b7de25ea3fa531d5 = echarts.init(
+            document.getElementById('bf5a05a4fb124eb6b7de25ea3fa531d5'), 'white', {renderer: 'canvas'});
+        var option_bf5a05a4fb124eb6b7de25ea3fa531d5 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -89,14 +89,14 @@
     "series": [
         {
             "type": "boxplot",
-            "name": "Ag",
+            "name": "APTT",
             "data": [
                 [
-                    0.0,
-                    3.0,
-                    16.3,
-                    35.2,
-                    180.3
+                    28.1,
+                    37.25,
+                    45.6,
+                    58.2,
+                    110.0
                 ]
             ],
             "label": {
@@ -126,10 +126,10 @@
     "legend": [
         {
             "data": [
-                "Ag"
+                "APTT"
             ],
             "selected": {
-                "Ag": true
+                "APTT": true
             },
             "show": true,
             "padding": 5,
@@ -177,7 +177,7 @@
                 }
             },
             "data": [
-                "Ag"
+                "APTT"
             ]
         }
     ],
@@ -212,13 +212,13 @@
         }
     ]
 };
-        chart_1ea4be28fbe041acaaeecd7a06bbc68d.setOption(option_1ea4be28fbe041acaaeecd7a06bbc68d);
+        chart_bf5a05a4fb124eb6b7de25ea3fa531d5.setOption(option_bf5a05a4fb124eb6b7de25ea3fa531d5);
     </script>
-                <div id="6381aca6b204412fadd5a19fa3b7cceb" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="5223f08a506744ad860174d424237a85" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_6381aca6b204412fadd5a19fa3b7cceb = echarts.init(
-            document.getElementById('6381aca6b204412fadd5a19fa3b7cceb'), 'white', {renderer: 'canvas'});
-        var option_6381aca6b204412fadd5a19fa3b7cceb = {
+        var chart_5223f08a506744ad860174d424237a85 = echarts.init(
+            document.getElementById('5223f08a506744ad860174d424237a85'), 'white', {renderer: 'canvas'});
+        var option_5223f08a506744ad860174d424237a85 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -259,11 +259,11 @@
             "name": "1",
             "data": [
                 [
-                    2.8,
-                    5.324999999999999,
+                    28.1,
+                    35.5,
                     40.9,
-                    55.875,
-                    77.3
+                    47.6,
+                    102.5
                 ]
             ],
             "label": {
@@ -294,11 +294,11 @@
             "name": "2A",
             "data": [
                 [
-                    11.3,
-                    15.8,
-                    25.0,
-                    35.2,
-                    180.3
+                    31.7,
+                    41.1,
+                    43.0,
+                    48.0,
+                    51.5
                 ]
             ],
             "label": {
@@ -329,11 +329,11 @@
             "name": "2B",
             "data": [
                 [
-                    9.2,
-                    12.0,
-                    20.2,
-                    32.25,
-                    33.4
+                    37.2,
+                    37.2,
+                    43.2,
+                    45.4,
+                    53.0
                 ]
             ],
             "label": {
@@ -364,11 +364,11 @@
             "name": "2M",
             "data": [
                 [
-                    7.3,
-                    15.6,
-                    18.2,
-                    24.799999999999997,
-                    31.0
+                    31.5,
+                    35.824999999999996,
+                    37.5,
+                    42.525000000000006,
+                    55.0
                 ]
             ],
             "label": {
@@ -399,11 +399,11 @@
             "name": "2N",
             "data": [
                 [
-                    9.5,
-                    10.25,
-                    48.8,
-                    55.2,
-                    125.8
+                    60.2,
+                    61.0,
+                    62.9,
+                    86.6,
+                    110.0
                 ]
             ],
             "label": {
@@ -434,11 +434,11 @@
             "name": "3",
             "data": [
                 [
-                    0.0,
-                    0.7750000000000001,
-                    1.4,
-                    2.025,
-                    4.7
+                    45.3,
+                    56.400000000000006,
+                    62.0,
+                    68.375,
+                    82.8
                 ]
             ],
             "label": {
@@ -529,7 +529,7 @@
                 }
             },
             "data": [
-                "Ag"
+                "APTT"
             ]
         }
     ],
@@ -564,13 +564,13 @@
         }
     ]
 };
-        chart_6381aca6b204412fadd5a19fa3b7cceb.setOption(option_6381aca6b204412fadd5a19fa3b7cceb);
+        chart_5223f08a506744ad860174d424237a85.setOption(option_5223f08a506744ad860174d424237a85);
     </script>
-                <div id="c0cef1af8b674c88a2d307b24742e14d" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="b015d63a3c2f4c7aa8aaaf311c3fad91" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_c0cef1af8b674c88a2d307b24742e14d = echarts.init(
-            document.getElementById('c0cef1af8b674c88a2d307b24742e14d'), 'white', {renderer: 'canvas'});
-        var option_c0cef1af8b674c88a2d307b24742e14d = {
+        var chart_b015d63a3c2f4c7aa8aaaf311c3fad91 = echarts.init(
+            document.getElementById('b015d63a3c2f4c7aa8aaaf311c3fad91'), 'white', {renderer: 'canvas'});
+        var option_b015d63a3c2f4c7aa8aaaf311c3fad91 = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -665,11 +665,11 @@
             "name": "VWD",
             "data": [
                 [
-                    0.0,
-                    3.0,
-                    16.3,
-                    35.2,
-                    180.3
+                    28.1,
+                    37.25,
+                    45.6,
+                    58.2,
+                    110.0
                 ]
             ],
             "label": {
@@ -754,7 +754,7 @@
                 }
             },
             "data": [
-                "Ag"
+                "APTT"
             ]
         }
     ],
@@ -789,13 +789,13 @@
         }
     ]
 };
-        chart_c0cef1af8b674c88a2d307b24742e14d.setOption(option_c0cef1af8b674c88a2d307b24742e14d);
+        chart_b015d63a3c2f4c7aa8aaaf311c3fad91.setOption(option_b015d63a3c2f4c7aa8aaaf311c3fad91);
     </script>
-                <div id="ccd00be990214999b9a236568da2030e" class="chart-container" style="width:900px; height:500px;"></div>
+                <div id="0ba14664c5744be9a4cf9d1617603b6c" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_ccd00be990214999b9a236568da2030e = echarts.init(
-            document.getElementById('ccd00be990214999b9a236568da2030e'), 'white', {renderer: 'canvas'});
-        var option_ccd00be990214999b9a236568da2030e = {
+        var chart_0ba14664c5744be9a4cf9d1617603b6c = echarts.init(
+            document.getElementById('0ba14664c5744be9a4cf9d1617603b6c'), 'white', {renderer: 'canvas'});
+        var option_0ba14664c5744be9a4cf9d1617603b6c = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -836,11 +836,11 @@
             "name": "\u51fa\u8840\u75c5",
             "data": [
                 [
-                    0.0,
-                    3.0,
-                    16.3,
-                    35.2,
-                    180.3
+                    28.1,
+                    37.25,
+                    45.6,
+                    58.2,
+                    110.0
                 ]
             ],
             "label": {
@@ -950,7 +950,7 @@
                 }
             },
             "data": [
-                "Ag"
+                "APTT"
             ]
         }
     ],
@@ -985,7 +985,7 @@
         }
     ]
 };
-        chart_ccd00be990214999b9a236568da2030e.setOption(option_ccd00be990214999b9a236568da2030e);
+        chart_0ba14664c5744be9a4cf9d1617603b6c.setOption(option_0ba14664c5744be9a4cf9d1617603b6c);
     </script>
     </div>
 

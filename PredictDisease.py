@@ -45,8 +45,6 @@ class PredictDisease(QDialog):
         self.x_column = None
         self.type = None
 
-
-
         self.data = None
 
 
@@ -88,17 +86,7 @@ class PredictDisease(QDialog):
         # 得到sql
         print(self.type)
         if self.type == '新冠':
-            sql = """SELECT respiratory_rate,
-                            lactate,
-                            diastolic,
-                            sistolic,
-                            neutrophiles,
-                            oxyden_saturation,
-                            hemoglobin,
-                            urea,
-                            dimer,
-                            platelets,
-                            hemetocrite
+            sql = """SELECT respiratory_rate,lactate,diastolic,sistolic,neutrophiles,oxyden_saturation,hemoglobin,urea,dimer,platelets,hemetocrite
                     FROM Exam_table 
                     WHERE patient_ID='%s' """ % pID
 
