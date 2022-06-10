@@ -7,11 +7,11 @@
 
 </head>
 <body>
-    <div id="e6619cf50bcf447388baaa1530ba728c" class="chart-container" style="width:1000px; height:600px;"></div>
+    <div id="1299e87644b34643acaebdbdbf58b61e" class="chart-container" style="width:900px; height:500px;"></div>
     <script>
-        var chart_e6619cf50bcf447388baaa1530ba728c = echarts.init(
-            document.getElementById('e6619cf50bcf447388baaa1530ba728c'), 'white', {renderer: 'canvas'});
-        var option_e6619cf50bcf447388baaa1530ba728c = {
+        var chart_1299e87644b34643acaebdbdbf58b61e = echarts.init(
+            document.getElementById('1299e87644b34643acaebdbdbf58b61e'), 'white', {renderer: 'canvas'});
+        var option_1299e87644b34643acaebdbdbf58b61e = {
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -48,92 +48,89 @@
     ],
     "series": [
         {
-            "type": "line",
-            "name": "\u6307\u6807\u53d8\u5316",
-            "connectNulls": false,
-            "symbolSize": 4,
-            "showSymbol": true,
-            "smooth": false,
-            "clip": true,
-            "step": false,
+            "type": "scatter",
+            "name": "\u6570\u636e1",
+            "symbolSize": 10,
             "data": [
                 [
-                    "2022-02-01",
-                    38.0
+                    "\u54c8\u58eb\u5947",
+                    12,
+                    4
                 ],
                 [
-                    "2022-02-05",
-                    36.0
+                    "\u8428\u6469\u8036",
+                    2,
+                    5
                 ],
                 [
-                    "2022-02-10",
-                    37.0
+                    "\u6cf0\u8fea",
+                    2,
+                    6
                 ],
                 [
-                    "2022-03-02",
-                    39.0
+                    "\u91d1\u6bdb",
+                    3,
+                    15
+                ],
+                [
+                    "\u7267\u7f8a\u72ac",
+                    3,
+                    6
                 ]
             ],
-            "hoverAnimation": true,
             "label": {
                 "show": true,
-                "position": "top",
+                "position": "right",
                 "margin": 8
-            },
-            "lineStyle": {
+            }
+        },
+        {
+            "type": "scatter",
+            "name": "\u6570\u636e2",
+            "symbolSize": 10,
+            "data": [
+                [
+                    "\u54c8\u58eb\u5947",
+                    8,
+                    2
+                ],
+                [
+                    "\u8428\u6469\u8036",
+                    28,
+                    4
+                ],
+                [
+                    "\u6cf0\u8fea",
+                    18,
+                    6
+                ],
+                [
+                    "\u91d1\u6bdb",
+                    8,
+                    61
+                ],
+                [
+                    "\u7267\u7f8a\u72ac",
+                    7,
+                    2
+                ]
+            ],
+            "label": {
                 "show": true,
-                "width": 1,
-                "opacity": 1,
-                "curveness": 0,
-                "type": "solid"
-            },
-            "areaStyle": {
-                "opacity": 0
-            },
-            "markPoint": {
-                "label": {
-                    "show": true,
-                    "position": "inside",
-                    "color": "#fff",
-                    "margin": 8
-                },
-                "data": [
-                    {
-                        "name": "\u6700\u5927\u503c",
-                        "type": "max"
-                    },
-                    {
-                        "name": "\u6700\u5c0f\u503c",
-                        "type": "min"
-                    }
-                ]
-            },
-            "markLine": {
-                "silent": false,
-                "precision": 2,
-                "label": {
-                    "show": true,
-                    "position": "top",
-                    "margin": 8
-                },
-                "data": [
-                    {
-                        "name": "\u5e73\u5747\u503c",
-                        "type": "average"
-                    }
-                ]
-            },
-            "zlevel": 0,
-            "z": 0
+                "position": "right",
+                "margin": 8
+            }
         }
     ],
     "legend": [
         {
             "data": [
-                "\u6307\u6807\u53d8\u5316"
+                "\u6570\u636e1",
+                "\u6570\u636e2"
             ],
             "selected": {
-                "\u6307\u6807\u53d8\u5316": true
+                "\u6570\u636e1": true,
+                "\u6570\u636e2": true
             },
             "show": true,
             "padding": 5,
@@ -161,7 +158,6 @@
     },
     "xAxis": [
         {
-            "type": "category",
             "show": true,
             "scale": false,
             "nameLocation": "end",
@@ -170,7 +166,6 @@
             "inverse": false,
             "offset": 0,
             "splitNumber": 5,
-            "boundaryGap": false,
             "minInterval": 0,
             "splitLine": {
                 "show": false,
@@ -183,10 +178,13 @@
                 }
             },
             "data": [
-                "2022-02-01",
-                "2022-02-05",
-                "2022-02-10",
-                "2022-03-02"
+                "\u54c8\u58eb\u5947",
+                "\u8428\u6469\u8036",
+                "\u6cf0\u8fea",
+                "\u91d1\u6bdb",
+                "\u7267\u7f8a\u72ac",
+                "\u5409\u5a03\u5a03",
+                "\u67ef\u57fa"
             ]
         }
     ],
@@ -215,13 +213,13 @@
     ],
     "title": [
         {
-            "text": "\u6307\u6807\u53d8\u5316",
+            "text": "\u4f8b1 scatter\u81ea\u5b9a\u4e49\u6570\u636e\u57fa\u672c\u793a\u4f8b",
             "padding": 5,
             "itemGap": 10
         }
     ]
 };
-        chart_e6619cf50bcf447388baaa1530ba728c.setOption(option_e6619cf50bcf447388baaa1530ba728c);
+        chart_1299e87644b34643acaebdbdbf58b61e.setOption(option_1299e87644b34643acaebdbdbf58b61e);
     </script>
 </body>
 </html>

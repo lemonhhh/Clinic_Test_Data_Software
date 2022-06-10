@@ -1,0 +1,4 @@
+2022-05-03 17:17:37,952 - DEBUG - MainThread - 98 - 语句错误，错误原因为object of type 'NoneType' has no len()
+2022-05-03 17:17:46,108 - DEBUG - MainThread - 98 - 语句错误，错误原因为object of type 'NoneType' has no len()
+2022-05-03 17:17:48,614 - DEBUG - MainThread - 98 - 语句错误，错误原因为object of type 'NoneType' has no len()
+2022-05-03 17:18:11,559 - DEBUG - MainThread - 98 - 语句错误，错误原因为object of type 'NoneType' has no len()

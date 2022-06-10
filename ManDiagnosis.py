@@ -62,7 +62,7 @@ WHERE patient_ID='%s'""" % (result, describe,patientID)
 
         sql_patient="""UPDATE patients SET result='是' WHERE patient_ID='%s'"""%patientID
 
-        print("人工人算sql",sql)
+
         return sql, sql_patient,data_list
 
     @pyqtSlot()

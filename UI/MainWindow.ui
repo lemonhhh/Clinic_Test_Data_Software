@@ -197,7 +197,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QFrame" name="frame">
+      <widget class="QFrame" name="frame_pic">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -2310,7 +2310,7 @@ border-image: url(:/newPrefix/pictures/4p.png.png);</string>
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="cor_analysis_2">
+        <widget class="QToolButton" name="cluster_analysis">
          <property name="styleSheet">
           <string notr="true">border:none;</string>
          </property>

@@ -79,13 +79,16 @@ class DiagPatient(QDialog):
 
     def cao(self):
         self.myHtml.setVisible(True)
+        print(self.cb.currentText())
         if self.cb.currentText() == '按照VWD亚型分析':
             x_data = ['1', '2A', '2B', '2M', '2N', '3']
             column = 'vwd_type'
-        elif self.cb.currentText() == '按照血友病分析':
+        if self.cb.currentText() == '按照血友病分析':
             x_data = ['A', 'B', 'VWD']
             column = 'haemophilia_type'
-        elif self.cb.currentText() == '按照出血/血栓分析':
+            print(x_data)
+
+        if self.cb.currentText() == '按照出血/血栓分析':
             x_data = ['出血病', '血栓病']
             column = 'binary_type'
 
@@ -122,8 +125,11 @@ class DiagPatient(QDialog):
             self.cursor.execute(sql_m)
             m_num = self.cursor.fetchone()[0]
 
-            f_ration = np.round(f_num / (f_num + m_num),4)*100
-            m_ration = np.round(m_num / (f_num + m_num),4)*100
+            if (f_num + m_num == 0):
+                f_ration = m_ration = 0
+            else:
+                f_ration = np.round(f_num / (f_num + m_num),4)*100
+                m_ration = np.round(m_num / (f_num + m_num),4)*100
 
             female.append(f_ration)
             male.append(m_ration)

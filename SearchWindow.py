@@ -35,11 +35,14 @@ class SearchWindow(QDialog):
     def on_btn_search_clicked(self):
 
         sql = self.get_search_sql()
+        print(sql)
         if sql is not None:
             try:
                 self.cursor.execute(sql)  # 执行sql语句
                 self.show_search_data()
+
             except Exception as e:
+                print(e)
                 self.record_debug(e)
                 show_error_message(self, '查询失败')
 
@@ -74,6 +77,7 @@ class SearchWindow(QDialog):
     def show_search_data(self):
         if self.is_search_valid():
             data_tuple = self.cursor.fetchall()
+            print(data_tuple)
             self.create_show_dialog()
             #发出信号，参数是发射的内容
             self.data_signal.emit(data_tuple)
@@ -83,7 +87,21 @@ class SearchWindow(QDialog):
 
     # 创建展示窗口
     def create_show_dialog(self):
-        show_data_dialog = ShowDataDialog(self)
+
+        #label
+        label =[
+                '样本编号',
+                '病人编号',
+                '样本类型',
+                '样本量',
+                '添加日期',
+                '更新时间',
+                '状态',
+                '归属',
+                '位置',
+                '是否有检查结果']
+
+        show_data_dialog = ShowDataDialog(self,label)
         show_data_dialog.setAttribute(Qt.WA_DeleteOnClose)
         #连接信号和槽
         self.data_signal.connect(show_data_dialog.do_receive_data)

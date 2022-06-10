@@ -17,6 +17,7 @@ import datetime
 class ShowDataDialog(QDialog):
     def __init__(self, parent=None,label=None):
         super(ShowDataDialog, self).__init__(parent)
+
         self.__UI = Ui_show_data_dialog()
         self.__UI.setupUi(self)
 

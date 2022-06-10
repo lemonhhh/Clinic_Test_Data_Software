@@ -25,6 +25,7 @@ from PatientStatis import PatientStatis
 from ExamSta import ExamStatis #检验结果统计
 from AddPatient import AddPatient#添加病人
 from PatientSearch import PatientSearch#查询病人信息
+from PatientCalender import PatientCalendar #按天入库样本数
 from PredictDisease import PredictDisease#疾病预测
 from AddHistory import AddHistory
 from ManDiagnosis import ManDiag
@@ -33,6 +34,7 @@ from ExamPatient import ExamPatient
 from ExamDiagnosis import ExamDiagnosis
 from DataChange import DataChange
 from CorAnalysis import CorExam
+from ClusterShow import ClusterSHow
 #～～～结果管理～～～
 from DiseaseTree import DiseaseTree #疾病树
 from DiseaseClass import DiseaseClass
@@ -59,10 +61,10 @@ class MainWindow(QMainWindow):
 
         # 创建下拉列表
         self.frame = QFrame(self)
-        self.frame.resize(823, 600)
+        self.frame.resize(500, 600)
         self.frame.setStyleSheet(
-            'border-image: url("./fm.png"); background-repeat: no-repeat;')
-        self.frame.move(300, 100)
+            'border-image: url("./start.png"); background-repeat: no-repeat;')
+        self.frame.move(450, 100)
 
         self.cb = QComboBox(self)  # 下拉列表
         self.cb.addItems(["出凝血科室", "尿液检验", "其他科室"])  # 科室名称（继续添加）
@@ -239,7 +241,6 @@ class MainWindow(QMainWindow):
         # add_patient_dialog.data_update_signal.connect(self.do_receive_data)
         add_patient_dialog.show()
 
-
     # 点击【病人信息】
     @pyqtSlot()
     def on_patient_info_clicked(self):
@@ -252,7 +253,13 @@ class MainWindow(QMainWindow):
     def on_delete_patient_clicked(self):
         self.on_delete_patient_triggered()
 
-        # 点击【自动诊断】
+    @pyqtSlot()
+    def on_patient_time_clicked(self):
+        pcalender_dialog = PatientCalendar(self)
+        pcalender_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        pcalender_dialog.show()
+
+    # 点击【自动诊断】
     @pyqtSlot()
     def on_auto_diag_clicked(self):
         print("自动诊断")
@@ -358,15 +365,24 @@ class MainWindow(QMainWindow):
         diag_exam_dialog.show()
 
     #显著性分析
+    @pyqtSlot()
     def on_diag_test_clicked(self):
         test_dialog = TestExam(self)
         test_dialog.setAttribute(Qt.WA_DeleteOnClose)
         test_dialog.show()
 
+    @pyqtSlot()
+    def on_cluster_analysis_clicked(self):
+        cluster_dialog = ClusterSHow(self)
+        cluster_dialog.setAttribute(Qt.WA_DeleteOnClose)
+        cluster_dialog.show()
+
+
     def on_diag_timeline_clicked(self):
         change_widget = DiagTime(self)
         change_widget.setAttribute(Qt.WA_DeleteOnClose)
         change_widget.show()
+
 
 ##  ============================== 槽函数区 ==============================#
 

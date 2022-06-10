@@ -188,6 +188,7 @@ WHERE Patient_table.gender='女' and Exam_table.APTT is not null"""
 
 
         self.sc = MplCanvas(self, width=10, height=6, dpi=100)
+
         num_bins = 40
         n, bins, patches = self.sc.axes.hist(data, num_bins,
                                         density=1,

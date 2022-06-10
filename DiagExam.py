@@ -135,10 +135,10 @@ class DiagExam(QDialog):
             if(a_num + b_num+o_num+ab_num == 0):
                 a_ration = b_ration = o_ration = ab_ration = 0
             else:
-                a_ration = a_num / (a_num + b_num+o_num+ab_num)
-                b_ration = b_num / (a_num + b_num+o_num+ab_num)
-                o_ration = o_num / (a_num + b_num+o_num+ab_num)
-                ab_ration = ab_num / (a_num + b_num+o_num+ab_num)
+                a_ration = np.round(a_num / (a_num + b_num+o_num+ab_num),4)
+                b_ration = np.round(b_num / (a_num + b_num+o_num+ab_num),4)
+                o_ration = np.round(o_num / (a_num + b_num+o_num+ab_num),4)
+                ab_ration = np.round(ab_num / (a_num + b_num+o_num+ab_num),4)
             a.append(a_ration)
             b.append(b_ration)
             o.append(o_ration)

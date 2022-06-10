@@ -1,3 +1,5 @@
-2022-03-12 18:08:54,980 - DEBUG - MainThread - 124 - 语句错误，错误原因为有重复编号
-2022-03-12 18:10:24,681 - DEBUG - MainThread - 127 - 语句错误，错误原因为有重复编号
-2022-03-12 18:11:15,841 - DEBUG - MainThread - 129 - 语句错误，错误原因为有重复编号
+2022-05-25 22:52:17,328 - DEBUG - MainThread - 98 - 语句错误，错误原因为object of type 'NoneType' has no len()
+2022-05-25 22:52:19,402 - DEBUG - MainThread - 98 - 语句错误，错误原因为object of type 'NoneType' has no len()
+2022-05-25 22:53:23,423 - DEBUG - MainThread - 99 - 语句错误，错误原因为object of type 'NoneType' has no len()
+2022-05-25 22:54:55,332 - DEBUG - MainThread - 101 - 语句错误，错误原因为object of type 'NoneType' has no len()
+2022-05-25 22:56:03,094 - DEBUG - MainThread - 102 - 语句错误，错误原因为object of type 'NoneType' has no len()

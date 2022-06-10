@@ -42,14 +42,12 @@ class AddPatient(QDialog):
         try:
             self.cursor.execute(sql_find)
             num = self.cursor.fetchone()[0]
-
             if num > 0:
-                show_error_message(self, "已存在该编号的病人！")#可以可以有报错的！
+                show_error_message(self, "已存在该编号的病人！")
             else:
                 self.cursor.execute(sql)
-                self.connection.commit()#需要提交
+                self.connection.commit()
                 show_successful_message(self, "插入成功")
-                #手动发射信号
                 self.data_update_signal.emit(data_list)
 
         except Exception as e:

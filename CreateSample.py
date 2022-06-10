@@ -121,8 +121,6 @@ class CreateSample(QDialog):
                 self.cursor.execute(sql_position)
                 self.connection.commit()
                 show_successful_message(self, "插入成功")
-
-
                 #手动发射信号
                 self.data_update_signal.emit(data_list)
             except Exception as e:

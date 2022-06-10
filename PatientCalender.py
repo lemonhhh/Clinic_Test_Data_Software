@@ -18,12 +18,13 @@ from pyecharts.charts import Pie, Calendar
 from Util.Common import get_sql_connection, get_logger, show_error_message
 
 
-class DiagTime(QDialog):
+class PatientCalendar(QDialog):
 
     def __init__(self, parent=None):
 
         # 继承所有dialog的方法
-        super(DiagTime, self).__init__(parent)
+        super(PatientCalendar, self).__init__(parent)
+
         self.initUI()
         # 在这里写查询吧
         self.logger = None
@@ -41,7 +42,7 @@ class DiagTime(QDialog):
         self.mainLayout()
 
     def initUI(self):
-        self.setWindowTitle("每日入库样本")
+        self.setWindowTitle("每日入库患者")
         self.setMinimumSize(1300, 800)
 
     def mainLayout(self):
@@ -96,7 +97,7 @@ class DiagTime(QDialog):
         title_opts=opts.TitleOpts(
             pos_top="30",
             pos_left="center",
-            title="每日诊断报告数量"),
+            title="每日入库情况"),
         visualmap_opts=opts.VisualMapOpts(
             max_=20,
             min_=0,
